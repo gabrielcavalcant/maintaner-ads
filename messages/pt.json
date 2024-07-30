@@ -1,0 +1,15 @@
+{
+  "Login": {
+    "email": "Email",
+    "enter": "Entrar",
+    "loginSubtitle": "Insira seu email e senha para entrar.",
+    "loginTitle": "Bem vindo de volta!",
+    "password": "Senha",
+    "loading": "Entrando...",
+    "success": "Sucesso!",
+    "unknownError": "Ocorreu um erro desconhecido",
+    "emailRequired": "O e-mail é obrigatório.",
+    "emailInvalid": "E-mail inválido.",
+    "passMinimal": "A senha deve ter no mínimo 6 caracteres."
+  }
+}

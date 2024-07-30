@@ -1,14 +1,7 @@
 "use client";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
 import { GiGearHammer } from "react-icons/gi";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdKeyboardArrowDown } from "react-icons/md";
 import { FiBox } from "react-icons/fi";
 import { BsTools } from "react-icons/bs";
 import { PiWashingMachineFill } from "react-icons/pi";
@@ -18,14 +11,26 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import DotDropdown from "./dot-dropdown";
+import { IconType } from "react-icons/lib";
+import { Link } from "@/navigation";
+import { useAuth } from "@/context/authContext";
+import { Badge } from "./ui/badge";
+
+type NavItem = {
+  title: string;
+  Icon: IconType;
+  href: string;
+  subpages?: NavItem[];
+};
 
 export default function NavigationBar() {
   const [open, setOpen] = useState<number | null>(null);
-
-  const navigation = [
+  const [hoveredSubpage, setHoveredSubpage] = useState<number | null>(null);
+  const { user, signOut } = useAuth();
+  const navigation: NavItem[] = [
     {
       title: "Dashboard",
       Icon: MdDashboard,
@@ -34,69 +39,43 @@ export default function NavigationBar() {
     {
       title: "Ambientes",
       Icon: FiBox,
-      href: "/",
-      subpages: [
-        {
-          title: "Inicio",
-          Icon: MdDashboard,
-          href: "/",
-        },
-      ],
+      href: "/environments",
     },
     {
       title: "Equipamentos",
       Icon: PiWashingMachineFill,
-      href: "/",
-      subpages: [
-        {
-          title: "Inicio",
-          Icon: MdDashboard,
-          href: "/",
-        },
-      ],
+      href: "/equipments",
     },
     {
       title: "Manutenções",
       Icon: BsTools,
-      href: "/",
-      subpages: [
-        {
-          title: "Inicio",
-          Icon: MdDashboard,
-          href: "/",
-        },
-      ],
+      href: "/maintenances",
     },
     {
       title: "Usuário",
       Icon: FaUserCircle,
-      href: "/",
-      subpages: [
-        {
-          title: "Inicio",
-          Icon: MdDashboard,
-          href: "/",
-        },
-      ],
+      href: "/user",
     },
   ];
 
   return (
     <div>
-      <div className="h-screen w-screen bg-white dark:bg-slate-900">
+      <div className="">
         <aside
           id="sidebar"
-          className="fixed left-0 top-0 z-40 h-screen w-64 transition-transform"
+          className="z-40 h-screen w-64 transition-transform"
           aria-label="Sidebar"
         >
-          <div className="flex h-full flex-col overflow-y-auto border-r border-slate-200 bg-white px-3 py-4 dark:border-slate-700 dark:bg-slate-900">
+          <div className="flex h-full flex-col overflow-y-auto border-r p-3">
             <Link
               href="#"
-              className="mb-10 text-primary flex items-center rounded-lg px-3 py-2 text-slate-900 dark:text-white"
+              className="mb-10 text-4xl flex items-center rounded-lg px-3 py-2 "
               prefetch={false}
             >
-              <GiGearHammer className="text-4xl" />
-              <span className="ml-3 text-base font-semibold">Maintainer</span>
+              <GiGearHammer className="text-4xl text-primary" />
+              <span className="ml-3 text-2xl font-semibold text-primary">
+                Maintainer
+              </span>
             </Link>
             <div className="flex flex-col w-full text-sm font-medium">
               {navigation?.map((item, index) => {
@@ -105,13 +84,20 @@ export default function NavigationBar() {
                   <Tooltip
                     key={index}
                     delayDuration={0}
-                    open={open === index}
+                    open={open === index || hoveredSubpage === index}
                     onOpenChange={() => {
                       setOpen(index);
                     }}
                   >
                     <TooltipTrigger asChild>
-                      <Link href={href} onMouseLeave={() => setOpen(null)}>
+                      <Link
+                        href={href}
+                        onMouseLeave={(e) => {
+                          if (hoveredSubpage !== index) {
+                            setOpen(null);
+                          }
+                        }}
+                      >
                         <Button
                           variant="ghost"
                           className="w-full justify-start items-center gap-4"
@@ -121,8 +107,10 @@ export default function NavigationBar() {
                             {title}
                           </span>
                           <span
-                            className={`flex justify-end items-center  transition-all ${
-                              open === index ? "-rotate-90" : ""
+                            className={`flex justify-end items-center transition-all ${
+                              open === index || hoveredSubpage === index
+                                ? "-rotate-90"
+                                : ""
                             }`}
                           >
                             {subpages && <MdKeyboardArrowDown />}
@@ -132,14 +120,20 @@ export default function NavigationBar() {
                     </TooltipTrigger>
                     {subpages && (
                       <TooltipContent
+                        sideOffset={-2}
                         side="right"
                         align="start"
                         className="flex flex-col w-[200px] items-start rounded bg-background p-0 text-start text-background-foreground shadow-lg"
+                        onMouseEnter={() => setHoveredSubpage(index)}
+                        onMouseLeave={() => {
+                          setHoveredSubpage(null);
+                          setOpen(null);
+                        }}
                       >
-                        {subpages?.map((subpage, index) => {
+                        {subpages?.map((subpage, subIndex) => {
                           const { Icon, title, href } = subpage;
                           return (
-                            <Link href={href} key={index} className="w-full">
+                            <Link href={href} key={subIndex} className="w-full">
                               <Button
                                 variant="ghost"
                                 className="w-full justify-start gap-3 rounded-none px-3 pr-10 text-start"
@@ -159,27 +153,16 @@ export default function NavigationBar() {
               })}
             </div>
             <div className="mt-auto flex">
-              <div className="flex w-full justify-between">
-                <span className="text-sm font-medium text-black dark:text-white">
-                  email@example.com
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                  aria-roledescription="more menu"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  className="h-5 w-5 text-black dark:text-white"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx={12} cy={12} r={1} />
-                  <circle cx={19} cy={12} r={1} />
-                  <circle cx={5} cy={12} r={1} />
-                </svg>
+              <div className="flex w-full justify-between items-center">
+                <div>
+                  <Label className="text-sm font-medium ">
+                    {user?.fullName}
+                  </Label>
+                  <Badge className="flex w-full items-center justify-center truncate rounded-sm px-1">
+                    {user?.email}
+                  </Badge>
+                </div>
+                <DotDropdown onSignOut={signOut} />
               </div>
             </div>
           </div>

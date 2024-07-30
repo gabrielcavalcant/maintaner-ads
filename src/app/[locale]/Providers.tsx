@@ -2,13 +2,16 @@ import React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { type ThemeProviderProps } from "next-themes/dist/types";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/context/authContext";
 
 export default function Providers({ children, ...props }: ThemeProviderProps) {
   return (
     <div>
-      <NextThemesProvider {...props}>
-        <TooltipProvider>{children}</TooltipProvider>
-      </NextThemesProvider>
+      <AuthProvider>
+        <NextThemesProvider {...props}>
+          <TooltipProvider>{children}</TooltipProvider>
+        </NextThemesProvider>
+      </AuthProvider>
     </div>
   );
 }

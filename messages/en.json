@@ -1,0 +1,15 @@
+{
+  "Login": {
+    "email": "Email",
+    "enter": "Enter",
+    "loginSubtitle": "Enter your email and password to login.",
+    "loginTitle": "Welcome back!",
+    "password": "Password",
+    "loading": "Logging in...",
+    "success": "Success!",
+    "unknownError": "An unknown error occurred",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Invalid email.",
+    "passMinimal": "Password must be at least 6 characters long."
+  }
+}
