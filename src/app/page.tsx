@@ -1,9 +1,10 @@
-import Image from "next/image";
+import NavigationBar from "./components/navigation-bar";
+import { ThemeToggler } from "./components/theme-toggler";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
-    </main>
+    <div className="h-screen">
+      <NavigationBar />
+    </div>
   );
 }
