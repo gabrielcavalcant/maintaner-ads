@@ -19,6 +19,8 @@ import { Link, usePathname } from "@/navigation";
 import { useAuth } from "@/context/authContext";
 import { Badge } from "./ui/badge";
 import { useTranslations } from "next-intl";
+import { RiTeamFill } from "react-icons/ri";
+import { SiLitiengine } from "react-icons/si";
 
 type NavItem = {
   title: string;
@@ -50,6 +52,11 @@ export default function NavigationBar() {
       href: "/equipments",
     },
     {
+      title: t("Navbar.parts"),
+      Icon: SiLitiengine,
+      href: "/parts",
+    },
+    {
       title: t("Navbar.maintenances"),
       Icon: BsTools,
       href: "/maintenances",
@@ -58,6 +65,11 @@ export default function NavigationBar() {
       title: t("Navbar.user"),
       Icon: FaUserCircle,
       href: "/user",
+    },
+    {
+      title: t("Navbar.team"),
+      Icon: RiTeamFill,
+      href: "/team",
     },
   ];
 

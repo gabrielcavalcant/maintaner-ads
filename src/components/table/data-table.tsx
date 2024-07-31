@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
+    []
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const pathname = usePathname();
@@ -113,7 +113,7 @@ export function DataTable<TData, TValue>({
         router.push(pathname + "?" + newSearchParams.toString());
       }
     },
-    [router, pathname, searchParams],
+    [router, pathname, searchParams]
   );
 
   return (
@@ -124,9 +124,9 @@ export function DataTable<TData, TValue>({
         <div className={`overflow-auto rounded-md`} style={{ height: height }}>
           <Table className="relative">
             <TableHeader className="sticky top-0 z-10 bg-card">
-              {table?.getHeaderGroups().map(headerGroup => (
+              {table?.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id} className="h-8 hover:bg-card">
-                  {headerGroup.headers.map(header => {
+                  {headerGroup.headers.map((header) => {
                     return (
                       <TableHead
                         key={header.id}
@@ -137,7 +137,7 @@ export function DataTable<TData, TValue>({
                           ? null
                           : flexRender(
                               header.column.columnDef.header,
-                              header.getContext(),
+                              header.getContext()
                             )}
                       </TableHead>
                     );
@@ -161,16 +161,18 @@ export function DataTable<TData, TValue>({
                   </TableRow>
                 ))
               ) : table?.getRowModel().rows.length ? (
-                table?.getRowModel().rows.map(row => (
+                table?.getRowModel().rows.map((row) => (
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className={`h-8 hover:bg-accent hover:text-accent-foreground ${onRowClick && "cursor-pointer"}`}
+                    className={`h-8 hover:bg-accent hover:text-accent-foreground ${
+                      onRowClick && "cursor-pointer"
+                    }`}
                     onClick={() => {
                       if (onRowClick) onRowClick(row);
                     }}
                   >
-                    {row.getVisibleCells().map(cell => (
+                    {row.getVisibleCells().map((cell) => (
                       <TableCell
                         key={cell.id}
                         className={`py-0`}
@@ -178,7 +180,7 @@ export function DataTable<TData, TValue>({
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext(),
+                          cell.getContext()
                         )}
                       </TableCell>
                     ))}

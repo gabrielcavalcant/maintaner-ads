@@ -6,12 +6,10 @@ import { AuthProvider } from "@/context/authContext";
 
 export default function Providers({ children, ...props }: ThemeProviderProps) {
   return (
-    <div>
+    <NextThemesProvider {...props}>
       <AuthProvider>
-        <NextThemesProvider {...props}>
-          <TooltipProvider>{children}</TooltipProvider>
-        </NextThemesProvider>
+        <TooltipProvider>{children}</TooltipProvider>
       </AuthProvider>
-    </div>
+    </NextThemesProvider>
   );
 }
