@@ -5,6 +5,7 @@ import Providers from "./Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import CustomToaster from "@/components/CustomToaster";
+import LanguageSwitcher from "@/components/LocaleSwitch";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +16,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale?: string };
 }>) {
   const messages = await getMessages();
 
@@ -49,11 +52,14 @@ export default async function RootLayout({
             "azarath-dark",
             "poimandres",
             "poimandres-dark",
+            "discord",
+            "discord-dark",
           ]}
         >
+          <CustomToaster />
           <NextIntlClientProvider messages={messages}>
-            <CustomToaster />
             <main className="flex overflow-x-hidden overflow-y-auto text-foreground bg-background h-screen w-screen ">
+              <LanguageSwitcher locale={params.locale} />
               {children}
             </main>
           </NextIntlClientProvider>

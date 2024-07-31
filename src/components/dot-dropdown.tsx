@@ -27,13 +27,16 @@ import {
 import { Button } from "./ui/button";
 import { capitalizeFirstLetter } from "@/helper/capitalize";
 import { ScrollArea } from "./ui/scroll-area";
+import { useTranslations } from "next-intl";
 
 type DotDropdownProps = {
   onSignOut?: () => void;
 };
 
 export default function DotDropdown({ onSignOut }: DotDropdownProps) {
-  const { themes, theme, setTheme, systemTheme } = useTheme();
+  const { themes, theme, setTheme } = useTheme();
+  const t = useTranslations();
+
   return (
     <div className="z-50">
       <DropdownMenu>
@@ -45,10 +48,12 @@ export default function DotDropdown({ onSignOut }: DotDropdownProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="">
-          <DropdownMenuItem>Configurações</DropdownMenuItem>
-          <DropdownMenuItem>Meu Perfil</DropdownMenuItem>
+          <DropdownMenuItem>{t("Navbar.settings")}</DropdownMenuItem>
+          <DropdownMenuItem>{t("Navbar.myProfile")}</DropdownMenuItem>
           <DropdownMenuSub>
-            <DropdownMenuSubTrigger className="">Temas</DropdownMenuSubTrigger>
+            <DropdownMenuSubTrigger className="">
+              {t("Navbar.themes")}
+            </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent className="" asChild>
                 <ScrollArea className="h-[50vh]">
@@ -69,8 +74,8 @@ export default function DotDropdown({ onSignOut }: DotDropdownProps) {
                         key={actual}
                         className={
                           actual === theme
-                            ? "border-b-[2px] border-primary"
-                            : ""
+                            ? "border-r-[4px] border-primary mr-1"
+                            : "mr-1"
                         }
                       >
                         {capitalizeTheme(actual)}
@@ -84,20 +89,24 @@ export default function DotDropdown({ onSignOut }: DotDropdownProps) {
           <DropdownMenuSeparator />
           <AlertDialog>
             <AlertDialogTrigger className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-gray-100 hover:text-primary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-              Sair
+              {t("Navbar.logout")}
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>
-                  Tem certeza que vai deslogar?
+                  {t("Navbar.confirmLogoutTitle")}
                 </AlertDialogTitle>
                 <AlertDialogDescription>
-                  Seus dados serão perdidos.
+                  {t("Navbar.confirmLogoutSubtitle")}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Voltar</AlertDialogCancel>
-                <AlertDialogAction onClick={onSignOut}>Sair</AlertDialogAction>
+                <AlertDialogCancel>
+                  {t("Navbar.cancelLogout")}
+                </AlertDialogCancel>
+                <AlertDialogAction onClick={onSignOut}>
+                  {t("Navbar.logout")}
+                </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

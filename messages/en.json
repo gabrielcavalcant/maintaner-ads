@@ -6,10 +6,45 @@
     "loginTitle": "Welcome back!",
     "password": "Password",
     "loading": "Logging in...",
-    "success": "Success!",
+    "success": "Login successful!",
     "unknownError": "An unknown error occurred",
     "emailRequired": "Email is required.",
     "emailInvalid": "Invalid email.",
     "passMinimal": "Password must be at least 6 characters long."
+  },
+  "Navbar": {
+    "dashboard": "Dashboard",
+    "environments": "Environments",
+    "equipments": "Equipments",
+    "maintenances": "Maintenances",
+    "user": "User",
+    "settings": "Settings",
+    "themes": "Themes",
+    "myProfile": "My Profile",
+    "logout": "Logout",
+    "confirmLogoutTitle": "Do you really want to logout?",
+    "confirmLogoutSubtitle": "If you logout, all current sessions will be terminated. Do you wish to continue?",
+    "cancelLogout": "Cancel"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "copyTitle": "Copy",
+    "copySuccess": "Copied successfully"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "environments": "Environments",
+    "equipments": "Equipments",
+    "openOs": "Open O.S.",
+    "closedOs": "Closed O.S."
+  },
+  "Table": {
+    "environment": "Environment",
+    "equipment": "Equipment",
+    "request": "Request",
+    "service": "Service",
+    "actions": "Actions",
+    "edit": "Edit",
+    "remove": "Delete"
   }
 }

@@ -6,10 +6,45 @@
     "loginTitle": "Bem vindo de volta!",
     "password": "Senha",
     "loading": "Entrando...",
-    "success": "Sucesso!",
+    "success": "Login realizado com sucesso!",
     "unknownError": "Ocorreu um erro desconhecido",
     "emailRequired": "O e-mail é obrigatório.",
     "emailInvalid": "E-mail inválido.",
     "passMinimal": "A senha deve ter no mínimo 6 caracteres."
+  },
+  "Navbar": {
+    "dashboard": "Dashboard",
+    "environments": "Ambientes",
+    "equipments": "Equipamentos",
+    "maintenances": "Manutenções",
+    "user": "Usuário",
+    "settings": "Configurações",
+    "themes": "Temas",
+    "myProfile": "Meu perfil",
+    "logout": "Sair",
+    "confirmLogoutTitle": "Você realmente deseja sair?",
+    "confirmLogoutSubtitle": "Se você sair, todas as sessões atuais serão encerradas. Deseja continuar?",
+    "cancelLogout": "Cancelar"
+  },
+  "Common": {
+    "loading": "Carregando...",
+    "copyTitle": "Copiar",
+    "copySuccess": "copiado com sucesso"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "environments": "Ambientes",
+    "equipments": "Equipamentos",
+    "openOs": "O.S Abertos",
+    "closedOs": "O.S Fechados"
+  },
+  "Table": {
+    "environment": "Ambiente",
+    "equipment": "Equipamento",
+    "request": "Solicitação",
+    "service": "Atendimento",
+    "actions": "Ações",
+    "edit": "Editar",
+    "remove": "Apagar"
   }
 }

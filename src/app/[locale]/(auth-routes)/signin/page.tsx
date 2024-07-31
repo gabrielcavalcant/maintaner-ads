@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
-import Image from "next/image";
 import { useAuth } from "@/context/authContext";
 import toast from "react-hot-toast";
 import LoadingPage from "@/components/loaders/LoadingPage";
@@ -9,21 +8,23 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { GiGearHammer } from "react-icons/gi";
 
 export default function Login() {
   const { signIn, isLoading } = useAuth();
   const [error, setError] = useState<string | null>("");
-  const [imageLoading, setImageLoading] = useState<boolean>(true);
   const router = useRouter();
+  const t = useTranslations();
 
   async function handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
     toast.remove();
-    const response = await toast.promise(signIn(event), {
-      loading: "Entrando...",
+    await toast.promise(signIn(event), {
+      loading: t("Login.loading"),
       success: () => {
         router.replace("/");
-        return "Login realizado com sucesso";
+        return t("Login.success");
       },
       error: (error) => {
         setError(error.message);
@@ -37,10 +38,15 @@ export default function Login() {
       <Card className="flex w-fit items-center justify-center p-6 lg:p-12">
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center space-y-2 text-center">
-            <div className="pb-5"></div>
-            <h1 className="text-3xl font-bold">Bem vindo de volta!</h1>
+            <div className="flex gap-2 pb-5 items-center justify-center">
+              <GiGearHammer className="text-[50px] text-primary" />
+              <span className="ml-3 text-3xl font-semibold text-primary">
+                Maintainer
+              </span>
+            </div>
+            <h1 className="text-3xl font-bold">{t("Login.loginTitle")}</h1>
             <p className="text-gray-500 dark:text-gray-400">
-              Insira seu email e senha para entrar.
+              {t("Login.loginSubtitle")}
             </p>
           </div>
           <form
@@ -50,7 +56,7 @@ export default function Login() {
           >
             <div className="space-y-2">
               <Label htmlFor="email" className={error ? "text-red-500" : ""}>
-                Email
+                {t("Login.email")}
               </Label>
               <Input
                 id="email"
@@ -66,7 +72,7 @@ export default function Login() {
                   htmlFor="password"
                   className={error ? "text-red-500" : ""}
                 >
-                  Senha
+                  {t("Login.password")}
                 </Label>
               </div>
               <Input
@@ -77,7 +83,7 @@ export default function Login() {
               />
             </div>
             <Button className="w-full" type="submit">
-              Entrar
+              {t("Login.enter")}
             </Button>
           </form>
         </div>

@@ -9,7 +9,6 @@ import React, {
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import CryptoJS from "crypto-js";
-import { AxiosResponse } from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import { AuthToken, User } from "@/types";
 import { ApiRequest } from "@/helper/request.module";
@@ -38,7 +37,6 @@ export function AuthProvider({ children }: Readonly<AuthProviderProps>) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [authTokens, setAuthTokens] = useState<string | null>(null);
   const router = useRouter();
-  const pathname = usePathname();
 
   const encryptData = (data: string) => {
     return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
