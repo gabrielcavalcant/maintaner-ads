@@ -86,15 +86,19 @@
     "email": "Email",
     "createdAt": "Creation Date",
     "total_members": "Total Members",
-    "companyName": "Company Name"
+    "companyName": "Company Name",
+    "manufactureDate": "Manufacturing Date",
+    "serialNumber": "Serial Number"
   },
   "Environments": {
     "title": "Environments",
     "new": "Add Environment"
   },
   "Machines": {
-    "new": "New Machine",
-    "title": "Machines"
+    "new": "Register Machine",
+    "title": "Machines",
+    "createTitle": "Register Machine",
+    "createDescription": "Fill out the form below to register a machine."
   },
   "Parts": {
     "title": "Parts",
@@ -121,7 +125,11 @@
     "teamName": "Team name is required",
     "environmentName": "Environment name is required.",
     "environmentLocation": "Environment location name is required.",
-    "environmentCompanyName": "Company name is required."
+    "environmentCompanyName": "Company name is required.",
+    "machineName": "Machine Name is required.",
+    "machineType": "Machine type is required.",
+    "machineModel": "Machine model is required.",
+    "machineManufactureDate": "Date of manufacture must be a valid date."
   },
   "Environment": {
     "createTitle": "Add new environment",

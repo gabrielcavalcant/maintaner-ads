@@ -168,12 +168,12 @@ export default function CreationModalButton({
       <DialogTrigger asChild>
         <Button>{children}</Button>
       </DialogTrigger>
-      <DialogContent className="min-w-auto">
+      <DialogContent className="min-w-auto max-h-screen">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        <div className="flex w-full flex-col items-center justify-start">
+        <div className="flex w-full h-full flex-col items-center justify-start">
           <Form {...form}>
             {form.formState.errors.root && (
               <p>{form.formState.errors.root.message}</p>
@@ -184,7 +184,7 @@ export default function CreationModalButton({
               className="flex w-full flex-wrap items-center justify-center space-y-4"
             >
               <div className="flex w-full flex-wrap lg:flex-nowrap">
-                <div className="w-full max-w-[600px] flex-col gap-4  p-1">
+                <div className="w-full flex-col gap-4  p-1">
                   <div className="flex w-full flex-wrap gap-6">
                     {fields?.map((fieldInfo) => {
                       if (fieldInfo.type === "text") {
@@ -332,9 +332,7 @@ export default function CreationModalButton({
               <DialogFooter className="pt-5">
                 <Button type="submit">{t("Common.createButton")}</Button>
                 <DialogClose asChild>
-                  <Button variant="secondary">
-                    {t("Common.cancel")}
-                  </Button>
+                  <Button variant="secondary">{t("Common.cancel")}</Button>
                 </DialogClose>
               </DialogFooter>
             </form>

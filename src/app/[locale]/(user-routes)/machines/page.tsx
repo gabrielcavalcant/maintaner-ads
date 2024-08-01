@@ -7,6 +7,8 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useMachinesColumns } from "@/constants/useMachinesColumns";
+import CreationModalButton from "@/components/creation-modal-button";
+import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 
 export default function Equipments() {
   const t = useTranslations();
@@ -43,11 +45,24 @@ export default function Equipments() {
     onRemoveClick: handleRemoveClick,
   });
 
+  const { fields, validationSchema } = useCreateMachine();
+
   return (
     <div>
       <Header title={t("Machines.title")} />
       <div className="flex w-full items-center justify-end">
-        <Button>{t("Machines.new")}</Button>
+        <CreationModalButton
+          onSubmit={(formValues) => {
+            console.log(formValues);
+          }}
+          fields={fields}
+          title={t("Machines.createTitle")}
+          description={t("Machines.createDescription")}
+          validationSchema={validationSchema}
+          imageRequired={false}
+        >
+          {t("Machines.new")}
+        </CreationModalButton>
       </div>
       <DataTable
         data={data}

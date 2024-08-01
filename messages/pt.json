@@ -86,15 +86,19 @@
     "email": "Email",
     "createdAt": "Data de Criação",
     "total_members": "Total de Membros",
-    "companyName": "Nome da Empresa"
+    "companyName": "Nome da Empresa",
+    "manufactureDate": "Data de Manufatura",
+    "serialNumber": "Número de Série"
   },
   "Environments": {
     "title": "Ambientes",
     "new": "Adicionar Ambiente"
   },
   "Machines": {
-    "new": "Nova Máquina",
-    "title": "Máquinas"
+    "new": "Cadastrar Máquina",
+    "title": "Máquinas",
+    "createTitle": "Cadastrar Máquina",
+    "createDescription": "Preencha o formulário abaixo para cadastrar uma máquina."
   },
   "Parts": {
     "title": "Peças",
@@ -121,7 +125,11 @@
     "teamName": "O nome do time é necessário",
     "environmentName": "Nome do ambiente é necessário.",
     "environmentLocation": "Nome da localização do ambiente é necessário.",
-    "environmentCompanyName": "Nome da empresa é necessário."
+    "environmentCompanyName": "Nome da empresa é necessário.",
+    "machineName": "Nome da Máquina é necessário.",
+    "machineType": "Tipo da máquina é necessário.",
+    "machineModel": "Modelo da máquina é necessário.",
+    "machineManufactureDate": "Data de manufatura precisa ser uma data válida."
   },
   "Environment": {
     "createTitle": "Adicionar novo ambiente",

@@ -5,10 +5,12 @@ import { FaFolderOpen, FaCheckSquare } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import { DataTable } from "@/components/table/data-table";
 import { useDashboardColumns } from "@/constants/useDashboardColumns";
-import Data from "../../../../mock_data/dashboard.json";
+import Data from "../../../../../mock_data/dashboard.json";
 import Header from "@/components/header";
 import IconCard from "@/components/icon-card";
 import { ColumnDef } from "@tanstack/react-table";
+import { faker } from "@faker-js/faker";
+import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
 
 export default function Home() {
   const t = useTranslations();
@@ -46,8 +48,25 @@ export default function Home() {
     // Adicione a lógica de remoção aqui
   };
 
+  // Função para gerar dados fictícios
+  const generateFakeData = (num: number) => {
+    return Array.from({ length: num }, (_, index) => ({
+      id: index + 1,
+      type: faker.lorem.words(2),
+      description: faker.lorem.sentence(),
+      maintenance_date: faker.date.recent(),
+      status: faker.number.int({ min: 0, max: 1 }),
+      machine_id: faker.lorem.words(2),
+      team_id: faker.lorem.word(),
+      responsible_id: faker.person.firstName(),
+    }));
+  };
+
+  // Gera 50 itens fictícios
+  const data = generateFakeData(50);
+
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useDashboardColumns({
+  const columns: ColumnDef<any>[] = useMaintenanceColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
@@ -62,11 +81,11 @@ export default function Home() {
         })}
       </div>
       <DataTable
-        data={Data || []}
+        data={data || []}
         columns={columns}
         pageCount={0}
         isFetching={false}
-        rowCount={Data?.length || 0}
+        rowCount={data?.length || 0}
         maxItems={30}
         height="60vh"
       />

@@ -6,10 +6,8 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
-import { usePartColumns } from "@/constants/usePartsColumns";
-import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
-import { useUserColumns } from "./columns";
+import { useUserColumns } from "@/constants/useUserColumns";
+
 
 export default function Users() {
   const t = useTranslations();
