@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { useMachinesColumns } from "@/constants/useMachinesColumns";
 import { usePartColumns } from "@/constants/usePartsColumns";
 import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
+import CreationModalButton from "@/components/creation-modal-button";
+import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
 
 export default function Parts() {
   const t = useTranslations();
@@ -46,11 +48,23 @@ export default function Parts() {
     onRemoveClick: handleRemoveClick,
   });
 
+  const { fields, validationSchema } = useCreateMaintenance();
+
   return (
     <div>
       <Header title={t("Maintenances.title")} />
       <div className="flex w-full items-center justify-end">
-        <Button>{t("Maintenances.new")}</Button>
+        <CreationModalButton
+          onSubmit={(formValues) => {
+            console.log(formValues);
+          }}
+          fields={fields}
+          title={t("Maintenances.createTitle")}
+          description={t("Maintenances.createDescription")}
+          validationSchema={validationSchema}
+        >
+          {t("Maintenances.new")}
+        </CreationModalButton>
       </div>
       <DataTable
         data={data}

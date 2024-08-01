@@ -8,6 +8,8 @@ import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useMachinesColumns } from "@/constants/useMachinesColumns";
 import { usePartColumns } from "@/constants/usePartsColumns";
+import CreationModalButton from "@/components/creation-modal-button";
+import { useCreatePart } from "@/constants/creation/useCreatePart";
 
 export default function Parts() {
   const t = useTranslations();
@@ -44,11 +46,23 @@ export default function Parts() {
     onRemoveClick: handleRemoveClick,
   });
 
+  const { fields, validationSchema } = useCreatePart();
+
   return (
     <div>
       <Header title={t("Parts.title")} />
       <div className="flex w-full items-center justify-end">
-        <Button>{t("Parts.new")}</Button>
+        <CreationModalButton
+          onSubmit={(formValues) => {
+            console.log(formValues);
+          }}
+          fields={fields}
+          title={t("Parts.createTitle")}
+          description={t("Parts.createDescription")}
+          validationSchema={validationSchema}
+        >
+          {t("Parts.new")}
+        </CreationModalButton>
       </div>
       <DataTable
         data={data}

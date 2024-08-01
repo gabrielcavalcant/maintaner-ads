@@ -39,7 +39,17 @@
     "closeWebcam": "Fechar Webcam",
     "createButton": "Criar",
     "imageUploadLabel": "Faça upload da imagem",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "loading1": "Verificando o sistema hidráulico...",
+    "loading2": "Lubrificando componentes móveis...",
+    "loading3": "Analisando falhas de sensores...",
+    "loading4": "Realizando diagnóstico de motores...",
+    "loading5": "Atualizando firmware de controle...",
+    "loading6": "Inspecionando correias e polias...",
+    "loading7": "Ajustando configurações de precisão...",
+    "loading8": "Monitorando desempenho de máquinas...",
+    "loading9": "Executando procedimentos de segurança...",
+    "loading10": "Testando conexões elétricas..."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -88,7 +98,14 @@
     "total_members": "Total de Membros",
     "companyName": "Nome da Empresa",
     "manufactureDate": "Data de Manufatura",
-    "serialNumber": "Número de Série"
+    "serialNumber": "Número de Série",
+    "base64": "Imagem",
+    "stockQuantity": "Estoque",
+    "unitPrice": "Preço Unidade",
+    "maintenanceDate": "Data de Manutenção",
+    "responsibleEmail": "Email do Responsável",
+    "machineId": "ID da máquina",
+    "teamId": "ID do Time"
   },
   "Environments": {
     "title": "Ambientes",
@@ -102,11 +119,15 @@
   },
   "Parts": {
     "title": "Peças",
-    "new": "Nova peça"
+    "new": "Cadastrar peça",
+    "createTitle": "Cadastrar Peça",
+    "createDescription": "Preencha o formulário abaixo para cadastrar um novo time."
   },
   "Maintenances": {
     "title": "Manutenções",
-    "new": "Nova Manutenção"
+    "new": "Nova Manutenção",
+    "createTitle": "Registrar Manutenção",
+    "createDescription": "Preencha o formulário abaixo para registrar uma nova manutenção."
   },
   "Users": {
     "title": "Usuários",
@@ -129,7 +150,11 @@
     "machineName": "Nome da Máquina é necessário.",
     "machineType": "Tipo da máquina é necessário.",
     "machineModel": "Modelo da máquina é necessário.",
-    "machineManufactureDate": "Data de manufatura precisa ser uma data válida."
+    "machineManufactureDate": "Data de manufatura precisa ser uma data válida.",
+    "partName": "Nome da peça é necessário.",
+    "maintenanceType": "Tipo de manutenção é necessário.",
+    "maintenanceDate": "Data de Manutenção é necessária.",
+    "responsibleEmail": "Email do responsável é necessário."
   },
   "Environment": {
     "createTitle": "Adicionar novo ambiente",

@@ -39,7 +39,17 @@
     "closeWebcam": "Close Webcam",
     "createButton": "Create",
     "imageUploadLabel": "Upload the image",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "loading1": "Checking the hydraulic system...",
+    "loading2": "Lubricating moving components...",
+    "loading3": "Analyzing sensor failures...",
+    "loading4": "Carrying out engine diagnostics...",
+    "loading5": "Updating control firmware...",
+    "loading6": "Inspecting belts and pulleys...",
+    "loading7": "Adjusting precision settings...",
+    "loading8": "Monitoring machine performance...",
+    "loading9": "Performing security procedures...",
+    "loading10": "Testing electrical connections..."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -88,7 +98,14 @@
     "total_members": "Total Members",
     "companyName": "Company Name",
     "manufactureDate": "Manufacturing Date",
-    "serialNumber": "Serial Number"
+    "serialNumber": "Serial Number",
+    "base64": "Image",
+    "stockQuantity": "Stock",
+    "unitPrice": "Unit Price",
+    "maintenanceDate": "Maintenance Date",
+    "responsibleEmail": "Responsible Email",
+    "machineId": "Machine ID",
+    "teamId": "Team ID"
   },
   "Environments": {
     "title": "Environments",
@@ -102,11 +119,15 @@
   },
   "Parts": {
     "title": "Parts",
-    "new": "New part"
+    "new": "Register part",
+    "createTitle": "Register Part",
+    "createDescription": "Fill out the form below to register a new team."
   },
   "Maintenances": {
     "title": "Maintenance",
-    "new": "New Maintenance"
+    "new": "New Maintenance",
+    "createTitle": "Register Maintenance",
+    "createDescription": "Fill out the form below to register a new maintenance."
   },
   "Users": {
     "title": "Users",
@@ -129,7 +150,11 @@
     "machineName": "Machine Name is required.",
     "machineType": "Machine type is required.",
     "machineModel": "Machine model is required.",
-    "machineManufactureDate": "Date of manufacture must be a valid date."
+    "machineManufactureDate": "Date of manufacture must be a valid date.",
+    "partName": "Part name is required.",
+    "maintenanceType": "Type of maintenance is required.",
+    "maintenanceDate": "Maintenance Date is required.",
+    "responsibleEmail": "Email of the person responsible is necessary."
   },
   "Environment": {
     "createTitle": "Add new environment",

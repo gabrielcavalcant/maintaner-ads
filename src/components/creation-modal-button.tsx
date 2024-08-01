@@ -1,12 +1,4 @@
-"use client";
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactNode, useCallback, useRef, useState } from "react";
 import ImageUpload from "./image-upload";
 import CheckboxInput from "./checkbox-input";
 import { Field, ImageType } from "@/types";
@@ -168,12 +160,12 @@ export default function CreationModalButton({
       <DialogTrigger asChild>
         <Button>{children}</Button>
       </DialogTrigger>
-      <DialogContent className="min-w-auto max-h-screen">
+      <DialogContent className="flex flex-col max-h-[80vh] overflow-hidden">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        <div className="flex w-full h-full flex-col items-center justify-start">
+        <div className="flex flex-col flex-grow overflow-y-auto p-4">
           <Form {...form}>
             {form.formState.errors.root && (
               <p>{form.formState.errors.root.message}</p>
@@ -181,9 +173,9 @@ export default function CreationModalButton({
 
             <form
               onSubmit={form.handleSubmit(handleSubmit)}
-              className="flex w-full flex-wrap items-center justify-center space-y-4"
+              className="flex flex-col space-y-4"
             >
-              <div className="flex w-full flex-wrap lg:flex-nowrap">
+              <div className="flex w-full flex-col">
                 <div className="w-full flex-col gap-4  p-1">
                   <div className="flex w-full flex-wrap gap-6">
                     {fields?.map((fieldInfo) => {
@@ -239,7 +231,7 @@ export default function CreationModalButton({
                                   width:
                                     fieldInfo.flexWidth === "100%"
                                       ? fieldInfo.flexWidth
-                                      : `calc(${fieldInfo.flexWidth} - 1rem)`,
+                                      : `calc(${fieldInfo.flexWidth} - 2rem)`,
                                 }}
                               >
                                 <FormLabel>
@@ -259,7 +251,7 @@ export default function CreationModalButton({
                     })}
                   </div>
                   {imageRequired && (
-                    <div className="relative mt-2 flex w-full flex-col items-center justify-center gap-1">
+                    <div className="flex flex-col items-center justify-center gap-1 mt-1">
                       <Button
                         variant="ghost"
                         type="button"
@@ -267,7 +259,7 @@ export default function CreationModalButton({
                         onClick={() => {
                           setShowWebcam(!showWebcam);
                         }}
-                        disabled={maxImages == images.length}
+                        disabled={maxImages === images.length}
                       >
                         {!showWebcam ? (
                           <>
@@ -281,33 +273,32 @@ export default function CreationModalButton({
                           </>
                         )}
 
+
                         {showWebcam && (
-                          <button
-                            className="fixed inset-0 z-50 flex cursor-zoom-out select-none items-center justify-center bg-black bg-opacity-50"
-                            onClick={() => {
-                              setShowWebcam(false);
-                            }}
-                          >
-                            <div className="relative flex flex-col items-center gap-2">
-                              <Webcam ref={webcamRef} />
+                          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+                            <div className="relative w-4/5 flex flex-col items-center justify-center">
+                              <Webcam
+                                ref={webcamRef}
+                                audio={false}
+                                screenshotFormat="image/jpeg"
+                                className="w-full h-full object-cover aspect-square"
+                              />
                               <Button
-                                onClick={() => {
-                                  capture();
-                                }}
-                                className="bg-primary"
+                                onClick={() => capture()}
+                                className="absolute bottom-10 bg-primary"
                               >
                                 <div className="text-4xl text-white hover:brightness-90">
                                   <BsRecordCircle />
                                 </div>
                               </Button>
                             </div>
-                          </button>
+                          </div>
                         )}
                       </Button>
                       <ImageUpload
                         imageSend={handleImageSend}
                         className="w-full"
-                        isMax={maxImages == images.length}
+                        isMax={maxImages === images.length}
                         errorMessage={imageError}
                       />
                     </div>
@@ -329,7 +320,7 @@ export default function CreationModalButton({
                   </div>
                 )}
               </div>
-              <DialogFooter className="pt-5">
+              <DialogFooter className="mt-auto flex justify-between pt-5 gap-y-2">
                 <Button type="submit">{t("Common.createButton")}</Button>
                 <DialogClose asChild>
                   <Button variant="secondary">{t("Common.cancel")}</Button>
