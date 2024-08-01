@@ -7,16 +7,8 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useMachinesColumns } from "@/constants/useMachinesColumns";
-import { usePartColumns } from "@/constants/usePartsColumns";
-import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
-import { useUserColumns } from "@/constants/useUsersColumns";
-import { useTeamColumns } from "@/constants/useTeamsColumns";
-import CreationModalButton from "@/components/creation-modal-button";
-import { Field } from "@/types";
-import { z } from "zod";
-import { useCreateTeam } from "@/constants/creation/useCreateTeam";
 
-export default function Teams() {
+export default function Equipments() {
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {
@@ -33,8 +25,12 @@ export default function Teams() {
   const generateFakeData = (num: number) => {
     return Array.from({ length: num }, (_, index) => ({
       id: index + 1,
-      name: faker.company.name(),
-      total_members: faker.number.int({ min: 1, max: 10 }),
+      name: faker.lorem.words(2),
+      type: faker.lorem.word(),
+      model: faker.lorem.word(),
+      manufacture_date: faker.date.recent(),
+      serial_number: faker.number.int({ min: 123424, max: 23412343 }),
+      environment_id: faker.location.street(),
     }));
   };
 
@@ -42,29 +38,16 @@ export default function Teams() {
   const data = generateFakeData(50);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useTeamColumns({
+  const columns: ColumnDef<any>[] = useMachinesColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreateTeam();
-
   return (
     <div>
-      <Header title={t("Teams.title")} />
+      <Header title={t("Machines.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
-          onSubmit={(formValues) => {
-            console.log(formValues);
-          }}
-          fields={fields}
-          title={t("Team.createTitle")}
-          description={t("Team.createDescription")}
-          validationSchema={validationSchema}
-          imageRequired={false}
-        >
-          {t("Teams.new")}
-        </CreationModalButton>
+        <Button>{t("Machines.new")}</Button>
       </div>
       <DataTable
         data={data}

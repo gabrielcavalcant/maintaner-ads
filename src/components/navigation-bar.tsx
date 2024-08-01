@@ -47,9 +47,9 @@ export default function NavigationBar() {
       href: "/environments",
     },
     {
-      title: t("Navbar.equipments"),
+      title: t("Navbar.machines"),
       Icon: PiWashingMachineFill,
-      href: "/equipments",
+      href: "/machines",
     },
     {
       title: t("Navbar.parts"),

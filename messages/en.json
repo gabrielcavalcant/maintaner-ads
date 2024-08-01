@@ -26,12 +26,20 @@
     "logout": "Logout",
     "confirmLogoutTitle": "Do you really want to logout?",
     "confirmLogoutSubtitle": "If you logout, all current sessions will be terminated. Do you wish to continue?",
-    "cancelLogout": "Cancel"
+    "cancelLogout": "Cancel",
+    "machines": "Machines"
   },
   "Common": {
     "loading": "Loading...",
     "copyTitle": "Copy",
-    "copySuccess": "Copied successfully"
+    "copySuccess": "Copied successfully",
+    "noImageText": "No image",
+    "maxImageText": "Maximum images",
+    "openWebcam": "Open Webcam",
+    "closeWebcam": "Close Webcam",
+    "createButton": "Create",
+    "imageUploadLabel": "Upload the image",
+    "cancel": "Cancel"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -47,6 +55,76 @@
     "service": "Service",
     "actions": "Actions",
     "edit": "Edit",
-    "remove": "Delete"
+    "remove": "Delete",
+    "company_name": "Company Name",
+    "location": "Location",
+    "name": "Name",
+    "id": "ID",
+    "type": "Type",
+    "model": "Model",
+    "manufacture_date": "Manufacturing Date",
+    "serial_number": "Serial Number",
+    "environment_id": "Environment",
+    "responsible_id": "Responsible",
+    "team_id": "Team",
+    "machine_id": "Machine",
+    "status": "Status",
+    "maintenance_date": "Date",
+    "description": "Description",
+    "quantity": "Amount",
+    "part_id": "Part",
+    "maintenance_id": "Maintenance",
+    "unit_price": "Unit price",
+    "stock_quantity": "Stock",
+    "image": "Image",
+    "supplier": "Supplier",
+    "code": "Serial Code",
+    "user_id": "User",
+    "specialty": "Specialty",
+    "role_id": "Office",
+    "fullName": "Name",
+    "email": "Email",
+    "createdAt": "Creation Date",
+    "total_members": "Total Members",
+    "companyName": "Company Name"
+  },
+  "Environments": {
+    "title": "Environments",
+    "new": "Add Environment"
+  },
+  "Machines": {
+    "new": "New Machine",
+    "title": "Machines"
+  },
+  "Parts": {
+    "title": "Parts",
+    "new": "New part"
+  },
+  "Maintenances": {
+    "title": "Maintenance",
+    "new": "New Maintenance"
+  },
+  "Users": {
+    "title": "Users",
+    "new": "New User"
+  },
+  "Teams": {
+    "title": "Teams",
+    "new": "New team"
+  },
+  "maxReached": "Maximum images reached",
+  "Team": {
+    "createTitle": "Create a new team",
+    "createDescription": "Fill out the form below to create a new team."
+  },
+  "Zod": {
+    "teamName": "Team name is required",
+    "environmentName": "Environment name is required.",
+    "environmentLocation": "Environment location name is required.",
+    "environmentCompanyName": "Company name is required."
+  },
+  "Environment": {
+    "createTitle": "Add new environment",
+    "createDescription": "Fill out the form below to add a new environment."
   }
 }

@@ -44,10 +44,12 @@ export default function Login() {
                 Maintainer
               </span>
             </div>
-            <h1 className="text-3xl font-bold">{t("Login.loginTitle")}</h1>
-            <p className="text-gray-500 dark:text-gray-400">
+            <Label className="text-3xl text-accent-foreground font-bold">
+              {t("Login.loginTitle")}
+            </Label>
+            <Label className="text-muted-foreground dark:text-gray-400">
               {t("Login.loginSubtitle")}
-            </p>
+            </Label>
           </div>
           <form
             className="space-y-4"

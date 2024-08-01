@@ -8,6 +8,7 @@ import { useDashboardColumns } from "@/constants/useDashboardColumns";
 import Data from "../../../../mock_data/dashboard.json";
 import Header from "@/components/header";
 import IconCard from "@/components/icon-card";
+import { ColumnDef } from "@tanstack/react-table";
 
 export default function Home() {
   const t = useTranslations();
@@ -35,7 +36,21 @@ export default function Home() {
     },
   ];
 
-  const columns = useDashboardColumns();
+  const handleEditClick = (id: number) => {
+    console.log("Edit clicked for id:", id);
+    // Adicione a lógica de edição aqui
+  };
+
+  const handleRemoveClick = (id: number) => {
+    console.log("Remove clicked for id:", id);
+    // Adicione a lógica de remoção aqui
+  };
+
+  // Use o hook com as funções definidas
+  const columns: ColumnDef<any>[] = useDashboardColumns({
+    onEditClick: handleEditClick,
+    onRemoveClick: handleRemoveClick,
+  });
 
   return (
     <div className="">

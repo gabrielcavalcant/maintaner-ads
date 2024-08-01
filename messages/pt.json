@@ -26,12 +26,20 @@
     "logout": "Sair",
     "confirmLogoutTitle": "Você realmente deseja sair?",
     "confirmLogoutSubtitle": "Se você sair, todas as sessões atuais serão encerradas. Deseja continuar?",
-    "cancelLogout": "Cancelar"
+    "cancelLogout": "Cancelar",
+    "machines": "Máquinas"
   },
   "Common": {
     "loading": "Carregando...",
     "copyTitle": "Copiar",
-    "copySuccess": "copiado com sucesso"
+    "copySuccess": "copiado com sucesso",
+    "noImageText": "Nenhuma imagem",
+    "maxImageText": "Máximo de imagens",
+    "openWebcam": "Abrir Webcam",
+    "closeWebcam": "Fechar Webcam",
+    "createButton": "Criar",
+    "imageUploadLabel": "Faça upload da imagem",
+    "cancel": "Cancelar"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -47,6 +55,76 @@
     "service": "Atendimento",
     "actions": "Ações",
     "edit": "Editar",
-    "remove": "Apagar"
+    "remove": "Apagar",
+    "company_name": "Nome da empresa",
+    "location": "Localização",
+    "name": "Nome",
+    "id": "ID",
+    "type": "Tipo",
+    "model": "Modelo",
+    "manufacture_date": "Data de Fabricação",
+    "serial_number": "Número Serial",
+    "environment_id": "Ambiente",
+    "responsible_id": "Responsável",
+    "team_id": "Time",
+    "machine_id": "Maquina",
+    "status": "Status",
+    "maintenance_date": "Data",
+    "description": "Descrição",
+    "quantity": "Quantidade",
+    "part_id": "Peça",
+    "maintenance_id": "Manutenção",
+    "unit_price": "Preço unitário",
+    "stock_quantity": "Estoque",
+    "image": "Imagem",
+    "supplier": "Fornecedor",
+    "code": "Código Serial",
+    "user_id": "Usuário",
+    "specialty": "Especialidade",
+    "role_id": "Cargo",
+    "fullName": "Nome",
+    "email": "Email",
+    "createdAt": "Data de Criação",
+    "total_members": "Total de Membros",
+    "companyName": "Nome da Empresa"
+  },
+  "Environments": {
+    "title": "Ambientes",
+    "new": "Adicionar Ambiente"
+  },
+  "Machines": {
+    "new": "Nova Máquina",
+    "title": "Máquinas"
+  },
+  "Parts": {
+    "title": "Peças",
+    "new": "Nova peça"
+  },
+  "Maintenances": {
+    "title": "Manutenções",
+    "new": "Nova Manutenção"
+  },
+  "Users": {
+    "title": "Usuários",
+    "new": "Novo Usuário"
+  },
+  "Teams": {
+    "title": "Equipes",
+    "new": "Nova Equipe"
+  },
+  "maxReached": "Máximo de imagens atingido",
+  "Team": {
+    "createTitle": "Criar uma nova equipe",
+    "createDescription": "Preencha o formulário abaixo para criar um novo time."
+  },
+  "Zod": {
+    "teamName": "O nome do time é necessário",
+    "environmentName": "Nome do ambiente é necessário.",
+    "environmentLocation": "Nome da localização do ambiente é necessário.",
+    "environmentCompanyName": "Nome da empresa é necessário."
+  },
+  "Environment": {
+    "createTitle": "Adicionar novo ambiente",
+    "createDescription": "Preencha o fomulário abaixo para adicionar um novo ambiente."
   }
 }

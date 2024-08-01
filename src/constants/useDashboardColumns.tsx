@@ -2,11 +2,19 @@ import DataTableColumnHeader from "@/components/table/DataTableColumnHeader";
 import TableCopy from "@/components/table/table-copy";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
+import TooltipButton from "@/components/tooltip-button";
 
-export const useDashboardColumns = (): ColumnDef<any>[] => {
+type UseDashboardColumnsProps = {
+  onEditClick?: (id: number) => void;
+  onRemoveClick?: (id: number) => void;
+};
+
+export const useDashboardColumns = ({
+  onEditClick,
+  onRemoveClick,
+}: UseDashboardColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
 
   return [
@@ -72,20 +80,20 @@ export const useDashboardColumns = (): ColumnDef<any>[] => {
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-card-foreground hover:bg-primary hover:text-primary-foreground"
-          >
-            <MdEdit className="text-lg" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-card-foreground hover:bg-primary hover:text-primary-foreground"
-          >
-            <FaEraser className="text-lg" />
-          </Button>
+          {onEditClick && (
+            <TooltipButton
+              Icon={MdEdit}
+              message="Editar"
+              onClick={() => onEditClick(row.original.id)}
+            />
+          )}
+          {onRemoveClick && (
+            <TooltipButton
+              Icon={FaEraser}
+              message="Remover"
+              onClick={() => onRemoveClick(row.original.id)}
+            />
+          )}
         </div>
       ),
     },
