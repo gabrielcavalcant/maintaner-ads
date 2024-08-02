@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
-import { Input } from "./ui/input";
-import { ScrollArea } from "./ui/scroll-area";
-import { Label } from "./ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Button } from "./button";
+import { Card } from "./card";
+import { Input } from "./input";
+import { ScrollArea } from "./scroll-area";
+import { Label } from "./label";
 
 type ComboboxProps = {
   options: any[];
@@ -16,6 +16,7 @@ type ComboboxProps = {
   search?: string;
   emptyMessage?: string;
   disabled?: boolean;
+  renderCustomAction?: () => ReactNode;
 };
 
 export default function Combobox({
@@ -27,6 +28,7 @@ export default function Combobox({
   placeholder,
   emptyMessage,
   disabled = false,
+  renderCustomAction,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -66,12 +68,15 @@ export default function Combobox({
       </PopoverTrigger>
       <PopoverContent className="p-2 w-full" asChild>
         <Card className="z-50">
-          <Input
-            placeholder={searchPlaceholder}
-            className="mb-2"
-            onChange={(e) => setSearchTerm(e.target.value)}
-            value={searchTerm}
-          />
+          <div className="flex gap-2">
+            <Input
+              placeholder={searchPlaceholder}
+              className="mb-2"
+              onChange={(e) => setSearchTerm(e.target.value)}
+              value={searchTerm}
+            />
+            {renderCustomAction?.()}
+          </div>
           <ScrollArea className="h-[200px] px-2 z-[1000]">
             {filteredOptions.length > 0 ? (
               filteredOptions?.map((item, index) => (

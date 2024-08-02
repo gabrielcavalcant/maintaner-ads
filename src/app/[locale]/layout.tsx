@@ -4,8 +4,8 @@ import "./globals.css";
 import Providers from "./Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import CustomToaster from "@/components/CustomToaster";
-import LanguageSwitcher from "@/components/LocaleSwitch";
+import CustomToaster from "@/components/custom-toaster";
+import LanguageSwitcher from "@/components/locale-switch";
 
 const inter = Inter({ subsets: ["latin"] });
 

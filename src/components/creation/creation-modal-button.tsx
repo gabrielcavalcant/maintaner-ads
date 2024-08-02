@@ -1,21 +1,19 @@
 import React, { ReactNode, useCallback, useRef, useState } from "react";
-import ImageUpload from "./image-upload";
-import CheckboxInput from "./checkbox-input";
+import ImageUpload from "../image-upload";
 import { Field, ImageType } from "@/types";
-import Gallery from "./gallery";
+import Gallery from "../gallery";
 import Webcam from "react-webcam";
 import { PiWebcamFill, PiWebcamSlashBold } from "react-icons/pi";
 import { BsRecordCircle } from "react-icons/bs";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Button } from "./ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
 import { CiImageOff } from "react-icons/ci";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -37,7 +35,7 @@ type FormOutput = {
 } & Record<string, string>;
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Checkbox } from "./ui/checkbox";
+import { Checkbox } from "../ui/checkbox";
 
 interface Props {
   fields: Field[];
@@ -278,6 +276,7 @@ export default function CreationModalButton({
                                   {fieldInfo?.render?.({
                                     onChange,
                                     value,
+                                    form: form,
                                   })}
                                 </FormControl>
                                 <FormMessage className="" />

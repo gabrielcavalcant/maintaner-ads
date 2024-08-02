@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa6";
-import { Label } from "./ui/label";
+import { Label } from "./label";
 
 interface CheckboxInputProps {
   label?: string;

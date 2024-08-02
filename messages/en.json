@@ -54,8 +54,10 @@
     "loading10": "Testing electrical connections...",
     "noData": "No data.",
     "searchMachine": "Search for a machine here.",
-    "searchTeam": "Find the person responsible here.",
-    "notFound": "Not found."
+    "searchTeam": "Find the responsible team here.",
+    "notFound": "Not found.",
+    "maintenanceDescriptionPlaceholder": "Write a description of the maintenance here.",
+    "searchEnvironment": "Search for the desired environment."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -106,7 +108,7 @@
     "manufactureDate": "Manufacturing Date",
     "serialNumber": "Serial Number",
     "base64": "Image",
-    "stockQuantity": "Stock",
+    "stockQuantity": "Quantity in stock",
     "unitPrice": "Unit Price",
     "maintenanceDate": "Maintenance Date",
     "responsibleEmail": "Responsible Email",
@@ -140,7 +142,7 @@
   },
   "Maintenances": {
     "title": "Maintenance",
-    "new": "New Maintenance",
+    "new": "Register Maintenance",
     "createTitle": "Register Maintenance",
     "createDescription": "Fill out the form below to register a new maintenance."
   },

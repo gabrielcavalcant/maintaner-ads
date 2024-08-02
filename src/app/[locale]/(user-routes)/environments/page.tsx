@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import CreationModalButton from "@/components/creation-modal-button";
+import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreateEnvironment } from "@/constants/creation/useCreateEnvironment";
 
 export default function Environments() {

@@ -10,7 +10,19 @@ import {
 } from "@/components/ui/select";
 import { faker } from "@faker-js/faker";
 import { Label } from "@/components/ui/label";
+import Combobox from "@/components/ui/combobox";
 
+const generateFakeEnrironmentData = (num: number) => {
+  return Array.from({ length: num }, (_, index) => ({
+    id: index + 1,
+    name: faker.lorem.word(),
+    location: faker.location.streetAddress(),
+    company_name: faker.lorem.word(),
+  }));
+};
+
+// Gera 50 itens fictícios
+const env_data = generateFakeEnrironmentData(50);
 
 export const useCreateMachine = (): CreationFields => {
   const t = useTranslations();
@@ -93,46 +105,35 @@ export const useCreateMachine = (): CreationFields => {
         required: false,
         type: "node",
         render: ({ onChange, value }) => {
-          const generateFakeData = (num: number) => {
-            return Array.from({ length: num }, (_, index) => ({
-              id: index + 1,
-              name: faker.lorem.word(),
-              location: faker.location.streetAddress(),
-              company_name: faker.lorem.word(),
-            }));
-          };
-
-          // Gera 50 itens fictícios
-          const data = generateFakeData(50);
-
           return (
-            <Select onValueChange={onChange} value={value}>
-              <SelectTrigger className="w-full flex h-auto">
-                <SelectValue placeholder={t("Table.selectEnvironment")} />
-              </SelectTrigger>
-              <SelectContent className="max-h-60">
-                {data?.map((item, index) => {
-                  return (
-                    <SelectItem value={item.id.toString()} key={item.id}>
-                      <div className="flex flex-col justify-center items-start">
-                        <span>
-                          <Label className="font-semibold">Nome: </Label>
-                          <Label>{item.name}</Label>
-                        </span>
-                        <span>
-                          <Label className="font-semibold">Local: </Label>
-                          <Label>{item.location}</Label>
-                        </span>
-                        <span>
-                          <Label className="font-semibold">Empresa: </Label>
-                          <Label>{item.company_name}</Label>
-                        </span>
-                      </div>
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
+            <Combobox
+              options={env_data}
+              onValueChange={(value) => {
+                onChange(value.toString());
+              }}
+              searchPlaceholder={t("Common.searchEnvironment")}
+              placeholder={t("Table.selectEnvironment")}
+              value={value}
+              emptyMessage={t("Common.notFound")}
+              render={(item) => {
+                return (
+                  <div className="flex flex-col justify-center items-start">
+                    <span>
+                      <Label className="font-semibold">Nome: </Label>
+                      <Label>{item.name}</Label>
+                    </span>
+                    <span>
+                      <Label className="font-semibold">Local: </Label>
+                      <Label>{item.location}</Label>
+                    </span>
+                    <span>
+                      <Label className="font-semibold">Empresa: </Label>
+                      <Label>{item.company_name}</Label>
+                    </span>
+                  </div>
+                );
+              }}
+            />
           );
         },
       },

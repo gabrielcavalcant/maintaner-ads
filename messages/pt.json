@@ -54,8 +54,10 @@
     "loading10": "Testando conexões elétricas...",
     "noData": "Sem dados.",
     "searchMachine": "Busque uma máquina aqui.",
-    "searchTeam": "Busque o responsável aqui.",
-    "notFound": "Não encontrado."
+    "searchTeam": "Busque a equipe responsável aqui.",
+    "notFound": "Não encontrado.",
+    "maintenanceDescriptionPlaceholder": "Escreva aqui uma descrição da manutenção.",
+    "searchEnvironment": "Busque o ambiente desejado."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -106,7 +108,7 @@
     "manufactureDate": "Data de Manufatura",
     "serialNumber": "Número de Série",
     "base64": "Imagem",
-    "stockQuantity": "Estoque",
+    "stockQuantity": "Quantidade em Estoque",
     "unitPrice": "Preço Unidade",
     "maintenanceDate": "Data de Manutenção",
     "responsibleEmail": "Email do Responsável",
@@ -140,7 +142,7 @@
   },
   "Maintenances": {
     "title": "Manutenções",
-    "new": "Nova Manutenção",
+    "new": "Registrar Manutenção",
     "createTitle": "Registrar Manutenção",
     "createDescription": "Preencha o formulário abaixo para registrar uma nova manutenção."
   },

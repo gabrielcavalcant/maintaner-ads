@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { SyntheticEvent } from "react";
 import Magnifier from "./magnifier";
 

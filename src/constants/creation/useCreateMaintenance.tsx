@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@radix-ui/react-popover";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 import { CreationFields } from "@/types";
-import { Card } from "@/components/ui/card";
-import Combobox from "@/components/combobox";
+import Combobox from "@/components/ui/combobox";
+import { Textarea } from "@/components/ui/textarea";
+import toast from "react-hot-toast";
+import CreationModalButton from "@/components/creation/creation-modal-button";
+import { useCreateTeam } from "./useCreateTeam";
+
+const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
 
 const generateFakeTeamData = (num: number) => {
   return Array.from({ length: num }, (_, index) => ({
@@ -57,19 +53,14 @@ const team_data = generateFakeTeamData(50);
 
 export const useCreateMaintenance = (): CreationFields => {
   const t = useTranslations();
-  const [teamId, setTeamId] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    console.log(teamId);
-    setTeamId(undefined);
-  }, [teamId]);
+  const { fields, validationSchema } = useCreateTeam();
 
   const maintenanceSchema = z.object({
     type: z.string().min(1, t("Zod.maintenanceType")),
     description: z.string().optional(),
-    maintenance_date: z
-      .string()
-      .refine((date) => !isNaN(Date.parse(date)), t("Zod.maintenanceDate")),
+    maintenance_date: z.string().refine((date) => dateRegex.test(date), {
+      message: t("Zod.machineManufactureDate"),
+    }),
     machine_id: z.string().min(1, t("Zod.machine")),
     team_id: z.string().min(1, t("Zod.team")),
     responsible_id: z.string().email(t("Zod.responsibleEmail")),
@@ -88,8 +79,16 @@ export const useCreateMaintenance = (): CreationFields => {
         label: t("Table.description"),
         dbName: "description",
         required: false,
-        type: "text",
+        type: "node",
         flexWidth: "100%",
+        render({ onChange, value }) {
+          return (
+            <Textarea
+              onChange={(e) => onChange(e.target.value)}
+              value={value}
+            />
+          );
+        },
       },
       {
         label: t("Table.maintenanceDate"),
@@ -97,6 +96,23 @@ export const useCreateMaintenance = (): CreationFields => {
         required: true,
         type: "text",
         flexWidth: "100%",
+        formatInput(input) {
+          const cleaned = input.replace(/\D/g, "");
+          const limited = cleaned.slice(0, 8);
+          let formatted = limited;
+
+          if (limited.length > 2) {
+            formatted = `${limited.slice(0, 2)}/${limited.slice(2)}`;
+          }
+          if (limited.length > 4) {
+            formatted = `${limited.slice(0, 2)}/${limited.slice(
+              2,
+              4
+            )}/${limited.slice(4, 8)}`;
+          }
+
+          return formatted;
+        },
       },
       {
         label: t("Table.machine"),
@@ -149,19 +165,29 @@ export const useCreateMaintenance = (): CreationFields => {
               options={team_data}
               onValueChange={(value) => {
                 onChange(value.toString());
-                setTeamId(value.toString());
               }}
+              renderCustomAction={() => (
+                <CreationModalButton
+                  onSubmit={(formValues) => {
+                    console.log(formValues);
+                  }}
+                  fields={fields}
+                  title={t("Team.createTitle")}
+                  description={t("Team.createDescription")}
+                  validationSchema={validationSchema}
+                >
+                  {t("Teams.new")}
+                </CreationModalButton>
+              )}
               searchPlaceholder={t("Common.searchTeam")}
               placeholder={t("Table.selectTeam")}
               value={value}
               emptyMessage={t("Common.notFound")}
               render={(item) => {
                 return (
-                  <>
-                    <span>
-                      <span>{item.name}</span>
-                    </span>
-                  </>
+                  <span>
+                    <span>{item.name}</span>
+                  </span>
                 );
               }}
             />
@@ -174,7 +200,8 @@ export const useCreateMaintenance = (): CreationFields => {
         required: true,
         type: "node",
         flexWidth: "100%",
-        render({ onChange, value }) {
+        render({ onChange, value, form }) {
+          const team_id = form.watch("team_id");
           return (
             <Combobox
               options={users_data}
@@ -184,7 +211,7 @@ export const useCreateMaintenance = (): CreationFields => {
               searchPlaceholder={t("Common.searchTeam")}
               placeholder={t("Table.selectUser")}
               value={value}
-              disabled={teamId !== undefined ? true : false}
+              disabled={!team_id}
               emptyMessage={t("Common.notFound")}
               render={(item) => {
                 return (

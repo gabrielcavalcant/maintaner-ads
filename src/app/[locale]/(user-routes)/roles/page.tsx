@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { useTeamColumns } from "@/constants/useTeamsColumns";
-import CreationModalButton from "@/components/creation-modal-button";
+import CreationModalButton from "@/components/creation/creation-modal-button";
 import { Field } from "@/types";
 import { z } from "zod";
 import { useCreateTeam } from "@/constants/creation/useCreateTeam";

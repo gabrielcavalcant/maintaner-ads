@@ -2,7 +2,6 @@
 import { useState } from "react";
 import ImageModal from "./image-modal";
 import Image from "next/image";
-import { GiCardDiscard } from "react-icons/gi";
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { Button } from "./ui/button";
 

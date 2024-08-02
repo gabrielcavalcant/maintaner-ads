@@ -5,10 +5,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
 import { usePartColumns } from "@/constants/usePartsColumns";
-import CreationModalButton from "@/components/creation-modal-button";
+import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreatePart } from "@/constants/creation/useCreatePart";
 
 export default function Parts() {

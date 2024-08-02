@@ -2,9 +2,9 @@ import { Details } from "@/types";
 import React from "react";
 import toast from "react-hot-toast";
 import { BiCopy } from "react-icons/bi";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { useTranslations } from "next-intl";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 
 type CopyButtonProps = {
   column: Details | undefined;

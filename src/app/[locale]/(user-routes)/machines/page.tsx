@@ -7,7 +7,7 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useMachinesColumns } from "@/constants/useMachinesColumns";
-import CreationModalButton from "@/components/creation-modal-button";
+import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 
 export default function Equipments() {

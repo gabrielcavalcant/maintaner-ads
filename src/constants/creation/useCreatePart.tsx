@@ -1,3 +1,4 @@
+import { Input } from "@/components/ui/input";
 import { CreationFields } from "@/types";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
@@ -17,7 +18,6 @@ export const useCreatePart = (): CreationFields => {
 
   return {
     fields: [
-
       {
         label: t("Table.name"),
         dbName: "name",
@@ -43,8 +43,19 @@ export const useCreatePart = (): CreationFields => {
         label: t("Table.stockQuantity"),
         dbName: "stock_quantity",
         required: false,
-        type: "text",
+        type: "node",
         flexWidth: "100%",
+        render({ onChange, value }) {
+          return (
+            <Input
+              type="number"
+              onChange={(e) => {
+                onChange(e.target.value);
+              }}
+              value={value}
+            />
+          );
+        },
       },
       {
         label: t("Table.unitPrice"),

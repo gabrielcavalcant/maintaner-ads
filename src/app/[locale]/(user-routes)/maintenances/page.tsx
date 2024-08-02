@@ -5,12 +5,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
-import { usePartColumns } from "@/constants/usePartsColumns";
-import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
-import CreationModalButton from "@/components/creation-modal-button";
 import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
+import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
+import CreationModalButton from "@/components/creation/creation-modal-button";
 
 export default function Parts() {
   const t = useTranslations();
@@ -56,7 +53,7 @@ export default function Parts() {
 
       <div className="flex w-full items-center justify-end">
         <CreationModalButton
-          onSubmit={(formValues) => {
+          onSubmit={(formValues: any) => {
             console.log(formValues);
           }}
           fields={fields}

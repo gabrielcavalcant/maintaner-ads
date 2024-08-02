@@ -1,9 +1,7 @@
 import React from "react";
-import CheckboxInput from "./checkbox-input";
+import CheckboxInput from "./ui/checkbox-input";
 import { Details as DetailsType } from "@/types";
-import { BiCopy } from "react-icons/bi";
-import toast from "react-hot-toast";
-import CopyButton from "./copy-button";
+import CopyButton from "./ui/copy-button";
 import { Skeleton } from "./ui/skeleton";
 
 interface DetailsProps {
