@@ -5,11 +5,15 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { useUserColumns } from "@/constants/useUserColumns";
+import { useTeamColumns } from "@/constants/useTeamsColumns";
+import CreationModalButton from "@/components/creation-modal-button";
+import { Field } from "@/types";
+import { z } from "zod";
+import { useCreateTeam } from "@/constants/creation/useCreateTeam";
+import { useRoleColumns } from "@/constants/useRolesColumns";
+import { useCreateRole } from "@/constants/creation/useCreateRole";
 
-
-export default function Users() {
+export default function Roles() {
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {
@@ -26,11 +30,8 @@ export default function Users() {
   const generateFakeData = (num: number) => {
     return Array.from({ length: num }, (_, index) => ({
       id: index + 1,
-      fullName: faker.person.fullName(),
-      email: faker.internet.email(),
-      base64: faker.image.avatar(),
-      createdAt: faker.date.past(),
-      role_id: faker.lorem.word(),
+      name: faker.lorem.word(),
+      total_permissions: faker.number.int({ min: 1, max: 10 }),
     }));
   };
 
@@ -38,16 +39,28 @@ export default function Users() {
   const data = generateFakeData(50);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useUserColumns({
+  const columns: ColumnDef<any>[] = useRoleColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
+  const { fields, validationSchema } = useCreateRole();
+
   return (
     <div>
-      <Header title={t("Users.title")} />
+      <Header title={t("Roles.title")} />
       <div className="flex w-full items-center justify-end">
-        <Button>{t("Users.new")}</Button>
+        <CreationModalButton
+          onSubmit={(formValues) => {
+            console.log(formValues);
+          }}
+          fields={fields}
+          title={t("Roles.new")}
+          description={t("Roles.createDescription")}
+          validationSchema={validationSchema}
+        >
+          {t("Roles.new")}
+        </CreationModalButton>
       </div>
       <DataTable
         data={data}

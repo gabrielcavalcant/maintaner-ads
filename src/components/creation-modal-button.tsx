@@ -58,7 +58,7 @@ export default function CreationModalButton({
   fields,
   onSubmit,
   maxImages = 1,
-  imageRequired = true,
+  imageRequired = false,
   imageOptional = false,
   validationSchema,
   children,
@@ -241,8 +241,46 @@ export default function CreationModalButton({
                                   </Label>
                                 </FormLabel>
                                 <FormControl>
-                                  <Checkbox onChange={onChange} value={value} />
+                                  <Checkbox
+                                    onChange={onChange}
+                                    checked={value}
+                                  />
                                 </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        );
+                      } else if (fieldInfo.type === "node") {
+                        return (
+                          <FormField
+                            key={fieldInfo.dbName}
+                            control={form.control}
+                            name={fieldInfo.dbName}
+                            render={({ field: { onChange, value } }) => (
+                              <FormItem
+                                key={fieldInfo.dbName}
+                                className="relative"
+                                style={{
+                                  width:
+                                    fieldInfo.flexWidth === "100%"
+                                      ? fieldInfo.flexWidth
+                                      : `calc(${fieldInfo.flexWidth} - 1rem)`,
+                                }}
+                              >
+                                <FormLabel>
+                                  {fieldInfo.label}
+                                  {"  "}
+                                  <Label className="font-bold text-primary">
+                                    {fieldInfo.required && "*"}
+                                  </Label>
+                                </FormLabel>
+                                <FormControl>
+                                  {fieldInfo?.render?.({
+                                    onChange,
+                                    value,
+                                  })}
+                                </FormControl>
+                                <FormMessage className="" />
                               </FormItem>
                             )}
                           />
@@ -272,7 +310,6 @@ export default function CreationModalButton({
                             <p>{t("Common.closeWebcam")}</p>
                           </>
                         )}
-
 
                         {showWebcam && (
                           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">

@@ -12,15 +12,17 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DotDropdown from "./dot-dropdown";
 import { IconType } from "react-icons/lib";
 import { Link, usePathname } from "@/navigation";
 import { useAuth } from "@/context/authContext";
 import { Badge } from "./ui/badge";
 import { useTranslations } from "next-intl";
-import { RiTeamFill } from "react-icons/ri";
 import { SiLitiengine } from "react-icons/si";
+import { FaPeopleArrows } from "react-icons/fa";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 type NavItem = {
   title: string;
@@ -35,43 +37,69 @@ export default function NavigationBar() {
   const { user, signOut } = useAuth();
   const pathname = usePathname();
   const t = useTranslations();
-  const navigation: NavItem[] = [
-    {
-      title: t("Navbar.dashboard"),
-      Icon: MdDashboard,
-      href: "/",
-    },
-    {
-      title: t("Navbar.environments"),
-      Icon: FiBox,
-      href: "/environments",
-    },
-    {
-      title: t("Navbar.machines"),
-      Icon: PiWashingMachineFill,
-      href: "/machines",
-    },
-    {
-      title: t("Navbar.parts"),
-      Icon: SiLitiengine,
-      href: "/parts",
-    },
-    {
-      title: t("Navbar.maintenances"),
-      Icon: BsTools,
-      href: "/maintenances",
-    },
-    {
-      title: t("Navbar.user"),
-      Icon: FaUserCircle,
-      href: "/user",
-    },
-    {
-      title: t("Navbar.team"),
-      Icon: RiTeamFill,
-      href: "/team",
-    },
-  ];
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const navigation: NavItem[] = useMemo(
+    () => [
+      {
+        title: t("Navbar.dashboard"),
+        Icon: MdDashboard,
+        href: "/",
+      },
+      {
+        title: t("Navbar.environments"),
+        Icon: FiBox,
+        href: "/environments",
+      },
+      {
+        title: t("Navbar.machines"),
+        Icon: PiWashingMachineFill,
+        href: "/machines",
+      },
+      {
+        title: t("Navbar.parts"),
+        Icon: SiLitiengine,
+        href: "/parts",
+      },
+      {
+        title: t("Navbar.maintenances"),
+        Icon: BsTools,
+        href: "/maintenances",
+      },
+      {
+        title: t("Navbar.management"),
+        Icon: FaPeopleArrows,
+        href: "#",
+        subpages: [
+          {
+            title: t("Navbar.user"),
+            Icon: FaUserCircle,
+            href: "/users",
+          },
+          {
+            title: t("Navbar.roles"),
+            Icon: MdAdminPanelSettings,
+            href: "/roles",
+          },
+          {
+            title: t("Navbar.team"),
+            Icon: FaPeopleGroup,
+            href: "/teams",
+          },
+        ],
+      },
+    ],
+    [t]
+  );
+
+  useEffect(() => {
+    setActiveIndex(null);
+    navigation.forEach((item, index) => {
+      if (item.subpages?.some((subpage) => pathname.startsWith(subpage.href))) {
+        setActiveIndex(index);
+      }
+    });
+  }, [pathname, navigation]);
 
   return (
     <aside
@@ -93,6 +121,10 @@ export default function NavigationBar() {
         <div className="flex flex-col w-full text-sm font-medium">
           {navigation?.map((item, index) => {
             const { Icon, title, href, subpages } = item;
+            console.log(item, pathname, index, activeIndex);
+            const isActive =
+              pathname === item.href ||
+              (index === activeIndex && pathname !== "/");
             return (
               <Tooltip
                 key={index}
@@ -114,8 +146,8 @@ export default function NavigationBar() {
                     <Button
                       variant="link"
                       className={`w-full justify-start text-background-foreground items-center gap-4 transition-all ${
-                        pathname === href
-                          ? "bg-primary text-primary-foreground hover:brigthness-60"
+                        isActive
+                          ? "bg-primary text-primary-foreground hover:brightness-60"
                           : ""
                       }`}
                     >
@@ -152,8 +184,12 @@ export default function NavigationBar() {
                       return (
                         <Link href={href} key={subIndex} className="w-full">
                           <Button
-                            variant="ghost"
-                            className="w-full justify-start gap-3 rounded-none px-3 pr-10 text-start"
+                            variant="link"
+                            className={`w-full justify-start text-background-foreground items-center gap-4 transition-all ${
+                              pathname === href
+                                ? "bg-primary text-primary-foreground hover:brigthness-60"
+                                : ""
+                            }`}
                           >
                             <Icon className="text-xl" />
                             <span className="whitespace-nowrap">{title}</span>

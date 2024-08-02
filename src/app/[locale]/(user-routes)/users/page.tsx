@@ -5,13 +5,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { useTeamColumns } from "@/constants/useTeamsColumns";
+import { Button } from "@/components/ui/button";
+import { useUserColumns } from "@/constants/useUserColumns";
 import CreationModalButton from "@/components/creation-modal-button";
-import { Field } from "@/types";
-import { z } from "zod";
-import { useCreateTeam } from "@/constants/creation/useCreateTeam";
+import { useCreateUser } from "@/constants/creation/useCreateuser";
 
-export default function Teams() {
+export default function Users() {
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {
@@ -28,8 +27,11 @@ export default function Teams() {
   const generateFakeData = (num: number) => {
     return Array.from({ length: num }, (_, index) => ({
       id: index + 1,
-      name: faker.company.name(),
-      total_members: faker.number.int({ min: 1, max: 10 }),
+      fullName: faker.person.fullName(),
+      email: faker.internet.email(),
+      base64: faker.image.avatar(),
+      createdAt: faker.date.past(),
+      role_id: faker.lorem.word(),
     }));
   };
 
@@ -37,28 +39,28 @@ export default function Teams() {
   const data = generateFakeData(50);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useTeamColumns({
+  const columns: ColumnDef<any>[] = useUserColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreateTeam();
+  const { fields, validationSchema } = useCreateUser();
 
   return (
     <div>
-      <Header title={t("Teams.title")} />
+      <Header title={t("Users.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModalButton
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
           fields={fields}
-          title={t("Team.createTitle")}
-          description={t("Team.createDescription")}
+          title={t("Users.createTitle")}
+          description={t("Users.createDescription")}
           validationSchema={validationSchema}
-          imageRequired={false}
+          imageRequired
         >
-          {t("Teams.new")}
+          {t("Users.new")}
         </CreationModalButton>
       </div>
       <DataTable

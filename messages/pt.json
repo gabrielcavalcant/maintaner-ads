@@ -27,7 +27,9 @@
     "confirmLogoutTitle": "Você realmente deseja sair?",
     "confirmLogoutSubtitle": "Se você sair, todas as sessões atuais serão encerradas. Deseja continuar?",
     "cancelLogout": "Cancelar",
-    "machines": "Máquinas"
+    "machines": "Máquinas",
+    "roles": "Cargos",
+    "management": "Gestão"
   },
   "Common": {
     "loading": "Carregando...",
@@ -49,7 +51,11 @@
     "loading7": "Ajustando configurações de precisão...",
     "loading8": "Monitorando desempenho de máquinas...",
     "loading9": "Executando procedimentos de segurança...",
-    "loading10": "Testando conexões elétricas..."
+    "loading10": "Testando conexões elétricas...",
+    "noData": "Sem dados.",
+    "searchMachine": "Busque uma máquina aqui.",
+    "searchTeam": "Busque o responsável aqui.",
+    "notFound": "Não encontrado."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -105,7 +111,16 @@
     "maintenanceDate": "Data de Manutenção",
     "responsibleEmail": "Email do Responsável",
     "machineId": "ID da máquina",
-    "teamId": "ID do Time"
+    "teamId": "ID do Time",
+    "password": "Senha",
+    "roleId": "ID do Cargo",
+    "total_permissions": "Total de Permissões",
+    "selectEnvironment": "Selecione o ambiente desejado.",
+    "selectMachine": "Selecione a máquina desejada.",
+    "machine": "Máquina",
+    "team": "Equipe",
+    "selectTeam": "Selecione a equipe responsável.",
+    "selectUser": "Selecione o responsável."
   },
   "Environments": {
     "title": "Ambientes",
@@ -131,7 +146,9 @@
   },
   "Users": {
     "title": "Usuários",
-    "new": "Novo Usuário"
+    "new": "Novo Usuário",
+    "createTitle": "Novo Usuário",
+    "createDescription": "Preecha o formulário abaixo para criar um novo usuário."
   },
   "Teams": {
     "title": "Equipes",
@@ -154,10 +171,22 @@
     "partName": "Nome da peça é necessário.",
     "maintenanceType": "Tipo de manutenção é necessário.",
     "maintenanceDate": "Data de Manutenção é necessária.",
-    "responsibleEmail": "Email do responsável é necessário."
+    "responsibleEmail": "Email do responsável é necessário.",
+    "email": "Email inválido.",
+    "fullName": "Nome completo é necessário.",
+    "password": "É necessário fornecer uma senha.",
+    "roleName": "O nome do cargo é necessário.",
+    "machine": "Máquina é necessária.",
+    "team": "Time é necessário."
   },
   "Environment": {
     "createTitle": "Adicionar novo ambiente",
     "createDescription": "Preencha o fomulário abaixo para adicionar um novo ambiente."
+  },
+  "Roles": {
+    "title": "Cargos",
+    "createTitle": "Criar Cargo",
+    "createDescription": "Preencha o formulário abaixo para criar um novo cargo.",
+    "new": "Criar Cargo"
   }
 }

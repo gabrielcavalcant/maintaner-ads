@@ -19,20 +19,20 @@ export const useRoleColumns = ({
   return [
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.id")} />
-      ),
-      accessorKey: "id",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.id}</div>
-      ),
-    },
-    {
-      header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.name")} />
       ),
       accessorKey: "name",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">{row.original.name}</div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.total_permissions")} />
+      ),
+      accessorKey: "total_permissions",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">{row.original.total_permissions}</div>
       ),
     },
     {

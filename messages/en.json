@@ -27,7 +27,9 @@
     "confirmLogoutTitle": "Do you really want to logout?",
     "confirmLogoutSubtitle": "If you logout, all current sessions will be terminated. Do you wish to continue?",
     "cancelLogout": "Cancel",
-    "machines": "Machines"
+    "machines": "Machines",
+    "roles": "Roles",
+    "management": "Management"
   },
   "Common": {
     "loading": "Loading...",
@@ -49,7 +51,11 @@
     "loading7": "Adjusting precision settings...",
     "loading8": "Monitoring machine performance...",
     "loading9": "Performing security procedures...",
-    "loading10": "Testing electrical connections..."
+    "loading10": "Testing electrical connections...",
+    "noData": "No data.",
+    "searchMachine": "Search for a machine here.",
+    "searchTeam": "Find the person responsible here.",
+    "notFound": "Not found."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -105,7 +111,16 @@
     "maintenanceDate": "Maintenance Date",
     "responsibleEmail": "Responsible Email",
     "machineId": "Machine ID",
-    "teamId": "Team ID"
+    "teamId": "Team ID",
+    "password": "Password",
+    "roleId": "Job ID",
+    "total_permissions": "Total Permissions",
+    "selectEnvironment": "Select the desired environment.",
+    "selectMachine": "Select the desired machine.",
+    "machine": "Machine",
+    "team": "Team",
+    "selectTeam": "Select the responsible team.",
+    "selectUser": "Select the person responsible."
   },
   "Environments": {
     "title": "Environments",
@@ -131,7 +146,9 @@
   },
   "Users": {
     "title": "Users",
-    "new": "New User"
+    "new": "New User",
+    "createTitle": "New user",
+    "createDescription": "Fill out the form below to create a new user."
   },
   "Teams": {
     "title": "Teams",
@@ -154,10 +171,21 @@
     "partName": "Part name is required.",
     "maintenanceType": "Type of maintenance is required.",
     "maintenanceDate": "Maintenance Date is required.",
-    "responsibleEmail": "Email of the person responsible is necessary."
+    "responsibleEmail": "Email of the person responsible is necessary.",
+    "email": "Invalid email.",
+    "fullName": "Full name is required.",
+    "password": "You must provide a password.",
+    "roleName": "The job title is required.",
+    "machine": "Machine is required.",
+    "team": "Time is necessary."
   },
   "Environment": {
     "createTitle": "Add new environment",
     "createDescription": "Fill out the form below to add a new environment."
+  },
+  "Roles": {
+    "createTitle": "Create Role",
+    "createDescription": "Fill out the form below to create a new role.",
+    "new": "Create Position"
   }
 }

@@ -56,7 +56,6 @@ export default function Environments() {
           title={t("Environment.createTitle")}
           description={t("Environment.createDescription")}
           validationSchema={validationSchema}
-          imageRequired={false}
         >
           {t("Environments.new")}
         </CreationModalButton>

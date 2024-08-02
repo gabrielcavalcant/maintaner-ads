@@ -59,7 +59,6 @@ export default function Equipments() {
           title={t("Machines.createTitle")}
           description={t("Machines.createDescription")}
           validationSchema={validationSchema}
-          imageRequired={false}
         >
           {t("Machines.new")}
         </CreationModalButton>

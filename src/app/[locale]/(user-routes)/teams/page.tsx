@@ -5,14 +5,13 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
-import { usePartColumns } from "@/constants/usePartsColumns";
-import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
+import { useTeamColumns } from "@/constants/useTeamsColumns";
 import CreationModalButton from "@/components/creation-modal-button";
-import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
+import { Field } from "@/types";
+import { z } from "zod";
+import { useCreateTeam } from "@/constants/creation/useCreateTeam";
 
-export default function Parts() {
+export default function Teams() {
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {
@@ -29,13 +28,8 @@ export default function Parts() {
   const generateFakeData = (num: number) => {
     return Array.from({ length: num }, (_, index) => ({
       id: index + 1,
-      type: faker.lorem.words(2),
-      description: faker.lorem.sentence(),
-      maintenance_date: faker.date.recent(),
-      status: faker.number.int({ min: 0, max: 1 }),
-      machine_id: faker.lorem.words(2),
-      team_id: faker.lorem.word(),
-      responsible_id: faker.person.firstName(),
+      name: faker.company.name(),
+      total_members: faker.number.int({ min: 1, max: 10 }),
     }));
   };
 
@@ -43,28 +37,27 @@ export default function Parts() {
   const data = generateFakeData(50);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useMaintenanceColumns({
+  const columns: ColumnDef<any>[] = useTeamColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreateMaintenance();
+  const { fields, validationSchema } = useCreateTeam();
 
   return (
     <div>
-      <Header title={t("Maintenances.title")} />
-
+      <Header title={t("Teams.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModalButton
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
           fields={fields}
-          title={t("Maintenances.createTitle")}
-          description={t("Maintenances.createDescription")}
+          title={t("Team.createTitle")}
+          description={t("Team.createDescription")}
           validationSchema={validationSchema}
         >
-          {t("Maintenances.new")}
+          {t("Teams.new")}
         </CreationModalButton>
       </div>
       <DataTable
