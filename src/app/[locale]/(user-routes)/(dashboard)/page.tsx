@@ -4,8 +4,6 @@ import { PiWashingMachineFill } from "react-icons/pi";
 import { FaFolderOpen, FaCheckSquare } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import { DataTable } from "@/components/table/data-table";
-import { useDashboardColumns } from "@/constants/useDashboardColumns";
-import Data from "../../../../../mock_data/dashboard.json";
 import Header from "@/components/header";
 import IconCard from "@/components/icon-card";
 import { ColumnDef } from "@tanstack/react-table";

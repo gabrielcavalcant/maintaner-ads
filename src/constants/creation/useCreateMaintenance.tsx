@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 import { CreationFields } from "@/types";
 import Combobox from "@/components/ui/combobox";
 import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
-import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreateTeam } from "./useCreateTeam";
+import CreationModal from "@/components/creation/creation-modal";
+import { Button } from "@/components/ui/button";
 
 const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
 
@@ -167,7 +166,7 @@ export const useCreateMaintenance = (): CreationFields => {
                 onChange(value.toString());
               }}
               renderCustomAction={() => (
-                <CreationModalButton
+                <CreationModal
                   onSubmit={(formValues) => {
                     console.log(formValues);
                   }}
@@ -176,8 +175,8 @@ export const useCreateMaintenance = (): CreationFields => {
                   description={t("Team.createDescription")}
                   validationSchema={validationSchema}
                 >
-                  {t("Teams.new")}
-                </CreationModalButton>
+                  <Button>{t("Teams.new")}</Button>
+                </CreationModal>
               )}
               searchPlaceholder={t("Common.searchTeam")}
               placeholder={t("Table.selectTeam")}
@@ -195,8 +194,8 @@ export const useCreateMaintenance = (): CreationFields => {
         },
       },
       {
-        label: t("Table.responsibleEmail"),
-        dbName: "responsible_email",
+        label: t("Table.responsible"),
+        dbName: "responsible_id",
         required: true,
         type: "node",
         flexWidth: "100%",

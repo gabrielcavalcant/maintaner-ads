@@ -6,8 +6,9 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { usePartColumns } from "@/constants/usePartsColumns";
-import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreatePart } from "@/constants/creation/useCreatePart";
+import { Button } from "@/components/ui/button";
+import CreationModal from "@/components/creation/creation-modal";
 
 export default function Parts() {
   const t = useTranslations();
@@ -50,7 +51,7 @@ export default function Parts() {
     <div>
       <Header title={t("Parts.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -60,8 +61,8 @@ export default function Parts() {
           validationSchema={validationSchema}
           imageRequired
         >
-          {t("Parts.new")}
-        </CreationModalButton>
+          <Button>{t("Parts.new")}</Button>
+        </CreationModal>
       </div>
       <DataTable
         data={data}

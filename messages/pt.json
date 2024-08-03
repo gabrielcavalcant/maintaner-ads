@@ -57,7 +57,9 @@
     "searchTeam": "Busque a equipe responsável aqui.",
     "notFound": "Não encontrado.",
     "maintenanceDescriptionPlaceholder": "Escreva aqui uma descrição da manutenção.",
-    "searchEnvironment": "Busque o ambiente desejado."
+    "searchEnvironment": "Busque o ambiente desejado.",
+    "edit": "Editar",
+    "remove": "Remover"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -122,7 +124,8 @@
     "machine": "Máquina",
     "team": "Equipe",
     "selectTeam": "Selecione a equipe responsável.",
-    "selectUser": "Selecione o responsável."
+    "selectUser": "Selecione o responsável.",
+    "responsible": "Responsável"
   },
   "Environments": {
     "title": "Ambientes",
@@ -183,12 +186,18 @@
   },
   "Environment": {
     "createTitle": "Adicionar novo ambiente",
-    "createDescription": "Preencha o fomulário abaixo para adicionar um novo ambiente."
+    "createDescription": "Preencha o fomulário abaixo para adicionar um novo ambiente.",
+    "editTitle": "Editar Ambiente",
+    "editDescription": "Preencha o fomulário abaixo para editar um novo ambiente."
   },
   "Roles": {
     "title": "Cargos",
     "createTitle": "Criar Cargo",
     "createDescription": "Preencha o formulário abaixo para criar um novo cargo.",
     "new": "Criar Cargo"
+  },
+  "Mainteances": {
+    "editDescription": "Preencha o formulário abaixo para editar a manutenção.",
+    "edit": "Editar Manutenção"
   }
 }

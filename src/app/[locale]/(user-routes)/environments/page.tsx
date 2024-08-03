@@ -7,8 +7,8 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreateEnvironment } from "@/constants/creation/useCreateEnvironment";
+import CreationModal from "@/components/creation/creation-modal";
 
 export default function Environments() {
   const t = useTranslations();
@@ -48,7 +48,7 @@ export default function Environments() {
     <div>
       <Header title={t("Environments.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -56,9 +56,10 @@ export default function Environments() {
           title={t("Environment.createTitle")}
           description={t("Environment.createDescription")}
           validationSchema={validationSchema}
+          asChild
         >
-          {t("Environments.new")}
-        </CreationModalButton>
+          <Button>{t("Environments.new")}</Button>
+        </CreationModal>
       </div>
       <DataTable
         data={data}

@@ -7,8 +7,8 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useMachinesColumns } from "@/constants/useMachinesColumns";
-import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreateMachine } from "@/constants/creation/useCreateMachine";
+import CreationModal from "@/components/creation/creation-modal";
 
 export default function Equipments() {
   const t = useTranslations();
@@ -51,7 +51,7 @@ export default function Equipments() {
     <div>
       <Header title={t("Machines.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -60,8 +60,8 @@ export default function Equipments() {
           description={t("Machines.createDescription")}
           validationSchema={validationSchema}
         >
-          {t("Machines.new")}
-        </CreationModalButton>
+          <Button>{t("Machines.new")}</Button>
+        </CreationModal>
       </div>
       <DataTable
         data={data}

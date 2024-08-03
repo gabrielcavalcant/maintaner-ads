@@ -7,7 +7,8 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
 import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
-import CreationModalButton from "@/components/creation/creation-modal-button";
+import CreationModal from "@/components/creation/creation-modal";
+import { Button } from "@/components/ui/button";
 
 export default function Parts() {
   const t = useTranslations();
@@ -30,9 +31,12 @@ export default function Parts() {
       description: faker.lorem.sentence(),
       maintenance_date: faker.date.recent(),
       status: faker.number.int({ min: 0, max: 1 }),
-      machine_id: faker.lorem.words(2),
-      team_id: faker.lorem.word(),
-      responsible_id: faker.person.firstName(),
+      machine_id: faker.number.int({ min: 0, max: 50 }),
+      team_id: faker.number.int({ min: 0, max: 50 }),
+      responsible_id: faker.number.int({ min: 0, max: 50 }),
+      machine: faker.lorem.words(2),
+      team: faker.lorem.word(),
+      responsible: faker.person.firstName(),
     }));
   };
 
@@ -52,7 +56,7 @@ export default function Parts() {
       <Header title={t("Maintenances.title")} />
 
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues: any) => {
             console.log(formValues);
           }}
@@ -61,8 +65,8 @@ export default function Parts() {
           description={t("Maintenances.createDescription")}
           validationSchema={validationSchema}
         >
-          {t("Maintenances.new")}
-        </CreationModalButton>
+          <Button>{t("Maintenances.new")}</Button>
+        </CreationModal>
       </div>
       <DataTable
         data={data}

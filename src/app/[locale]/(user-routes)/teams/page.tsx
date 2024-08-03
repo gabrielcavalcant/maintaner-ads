@@ -6,10 +6,8 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { useTeamColumns } from "@/constants/useTeamsColumns";
-import CreationModalButton from "@/components/creation/creation-modal-button";
-import { Field } from "@/types";
-import { z } from "zod";
 import { useCreateTeam } from "@/constants/creation/useCreateTeam";
+import CreationModal from "@/components/creation/creation-modal";
 
 export default function Teams() {
   const t = useTranslations();
@@ -48,7 +46,7 @@ export default function Teams() {
     <div>
       <Header title={t("Teams.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -58,7 +56,7 @@ export default function Teams() {
           validationSchema={validationSchema}
         >
           {t("Teams.new")}
-        </CreationModalButton>
+        </CreationModal>
       </div>
       <DataTable
         data={data}

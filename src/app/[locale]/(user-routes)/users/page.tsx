@@ -7,8 +7,8 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useUserColumns } from "@/constants/useUserColumns";
-import CreationModalButton from "@/components/creation/creation-modal-button";
 import { useCreateUser } from "@/constants/creation/useCreateuser";
+import CreationModal from "@/components/creation/creation-modal";
 
 export default function Users() {
   const t = useTranslations();
@@ -50,7 +50,7 @@ export default function Users() {
     <div>
       <Header title={t("Users.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -60,8 +60,8 @@ export default function Users() {
           validationSchema={validationSchema}
           imageRequired
         >
-          {t("Users.new")}
-        </CreationModalButton>
+          <Button>{t("Users.new")}</Button>
+        </CreationModal>
       </div>
       <DataTable
         data={data}

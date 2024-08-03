@@ -57,7 +57,8 @@
     "searchTeam": "Find the responsible team here.",
     "notFound": "Not found.",
     "maintenanceDescriptionPlaceholder": "Write a description of the maintenance here.",
-    "searchEnvironment": "Search for the desired environment."
+    "searchEnvironment": "Search for the desired environment.",
+    "remove": "Remove"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -122,7 +123,8 @@
     "machine": "Machine",
     "team": "Team",
     "selectTeam": "Select the responsible team.",
-    "selectUser": "Select the person responsible."
+    "selectUser": "Select the person responsible.",
+    "responsible": "Responsible"
   },
   "Environments": {
     "title": "Environments",
@@ -183,11 +185,17 @@
   },
   "Environment": {
     "createTitle": "Add new environment",
-    "createDescription": "Fill out the form below to add a new environment."
+    "createDescription": "Fill out the form below to add a new environment.",
+    "editTitle": "Edit Environment",
+    "editDescription": "Fill out the form below to edit a new environment."
   },
   "Roles": {
     "createTitle": "Create Role",
     "createDescription": "Fill out the form below to create a new role.",
     "new": "Create Position"
+  },
+  "Mainteances": {
+    "editDescription": "Fill out the form below to edit the maintenance.",
+    "edit": "Edit Maintenance"
   }
 }

@@ -32,7 +32,7 @@ export default function NavigationBar() {
             <IoMenu className="text-4xl" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="top">
+        <SheetContent side="left">
           <NavbarContent />
         </SheetContent>
       </Sheet>

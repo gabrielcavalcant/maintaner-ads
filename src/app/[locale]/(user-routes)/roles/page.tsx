@@ -5,13 +5,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { useTeamColumns } from "@/constants/useTeamsColumns";
-import CreationModalButton from "@/components/creation/creation-modal-button";
-import { Field } from "@/types";
-import { z } from "zod";
-import { useCreateTeam } from "@/constants/creation/useCreateTeam";
 import { useRoleColumns } from "@/constants/useRolesColumns";
 import { useCreateRole } from "@/constants/creation/useCreateRole";
+import CreationModal from "@/components/creation/creation-modal";
+import { Button } from "@/components/ui/button";
 
 export default function Roles() {
   const t = useTranslations();
@@ -50,7 +47,7 @@ export default function Roles() {
     <div>
       <Header title={t("Roles.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModalButton
+        <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -59,8 +56,8 @@ export default function Roles() {
           description={t("Roles.createDescription")}
           validationSchema={validationSchema}
         >
-          {t("Roles.new")}
-        </CreationModalButton>
+          <Button>{t("Roles.new")}</Button>
+        </CreationModal>
       </div>
       <DataTable
         data={data}
