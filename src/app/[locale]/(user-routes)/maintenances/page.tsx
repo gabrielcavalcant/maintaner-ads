@@ -29,7 +29,9 @@ export default function Parts() {
       id: index + 1,
       type: faker.lorem.words(2),
       description: faker.lorem.sentence(),
-      maintenance_date: faker.date.recent(),
+      maintenance_date: new Date(faker.date.recent()).toLocaleDateString(
+        "pt-BR"
+      ),
       status: faker.number.int({ min: 0, max: 1 }),
       machine_id: faker.number.int({ min: 0, max: 50 }),
       team_id: faker.number.int({ min: 0, max: 50 }),

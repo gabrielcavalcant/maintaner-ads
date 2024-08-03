@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useCreateTeam } from "./useCreateTeam";
 import CreationModal from "@/components/creation/creation-modal";
 import { Button } from "@/components/ui/button";
+import { formatDate } from "@/lib/formatters";
 
 const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
 
@@ -60,9 +61,9 @@ export const useCreateMaintenance = (): CreationFields => {
     maintenance_date: z.string().refine((date) => dateRegex.test(date), {
       message: t("Zod.machineManufactureDate"),
     }),
-    machine_id: z.string().min(1, t("Zod.machine")),
-    team_id: z.string().min(1, t("Zod.team")),
-    responsible_id: z.string().email(t("Zod.responsibleEmail")),
+    machine_id: z.number().positive(t("Zod.machine")),
+    team_id: z.number().positive(t("Zod.team")),
+    responsible_id: z.number().positive(t("Zod.responsibleEmail")),
   });
 
   return {
@@ -78,7 +79,6 @@ export const useCreateMaintenance = (): CreationFields => {
         label: t("Table.description"),
         dbName: "description",
         required: false,
-        type: "node",
         flexWidth: "100%",
         render({ onChange, value }) {
           return (
@@ -95,29 +95,13 @@ export const useCreateMaintenance = (): CreationFields => {
         required: true,
         type: "text",
         flexWidth: "100%",
-        formatInput(input) {
-          const cleaned = input.replace(/\D/g, "");
-          const limited = cleaned.slice(0, 8);
-          let formatted = limited;
-
-          if (limited.length > 2) {
-            formatted = `${limited.slice(0, 2)}/${limited.slice(2)}`;
-          }
-          if (limited.length > 4) {
-            formatted = `${limited.slice(0, 2)}/${limited.slice(
-              2,
-              4
-            )}/${limited.slice(4, 8)}`;
-          }
-
-          return formatted;
-        },
+        maskFn: formatDate,
       },
       {
         label: t("Table.machine"),
         dbName: "machine_id",
         required: true,
-        type: "node",
+        type: "number",
         flexWidth: "100%",
         render({ onChange, value }) {
           return (
@@ -134,15 +118,15 @@ export const useCreateMaintenance = (): CreationFields => {
                   <>
                     <span>
                       <span className="font-semibold">Nome: </span>
-                      <span>{item.name}</span>
+                      <span>{item?.name}</span>
                     </span>
                     <span>
                       <span className="font-semibold">Modelo: </span>
-                      <span>{item.model}</span>
+                      <span>{item?.model}</span>
                     </span>
                     <span>
                       <span className="font-semibold">Tipo: </span>
-                      <span>{item.type}</span>
+                      <span>{item?.type}</span>
                     </span>
                   </>
                 );
@@ -156,7 +140,7 @@ export const useCreateMaintenance = (): CreationFields => {
         label: t("Table.team"),
         dbName: "team_id",
         required: true,
-        type: "node",
+        type: "number",
         flexWidth: "100%",
         render({ onChange, value }) {
           return (
@@ -185,7 +169,7 @@ export const useCreateMaintenance = (): CreationFields => {
               render={(item) => {
                 return (
                   <span>
-                    <span>{item.name}</span>
+                    <span>{item?.name}</span>
                   </span>
                 );
               }}
@@ -197,7 +181,7 @@ export const useCreateMaintenance = (): CreationFields => {
         label: t("Table.responsible"),
         dbName: "responsible_id",
         required: true,
-        type: "node",
+        type: "number",
         flexWidth: "100%",
         render({ onChange, value, form }) {
           const team_id = form.watch("team_id");
@@ -205,7 +189,7 @@ export const useCreateMaintenance = (): CreationFields => {
             <Combobox
               options={users_data}
               onValueChange={(value) => {
-                onChange(value.toString());
+                onChange(value);
               }}
               searchPlaceholder={t("Common.searchTeam")}
               placeholder={t("Table.selectUser")}
@@ -217,15 +201,15 @@ export const useCreateMaintenance = (): CreationFields => {
                   <>
                     <span>
                       <span className="font-semibold">Nome: </span>
-                      <span>{item.fullName}</span>
+                      <span>{item?.fullName}</span>
                     </span>
                     <span>
                       <span className="font-semibold">Email: </span>
-                      <span>{item.email}</span>
+                      <span>{item?.email}</span>
                     </span>
                     <span>
                       <span className="font-semibold">Cargo: </span>
-                      <span>{item.role}</span>
+                      <span>{item?.role}</span>
                     </span>
                   </>
                 );

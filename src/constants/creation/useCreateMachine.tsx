@@ -12,7 +12,7 @@ import { faker } from "@faker-js/faker";
 import { Label } from "@/components/ui/label";
 import Combobox from "@/components/ui/combobox";
 
-const generateFakeEnrironmentData = (num: number) => {
+const generateFakeEnvironmentData = (num: number) => {
   return Array.from({ length: num }, (_, index) => ({
     id: index + 1,
     name: faker.lorem.word(),
@@ -22,7 +22,7 @@ const generateFakeEnrironmentData = (num: number) => {
 };
 
 // Gera 50 itens fictícios
-const env_data = generateFakeEnrironmentData(50);
+const env_data = generateFakeEnvironmentData(50);
 
 export const useCreateMachine = (): CreationFields => {
   const t = useTranslations();
@@ -38,6 +38,7 @@ export const useCreateMachine = (): CreationFields => {
       message: t("Zod.machineManufactureDate"),
     }),
     serial_number: z.string().optional(),
+    environment_id: z.number().positive(t("Zod.environment")),
   });
 
   return {
@@ -69,7 +70,7 @@ export const useCreateMachine = (): CreationFields => {
         required: true,
         type: "text",
         flexWidth: "100%",
-        formatInput(input) {
+        maskFn(input) {
           // Remover todos os caracteres não numéricos
           const cleaned = input.replace(/\D/g, "");
 
@@ -103,13 +104,14 @@ export const useCreateMachine = (): CreationFields => {
         label: t("Table.environment"),
         dbName: "environment_id",
         required: false,
-        type: "node",
+        type: "number",
+        flexWidth: "100%",
         render: ({ onChange, value }) => {
           return (
             <Combobox
               options={env_data}
               onValueChange={(value) => {
-                onChange(value.toString());
+                onChange(value);
               }}
               searchPlaceholder={t("Common.searchEnvironment")}
               placeholder={t("Table.selectEnvironment")}
@@ -117,18 +119,18 @@ export const useCreateMachine = (): CreationFields => {
               emptyMessage={t("Common.notFound")}
               render={(item) => {
                 return (
-                  <div className="flex flex-col justify-center items-start">
+                  <div className="flex flex-col justify-center items-start w-full">
                     <span>
-                      <Label className="font-semibold">Nome: </Label>
-                      <Label>{item.name}</Label>
+                      <span className="font-semibold">Nome: </span>
+                      <span>{item.name}</span>
                     </span>
                     <span>
-                      <Label className="font-semibold">Local: </Label>
-                      <Label>{item.location}</Label>
+                      <span className="font-semibold">Local: </span>
+                      <span>{item.location}</span>
                     </span>
                     <span>
-                      <Label className="font-semibold">Empresa: </Label>
-                      <Label>{item.company_name}</Label>
+                      <span className="font-semibold">Empresa: </span>
+                      <span>{item.company_name}</span>
                     </span>
                   </div>
                 );

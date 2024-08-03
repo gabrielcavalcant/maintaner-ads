@@ -6,6 +6,10 @@ import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import EditModal from "@/components/creation/edit-modal";
+import { simulatedResponseAPI } from "@/helper/simulate-api";
+import { useCreateUser } from "./creation/useCreateuser";
+import { Badge } from "@/components/ui/badge";
 
 type UseUserColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -18,6 +22,8 @@ export const useUserColumns = ({
 }: UseUserColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
 
+  const { fields, validationSchema } = useCreateUser();
+
   return [
     {
       header: ({ column }) => (
@@ -28,7 +34,7 @@ export const useUserColumns = ({
         <div className="flex gap-1 items-center">
           <Avatar>
             <AvatarImage
-              src={`data:image/png;base64,${row.original.base64}`}
+              src={`${row.original.base64}`}
               alt={row.original.name}
               width={50}
               height={50}
@@ -57,25 +63,15 @@ export const useUserColumns = ({
         <div className="flex gap-1 items-center">{row.original.email}</div>
       ),
     },
-
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.createdAt")} />
-      ),
-      accessorKey: "createdAt",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {new Date(row.original.createdAt).toLocaleDateString()}
-        </div>
-      ),
-    },
     {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.role_id")} />
       ),
-      accessorKey: "role_id",
+      accessorKey: "role",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.role_id}</div>
+        <Badge className="flex justify-center items-center">
+          {row.original.role}
+        </Badge>
       ),
     },
     {
@@ -84,16 +80,38 @@ export const useUserColumns = ({
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
           {onEditClick && (
-            <TooltipButton
-              Icon={MdEdit}
-              message="Editar"
-              onClick={() => onEditClick(row.original.id)}
-            />
+            <EditModal
+              onSubmit={(formValues) => {
+                console.log(formValues);
+              }}
+              fields={fields}
+              mutationFn={() =>
+                simulatedResponseAPI({
+                  id: row.original.id,
+                  fullName: row.original.fullName,
+                  email: row.original.email,
+                  base64: row.original.base64,
+                  createdAt: row.original.createdAt,
+                  role_id: row.original.role_id,
+                })
+              }
+              mutationKey={["editUser", row.original.id]}
+              title={t("Machines.edit")}
+              description={t("Machines.editDescription")}
+              validationSchema={validationSchema}
+              asChild
+            >
+              <TooltipButton
+                Icon={MdEdit}
+                message={t("Common.edit")}
+                onClick={() => onEditClick(row.original.id)}
+              />
+            </EditModal>
           )}
           {onRemoveClick && (
             <TooltipButton
               Icon={FaEraser}
-              message="Remover"
+              message={t("Common.remove")}
               onClick={() => onRemoveClick(row.original.id)}
             />
           )}

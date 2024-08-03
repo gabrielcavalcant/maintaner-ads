@@ -4,16 +4,15 @@ import { PathValue, UseFormReturn } from "react-hook-form";
 export type Field = {
   label: string;
   dbName: string;
-  type?: "text" | "checkbox" | "node";
+  type?: "number" | "text" | "array" | "object";
   required: boolean;
   flexWidth?: string;
   render?: (props: RenderType) => ReactNode;
-  formatInput?: (input: string) => string;
-  formatOutput?: (output: string) => string;
+  maskFn?: (input: string) => string;
 };
 
 type RenderType = {
   onChange: (value: string) => void;
-  value: string;
+  value: any;
   form: UseFormReturn<any, any, undefined>;
 };

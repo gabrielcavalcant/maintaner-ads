@@ -42,10 +42,8 @@ export default async function RootLayout({
             "nord",
             "nord-dark",
             "natura",
-            "natura-dark",
             "dracula",
             "dracula-dark",
-            "laracon-dark",
             "gold",
             "gold-dark",
             "azarath",
@@ -54,6 +52,17 @@ export default async function RootLayout({
             "poimandres-dark",
             "discord",
             "discord-dark",
+            "adj",
+            "adj-dark",
+            "soft-purple",
+            "soft-purple-dark",
+            "umbra-protocol",
+            "min-light",
+            "min-dark",
+            "aura-dark",
+            "pro-hacker",
+            "tokyo-city-lighter",
+            "ayu-light-bordered"
           ]}
         >
           <CustomToaster />

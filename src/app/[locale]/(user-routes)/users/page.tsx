@@ -31,7 +31,8 @@ export default function Users() {
       email: faker.internet.email(),
       base64: faker.image.avatar(),
       createdAt: faker.date.past(),
-      role_id: faker.lorem.word(),
+      role_id: faker.number.int({ min: 0, max: 10 }),
+      role: faker.lorem.word(),
     }));
   };
 

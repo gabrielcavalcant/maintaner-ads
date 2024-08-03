@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
+import { Badge } from "@/components/ui/badge";
 
 type UseRoleColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -28,12 +29,39 @@ export const useRoleColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.total_permissions")} />
+        <DataTableColumnHeader
+          column={column}
+          title={t("Table.total_permissions")}
+        />
       ),
       accessorKey: "total_permissions",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.total_permissions}</div>
+        <div className="flex gap-1 items-center">
+          {row.original.total_permissions}
+        </div>
       ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.permissions")} />
+      ),
+      accessorKey: "permissions",
+
+      cell: ({ row }) => {
+        return (
+          <div className="flex flex-wrap gap-2 py-2">
+            {row?.original?.permissions?.map(
+              (permission: string, index: number) => {
+                return (
+                  <Badge key={index} className="text-sm">
+                    {permission}
+                  </Badge>
+                );
+              }
+            )}
+          </div>
+        );
+      },
     },
     {
       id: "actions",

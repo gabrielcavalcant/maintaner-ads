@@ -82,6 +82,21 @@ export default function CreationModal({
   const t = useTranslations();
   const [imageError, setImageError] = useState<string | undefined>("");
 
+  const getFieldDefault = (type?: string) => {
+    switch (type) {
+      case "number":
+        return 0;
+      case "text":
+        return "";
+      case "object":
+        return {};
+      case "array":
+        return [];
+      default:
+        return "";
+    }
+  };
+
   const form = useForm<z.infer<any>>({
     resolver: zodResolver(validationSchema as any),
     defaultValues:
@@ -90,7 +105,7 @@ export default function CreationModal({
         ? fields.reduce(
             (acc, field) => ({
               ...acc,
-              [field.dbName]: field.type === "checkbox" ? "false" : "",
+              [field.dbName]: getFieldDefault(field?.type),
             }),
             {}
           )
@@ -100,10 +115,15 @@ export default function CreationModal({
   useEffect(() => {
     if (preValues) {
       Object.entries(preValues).forEach(([key, value]) => {
-        form.setValue(key, value);
+        const field = fields.find((f) => f.dbName == key);
+        if (field?.maskFn) {
+          form.setValue(key, field?.maskFn(value));
+        } else {
+          form.setValue(key, value);
+        }
       });
     }
-  }, [preValues, form]);
+  }, [preValues, fields, form]);
 
   const [images, setImages] = useState<{ url: string; file: File }[]>([]);
   const [showWebcam, setShowWebcam] = useState(false);
@@ -157,21 +177,13 @@ export default function CreationModal({
 
   const handleSubmit = async (values: z.infer<any>) => {
     console.log(values);
-    const formattedFormValues = Object.keys(values).reduce((acc, key) => {
-      const field = fields.find((f) => f.dbName === key);
-      return {
-        ...acc,
-        [key]: field?.formatOutput
-          ? field.formatOutput(values[key])
-          : values[key],
-      };
-    }, {});
+
     if (!imageOptional && images.length === 0) {
       setImageError("Imagem é obrigatória.");
       return;
     }
-    console.log(formattedFormValues, images);
-    onSubmit(formattedFormValues, images);
+    console.log(values, images);
+    onSubmit(values, images);
   };
 
   return (
@@ -205,7 +217,7 @@ export default function CreationModal({
                     <div className="flex w-full flex-wrap gap-6">
                       {!isPending ? (
                         fields?.map((fieldInfo) => {
-                          if (fieldInfo.type === "text") {
+                          if (!fieldInfo.render) {
                             return (
                               <FormField
                                 key={fieldInfo.dbName}
@@ -230,14 +242,21 @@ export default function CreationModal({
                                     </FormLabel>
                                     <FormControl>
                                       <Input
+                                        type={
+                                          typeof fieldInfo.type === "string" ||
+                                          typeof fieldInfo.type === "number"
+                                            ? fieldInfo.type
+                                            : "text"
+                                        }
                                         onChange={(e) => {
-                                          const newValue =
-                                            fieldInfo?.formatInput
-                                              ? fieldInfo.formatInput(
-                                                  e.target.value
-                                                )
-                                              : e.target.value;
-                                          onChange(newValue);
+                                          const newValue = fieldInfo?.maskFn
+                                            ? fieldInfo.maskFn(e.target.value)
+                                            : e.target.value;
+                                          onChange(
+                                            fieldInfo.type === "number"
+                                              ? parseInt(newValue)
+                                              : newValue
+                                          );
                                         }}
                                         value={value}
                                       />
@@ -247,39 +266,7 @@ export default function CreationModal({
                                 )}
                               />
                             );
-                          } else if (fieldInfo.type === "checkbox") {
-                            return (
-                              <FormField
-                                key={fieldInfo.dbName}
-                                control={form.control}
-                                name={fieldInfo.dbName}
-                                render={({ field: { onChange, value } }) => (
-                                  <FormItem
-                                    className="flex flex-col items-center justify-center gap-2"
-                                    style={{
-                                      width:
-                                        fieldInfo.flexWidth === "100%"
-                                          ? fieldInfo.flexWidth
-                                          : `calc(${fieldInfo.flexWidth} - 2rem)`,
-                                    }}
-                                  >
-                                    <FormLabel>
-                                      {fieldInfo.label}
-                                      <Label className="font-bold text-primary">
-                                        {fieldInfo.required && "*"}
-                                      </Label>
-                                    </FormLabel>
-                                    <FormControl>
-                                      <Checkbox
-                                        onChange={onChange}
-                                        checked={value}
-                                      />
-                                    </FormControl>
-                                  </FormItem>
-                                )}
-                              />
-                            );
-                          } else if (fieldInfo.type === "node") {
+                          } else {
                             return (
                               <FormField
                                 key={fieldInfo.dbName}

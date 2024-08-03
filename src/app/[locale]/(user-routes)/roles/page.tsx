@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { useRoleColumns } from "@/constants/useRolesColumns";
-import { useCreateRole } from "@/constants/creation/useCreateRole";
 import CreationModal from "@/components/creation/creation-modal";
 import { Button } from "@/components/ui/button";
+import { useCreateRole } from "@/constants/creation/useCreateRole";
 
 export default function Roles() {
   const t = useTranslations();
@@ -29,6 +29,9 @@ export default function Roles() {
       id: index + 1,
       name: faker.lorem.word(),
       total_permissions: faker.number.int({ min: 1, max: 10 }),
+      permissions: Array.from({ length: Math.random() * 8 }, (_, index) => {
+        return faker.lorem.word();
+      }),
     }));
   };
 

@@ -59,7 +59,9 @@
     "maintenanceDescriptionPlaceholder": "Escreva aqui uma descrição da manutenção.",
     "searchEnvironment": "Busque o ambiente desejado.",
     "edit": "Editar",
-    "remove": "Remover"
+    "remove": "Remover",
+    "searchRole": "Busque pelo cargo desejado.",
+    "searchPermissions": "Busque permissões aqui."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -111,7 +113,7 @@
     "serialNumber": "Número de Série",
     "base64": "Imagem",
     "stockQuantity": "Quantidade em Estoque",
-    "unitPrice": "Preço Unidade",
+    "unitPrice": "Preço Unitário",
     "maintenanceDate": "Data de Manutenção",
     "responsibleEmail": "Email do Responsável",
     "machineId": "ID da máquina",
@@ -125,7 +127,12 @@
     "team": "Equipe",
     "selectTeam": "Selecione a equipe responsável.",
     "selectUser": "Selecione o responsável.",
-    "responsible": "Responsável"
+    "responsible": "Responsável",
+    "selectRole": "Selecione o cargo desejado.",
+    "role": "Cargo",
+    "permissions": "Permissões",
+    "roles": "Cargos",
+    "selectPermissions": "Selecione permissões aqui."
   },
   "Environments": {
     "title": "Ambientes",
@@ -135,7 +142,9 @@
     "new": "Cadastrar Máquina",
     "title": "Máquinas",
     "createTitle": "Cadastrar Máquina",
-    "createDescription": "Preencha o formulário abaixo para cadastrar uma máquina."
+    "createDescription": "Preencha o formulário abaixo para cadastrar uma máquina.",
+    "edit": "Editar Máquina",
+    "editDescription": "Preencha o formulário abaixo para editar a máquina."
   },
   "Parts": {
     "title": "Peças",
@@ -182,7 +191,13 @@
     "password": "É necessário fornecer uma senha.",
     "roleName": "O nome do cargo é necessário.",
     "machine": "Máquina é necessária.",
-    "team": "Time é necessário."
+    "team": "Time é necessário.",
+    "role": "Cargo é necessário.",
+    "environment": "Ambiente é necessário.",
+    "supplier": "Fornecedor é necessário.",
+    "unit_price": "Preço unitário é necessário.",
+    "stock_quantity": "Quantidade de estoque é necessária.",
+    "permission": "Pelo menos uma permissão é requerida."
   },
   "Environment": {
     "createTitle": "Adicionar novo ambiente",

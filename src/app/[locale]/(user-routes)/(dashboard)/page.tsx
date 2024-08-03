@@ -54,9 +54,12 @@ export default function Home() {
       description: faker.lorem.sentence(),
       maintenance_date: faker.date.recent(),
       status: faker.number.int({ min: 0, max: 1 }),
-      machine_id: faker.lorem.words(2),
-      team_id: faker.lorem.word(),
-      responsible_id: faker.person.firstName(),
+      machine_id: faker.number.int({ min: 0, max: 50 }),
+      team_id: faker.number.int({ min: 0, max: 50 }),
+      responsible_id: faker.number.int({ min: 0, max: 50 }),
+      machine: faker.lorem.words(2),
+      team: faker.lorem.word(),
+      responsible: faker.person.firstName(),
     }));
   };
 

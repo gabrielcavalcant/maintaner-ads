@@ -118,7 +118,6 @@ export default function NavbarContent() {
       <div className="flex flex-col w-full text-sm font-medium">
         {navigation?.map((item, index) => {
           const { Icon, title, href, subpages } = item;
-          console.log(item, pathname, index, activeIndex);
           const isActive =
             pathname === item.href ||
             (index === activeIndex && pathname !== "/");

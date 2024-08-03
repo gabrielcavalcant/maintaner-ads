@@ -5,6 +5,10 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
+import EditModal from "@/components/creation/edit-modal";
+import { useCreateMachine } from "./creation/useCreateMachine";
+import { simulatedResponseAPI } from "@/helper/simulate-api";
+import toast from "react-hot-toast";
 
 type UseMachinesColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -17,8 +21,9 @@ export const useMachinesColumns = ({
 }: UseMachinesColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
 
-  return [
+  const { fields, validationSchema } = useCreateMachine();
 
+  return [
     {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.name")} />
@@ -94,11 +99,35 @@ export const useMachinesColumns = ({
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
           {onEditClick && (
-            <TooltipButton
-              Icon={MdEdit}
-              message="Editar"
-              onClick={() => onEditClick(row.original.id)}
-            />
+            <EditModal
+              onSubmit={(formValues) => {
+                console.log(formValues);
+              }}
+              fields={fields}
+              mutationFn={() =>
+                simulatedResponseAPI({
+                  id: row.original.id,
+                  name: row.original.name,
+                  type: row.original.type,
+                  model: row.original.model,
+                  manufacture_date: row.original.manufacture_date,
+                  serial_number: row.original.serial_number,
+                  environment: row.original.environment,
+                  environment_id: row.original.environment_id,
+                })
+              }
+              mutationKey={["editMachine", row.original.id]}
+              title={t("Machines.edit")}
+              description={t("Machines.editDescription")}
+              validationSchema={validationSchema}
+              asChild
+            >
+              <TooltipButton
+                Icon={MdEdit}
+                message={t("Common.edit")}
+                onClick={() => onEditClick(row.original.id)}
+              />
+            </EditModal>
           )}
           {onRemoveClick && (
             <TooltipButton

@@ -58,7 +58,9 @@
     "notFound": "Not found.",
     "maintenanceDescriptionPlaceholder": "Write a description of the maintenance here.",
     "searchEnvironment": "Search for the desired environment.",
-    "remove": "Remove"
+    "remove": "Remove",
+    "searchRole": "Search for the role you want.",
+    "searchPermissions": "Search permissions here."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -110,7 +112,7 @@
     "serialNumber": "Serial Number",
     "base64": "Image",
     "stockQuantity": "Quantity in stock",
-    "unitPrice": "Unit Price",
+    "unitPrice": "Unit price",
     "maintenanceDate": "Maintenance Date",
     "responsibleEmail": "Responsible Email",
     "machineId": "Machine ID",
@@ -124,7 +126,12 @@
     "team": "Team",
     "selectTeam": "Select the responsible team.",
     "selectUser": "Select the person responsible.",
-    "responsible": "Responsible"
+    "responsible": "Responsible",
+    "selectRole": "Select the desired role.",
+    "role": "Role",
+    "permissions": "Permissions",
+    "roles": "Positions",
+    "selectPermissions": "Select permissions here."
   },
   "Environments": {
     "title": "Environments",
@@ -134,7 +141,9 @@
     "new": "Register Machine",
     "title": "Machines",
     "createTitle": "Register Machine",
-    "createDescription": "Fill out the form below to register a machine."
+    "createDescription": "Fill out the form below to register a machine.",
+    "edit": "Edit Machine",
+    "editDescription": "Fill out the form below to edit the machine."
   },
   "Parts": {
     "title": "Parts",
@@ -181,7 +190,13 @@
     "password": "You must provide a password.",
     "roleName": "The job title is required.",
     "machine": "Machine is required.",
-    "team": "Time is necessary."
+    "team": "Time is necessary.",
+    "role": "Position is required.",
+    "environment": "Environment is necessary.",
+    "supplier": "Supplier is required.",
+    "unit_price": "Unit pricing is required.",
+    "stock_quantity": "Quantity of stock is required.",
+    "permission": "At least one permit is required."
   },
   "Environment": {
     "createTitle": "Add new environment",

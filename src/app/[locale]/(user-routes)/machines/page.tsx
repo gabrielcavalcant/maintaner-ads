@@ -30,9 +30,14 @@ export default function Equipments() {
       name: faker.lorem.words(2),
       type: faker.lorem.word(),
       model: faker.lorem.word(),
-      manufacture_date: faker.date.recent(),
-      serial_number: faker.number.int({ min: 123424, max: 23412343 }),
-      environment_id: faker.location.street(),
+      manufacture_date: new Date(faker.date.recent()).toLocaleDateString(
+        "pt-BR"
+      ),
+      serial_number: faker.number
+        .int({ min: 123424, max: 23412343 })
+        .toString(),
+      environment: faker.location.street(),
+      environment_id: faker.number.int({ min: 1, max: 50 }),
     }));
   };
 

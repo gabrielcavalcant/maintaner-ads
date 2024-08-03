@@ -6,6 +6,10 @@ import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import EditModal from "@/components/creation/edit-modal";
+import { simulatedResponseAPI } from "@/helper/simulate-api";
+import { useCreatePart } from "./creation/useCreatePart";
+import { formatToBRL } from "@/lib/formatters";
 
 type UsePartColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -17,6 +21,8 @@ export const usePartColumns = ({
   onRemoveClick,
 }: UsePartColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+
+  const { fields, validationSchema } = useCreatePart();
 
   return [
     {
@@ -87,7 +93,7 @@ export const usePartColumns = ({
       accessorKey: "unit_price",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {row.original.unit_price.toFixed(2)}
+          {formatToBRL(row.original.unit_price)}
         </div>
       ),
     },
@@ -97,16 +103,39 @@ export const usePartColumns = ({
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
           {onEditClick && (
-            <TooltipButton
-              Icon={MdEdit}
-              message="Editar"
-              onClick={() => onEditClick(row.original.id)}
-            />
+            <EditModal
+              onSubmit={(formValues) => {
+                console.log(formValues);
+              }}
+              fields={fields}
+              mutationFn={() =>
+                simulatedResponseAPI({
+                  id: row.original.id,
+                  name: row.original.name,
+                  code: row.original.code,
+                  supplier: row.original.supplier,
+                  base64: row.original.base64,
+                  stock_quantity: row.original.stock_quantity,
+                  unit_price: row.original.unit_price,
+                })
+              }
+              mutationKey={["editPart", row.original.id]}
+              title={t("Mainteances.edit")}
+              description={t("Mainteances.editDescription")}
+              validationSchema={validationSchema}
+              asChild
+            >
+              <TooltipButton
+                Icon={MdEdit}
+                message={t("Common.edit")}
+                onClick={() => onEditClick(row.original.id)}
+              />
+            </EditModal>
           )}
           {onRemoveClick && (
             <TooltipButton
               Icon={FaEraser}
-              message="Remover"
+              message={t("Common.remove")}
               onClick={() => onRemoveClick(row.original.id)}
             />
           )}

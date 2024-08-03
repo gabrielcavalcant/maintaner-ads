@@ -17,6 +17,7 @@ type ComboboxProps = {
   emptyMessage?: string;
   disabled?: boolean;
   renderCustomAction?: () => ReactNode;
+  className?: string;
 };
 
 export default function Combobox({
@@ -29,6 +30,7 @@ export default function Combobox({
   emptyMessage,
   disabled = false,
   renderCustomAction,
+  className,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
