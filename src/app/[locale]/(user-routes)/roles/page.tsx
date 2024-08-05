@@ -30,7 +30,10 @@ export default function Roles() {
       name: faker.lorem.word(),
       total_permissions: faker.number.int({ min: 1, max: 10 }),
       permissions: Array.from({ length: Math.random() * 8 }, (_, index) => {
-        return faker.lorem.word();
+        return {
+          name: faker.lorem.word(),
+          id: faker.number.int({ min: 1, max: 10 }),
+        };
       }),
     }));
   };

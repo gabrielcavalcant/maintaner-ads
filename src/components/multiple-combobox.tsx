@@ -4,14 +4,12 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { IoIosRemove } from "react-icons/io";
 
-type OptionType = {
-  id: string;
-  name: string;
-};
+type OptionType = Record<string, any>;
 
 type MultipleComboboxProps = {
   options: OptionType[];
   render: (item: OptionType) => React.ReactNode;
+  optionsRender?: (item: OptionType) => React.ReactNode;
   values?: OptionType[];
   onValuesChange?: (values: OptionType[]) => void;
   placeholder?: string;
@@ -35,6 +33,7 @@ export default function MultipleCombobox({
   disabled,
   className,
   renderCustomAction,
+  optionsRender = (item) => <>{item.name}</>,
 }: MultipleComboboxProps) {
   const [selectedValues, setSelectedValues] = useState<OptionType[]>(values);
 
@@ -91,7 +90,7 @@ export default function MultipleCombobox({
             className="selected-item flex text-sm gap-2 "
             variant="outline"
           >
-            {item.name}
+            {optionsRender(item)}
             <Button
               size="icon"
               variant="ghost"

@@ -60,7 +60,12 @@
     "searchEnvironment": "Search for the desired environment.",
     "remove": "Remove",
     "searchRole": "Search for the role you want.",
-    "searchPermissions": "Search permissions here."
+    "searchPermissions": "Search permissions here.",
+    "edit": "Edit",
+    "searchUsers": "Search for users here.",
+    "areYouSure": "Are you sure you want to perform this operation?",
+    "areYouSureDescription": "This operation cannot be undone. \nAre you sure you want to continue?",
+    "continue": "Continue"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -131,7 +136,9 @@
     "role": "Role",
     "permissions": "Permissions",
     "roles": "Positions",
-    "selectPermissions": "Select permissions here."
+    "selectPermissions": "Select permissions here.",
+    "selectUsers": "Select members here.",
+    "members": "Members"
   },
   "Environments": {
     "title": "Environments",
@@ -165,12 +172,15 @@
   },
   "Teams": {
     "title": "Teams",
-    "new": "New team"
+    "new": "New team",
+    "edit": "Edit team",
+    "editDescription": "Fill out the form below to edit the team."
   },
   "maxReached": "Maximum images reached",
   "Team": {
     "createTitle": "Create a new team",
-    "createDescription": "Fill out the form below to create a new team."
+    "createDescription": "Fill out the form below to create a new team.",
+    "members": "Members"
   },
   "Zod": {
     "teamName": "Team name is required",
@@ -196,7 +206,8 @@
     "supplier": "Supplier is required.",
     "unit_price": "Unit pricing is required.",
     "stock_quantity": "Quantity of stock is required.",
-    "permission": "At least one permit is required."
+    "permission": "At least one permit is required.",
+    "members": "At least one member is required."
   },
   "Environment": {
     "createTitle": "Add new environment",
@@ -207,7 +218,9 @@
   "Roles": {
     "createTitle": "Create Role",
     "createDescription": "Fill out the form below to create a new role.",
-    "new": "Create Position"
+    "new": "Create Position",
+    "edit": "Edit Role",
+    "editDescription": "Fill out the form below to edit the role."
   },
   "Mainteances": {
     "editDescription": "Fill out the form below to edit the maintenance.",

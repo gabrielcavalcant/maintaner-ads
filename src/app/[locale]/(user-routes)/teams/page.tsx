@@ -6,8 +6,9 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { useTeamColumns } from "@/constants/useTeamsColumns";
-import { useCreateTeam } from "@/constants/creation/useCreateTeam";
 import CreationModal from "@/components/creation/creation-modal";
+import { Button } from "@/components/ui/button";
+import { useCreateTeam } from "@/constants/creation/useCreateTeam";
 
 export default function Teams() {
   const t = useTranslations();
@@ -23,16 +24,28 @@ export default function Teams() {
   };
 
   // Função para gerar dados fictícios
-  const generateFakeData = (num: number) => {
-    return Array.from({ length: num }, (_, index) => ({
+  const generateTeamData = (index: number) => {
+    const totalMembers = faker.number.int({ min: 1, max: 10 });
+    const members = Array.from({ length: totalMembers }, (_, index) => ({
+      id: index + 1,
+      fullName: faker.person.fullName(),
+      base64: faker.image.avatar(),
+      specialty: faker.lorem.word(),
+      email: faker.internet.email(),
+    }));
+
+    return {
       id: index + 1,
       name: faker.company.name(),
-      total_members: faker.number.int({ min: 1, max: 10 }),
-    }));
+      total_members: members.length,
+      members: members,
+    };
   };
 
   // Gera 50 itens fictícios
-  const data = generateFakeData(50);
+  const data = Array.from({ length: 10 }, (_, index) =>
+    generateTeamData(index)
+  );
 
   // Use o hook com as funções definidas
   const columns: ColumnDef<any>[] = useTeamColumns({
@@ -55,7 +68,7 @@ export default function Teams() {
           description={t("Team.createDescription")}
           validationSchema={validationSchema}
         >
-          {t("Teams.new")}
+          <Button>{t("Teams.new")}</Button>
         </CreationModal>
       </div>
       <DataTable

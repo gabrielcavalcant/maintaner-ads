@@ -2,11 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { IconType } from "react-icons/lib";
 import { useMediaQuery } from "@/helper/hooks/use-media-query";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
 import NavbarContent from "./navigation-bar-content";
 
@@ -24,15 +20,11 @@ export default function NavigationBar() {
     return (
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="fixed top-2 left-[50vw] "
-          >
+          <Button variant="ghost" size="icon" className="fixed top-2 left-2 ">
             <IoMenu className="text-4xl" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
+        <SheetContent side="left" className="p-0">
           <NavbarContent />
         </SheetContent>
       </Sheet>
@@ -48,4 +40,3 @@ export default function NavigationBar() {
       </aside>
     );
 }
-

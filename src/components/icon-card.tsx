@@ -11,7 +11,7 @@ type IconCardProps = {
 
 export default function IconCard({ Icon, value, title }: IconCardProps) {
   return (
-    <Card className="flex items-center gap-3 p-3">
+    <Card className="flex items-center gap-3 p-3 ">
       <Icon className="text-4xl" />
       <div className="flex flex-col">
         <span className="text-2xl font-semibold">{value}</span>

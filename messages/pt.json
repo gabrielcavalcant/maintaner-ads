@@ -61,7 +61,11 @@
     "edit": "Editar",
     "remove": "Remover",
     "searchRole": "Busque pelo cargo desejado.",
-    "searchPermissions": "Busque permissões aqui."
+    "searchPermissions": "Busque permissões aqui.",
+    "searchUsers": "Busque por usuários aqui.",
+    "areYouSure": "Você tem certeza que deseja realizar essa operação?",
+    "areYouSureDescription": "Esta operação não pode ser desfeita. Tem certeza de que deseja continuar?",
+    "continue": "Continuar"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -132,7 +136,9 @@
     "role": "Cargo",
     "permissions": "Permissões",
     "roles": "Cargos",
-    "selectPermissions": "Selecione permissões aqui."
+    "selectPermissions": "Selecione permissões aqui.",
+    "selectUsers": "Selecione membros aqui.",
+    "members": "Membros"
   },
   "Environments": {
     "title": "Ambientes",
@@ -166,12 +172,15 @@
   },
   "Teams": {
     "title": "Equipes",
-    "new": "Nova Equipe"
+    "new": "Nova Equipe",
+    "edit": "Editar time",
+    "editDescription": "Preencha o formulário abaixo para editar o time."
   },
   "maxReached": "Máximo de imagens atingido",
   "Team": {
     "createTitle": "Criar uma nova equipe",
-    "createDescription": "Preencha o formulário abaixo para criar um novo time."
+    "createDescription": "Preencha o formulário abaixo para criar um novo time.",
+    "members": "Membros"
   },
   "Zod": {
     "teamName": "O nome do time é necessário",
@@ -197,7 +206,8 @@
     "supplier": "Fornecedor é necessário.",
     "unit_price": "Preço unitário é necessário.",
     "stock_quantity": "Quantidade de estoque é necessária.",
-    "permission": "Pelo menos uma permissão é requerida."
+    "permission": "Pelo menos uma permissão é requerida.",
+    "members": "Pelo menos um membro é necessário."
   },
   "Environment": {
     "createTitle": "Adicionar novo ambiente",
@@ -209,7 +219,9 @@
     "title": "Cargos",
     "createTitle": "Criar Cargo",
     "createDescription": "Preencha o formulário abaixo para criar um novo cargo.",
-    "new": "Criar Cargo"
+    "new": "Criar Cargo",
+    "edit": "Editar Cargo",
+    "editDescription": "Preencha o formulário abaixo para editar o cargo."
   },
   "Mainteances": {
     "editDescription": "Preencha o formulário abaixo para editar a manutenção.",

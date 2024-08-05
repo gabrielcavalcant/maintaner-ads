@@ -49,7 +49,7 @@
     "framer-motion": "^11.3.19",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
-    "lucide-react": "^0.417.0",
+    "lucide-react": "^0.424.0",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "next-intl": "^3.17.2",

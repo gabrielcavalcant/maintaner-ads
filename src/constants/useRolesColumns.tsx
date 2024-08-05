@@ -5,6 +5,9 @@ import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
 import { Badge } from "@/components/ui/badge";
+import { simulatedResponseAPI } from "@/helper/simulate-api";
+import EditModal from "@/components/creation/edit-modal";
+import { useCreateRole } from "./creation/useCreateRole";
 
 type UseRoleColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -16,6 +19,8 @@ export const useRoleColumns = ({
   onRemoveClick,
 }: UseRoleColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+
+  const { fields, validationSchema } = useCreateRole();
 
   return [
     {
@@ -51,10 +56,10 @@ export const useRoleColumns = ({
         return (
           <div className="flex flex-wrap gap-2 py-2">
             {row?.original?.permissions?.map(
-              (permission: string, index: number) => {
+              (permission: { name: string; id: number }) => {
                 return (
-                  <Badge key={index} className="text-sm">
-                    {permission}
+                  <Badge key={permission.id} className="text-sm">
+                    {permission.name}
                   </Badge>
                 );
               }
@@ -69,16 +74,36 @@ export const useRoleColumns = ({
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
           {onEditClick && (
-            <TooltipButton
-              Icon={MdEdit}
-              message="Editar"
-              onClick={() => onEditClick(row.original.id)}
-            />
+            <EditModal
+              onSubmit={(formValues) => {
+                console.log(formValues);
+              }}
+              fields={fields}
+              mutationFn={() =>
+                simulatedResponseAPI({
+                  id: row.original.id,
+                  name: row.original.name,
+                  total_permissions: row.original.total_permissions,
+                  permissions: row.original.permissions,
+                })
+              }
+              mutationKey={["editRole", row.original.id]}
+              title={t("Roles.edit")}
+              description={t("Roles.editDescription")}
+              validationSchema={validationSchema}
+              asChild
+            >
+              <TooltipButton
+                Icon={MdEdit}
+                message={t("Common.edit")}
+                onClick={() => onEditClick(row.original.id)}
+              />
+            </EditModal>
           )}
           {onRemoveClick && (
             <TooltipButton
               Icon={FaEraser}
-              message="Remover"
+              message={t("Common.remove")}
               onClick={() => onRemoveClick(row.original.id)}
             />
           )}

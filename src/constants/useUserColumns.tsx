@@ -10,6 +10,8 @@ import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import { useCreateUser } from "./creation/useCreateuser";
 import { Badge } from "@/components/ui/badge";
+import ConfirmAlertDialog from "@/components/confirm-alert-dialog";
+import toast from "react-hot-toast";
 
 type UseUserColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -109,11 +111,17 @@ export const useUserColumns = ({
             </EditModal>
           )}
           {onRemoveClick && (
-            <TooltipButton
-              Icon={FaEraser}
-              message={t("Common.remove")}
-              onClick={() => onRemoveClick(row.original.id)}
-            />
+            <ConfirmAlertDialog
+              onContinue={() => {
+                toast.success(`${row.original.fullName} removido com sucesso`);
+              }}
+            >
+              <TooltipButton
+                Icon={FaEraser}
+                message={t("Common.remove")}
+                onClick={() => onRemoveClick(row.original.id)}
+              />
+            </ConfirmAlertDialog>
           )}
         </div>
       ),
