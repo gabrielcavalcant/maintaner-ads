@@ -58,7 +58,7 @@ const scatterChartConfig = {
 export function ScatterPlotCard() {
   return (
     <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
-      <CardHeader className="pb-2">
+      <CardHeader className="">
         <CardTitle>Correlação entre Data de Fabricação e Manutenções</CardTitle>
         <CardDescription>
           Visualização da relação entre a data de fabricação das máquinas e a
@@ -70,7 +70,7 @@ export function ScatterPlotCard() {
           config={scatterChartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <ScatterChart>
+          <ScatterChart margin={{ top: 0, left: 0, bottom: 0, right: 0 }}>
             <XAxis
               dataKey="manufactureDate"
               name="Data de Fabricação"
@@ -84,6 +84,7 @@ export function ScatterPlotCard() {
               dataKey="maintenanceFrequency"
               name="Frequência de Manutenções"
               range={[200, 300]}
+              hide
             />
 
             <Tooltip content={<ChartTooltipContent />} />

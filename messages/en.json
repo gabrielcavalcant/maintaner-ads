@@ -88,7 +88,7 @@
     "id": "ID",
     "type": "Type",
     "model": "Model",
-    "manufacture_date": "Manufacturing Date",
+    "manufacture_date": "Manufacturing",
     "serial_number": "Serial Number",
     "environment_id": "Environment",
     "responsible_id": "Responsible",
@@ -150,7 +150,8 @@
     "createTitle": "Register Machine",
     "createDescription": "Fill out the form below to register a machine.",
     "edit": "Edit Machine",
-    "editDescription": "Fill out the form below to edit the machine."
+    "editDescription": "Fill out the form below to edit the machine.",
+    "detailsTitle": "Machine details"
   },
   "Parts": {
     "title": "Parts",
@@ -225,5 +226,19 @@
   "Mainteances": {
     "editDescription": "Fill out the form below to edit the maintenance.",
     "edit": "Edit Maintenance"
+  },
+  "Calendar": {
+    "Jan": "Jan",
+    "Feb": "Feb",
+    "Mar": "Mar",
+    "Apr": "Apr",
+    "May": "May",
+    "Jun": "Jun",
+    "Jul": "Jul",
+    "Aug": "Aug",
+    "Sep": "Sep",
+    "Oct": "Oct",
+    "Nov": "Nov",
+    "Dec": "Dec"
   }
 }

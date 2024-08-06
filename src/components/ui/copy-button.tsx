@@ -20,7 +20,7 @@ export default function CopyButton({ column, copyText }: CopyButtonProps) {
           size="icon"
           variant="ghost"
           title={commonText("copyTitle")}
-          className="text-[5px]"
+          className="h-6 w-6"
           onClick={() => {
             toast.promise(navigator.clipboard.writeText(copyText), {
               loading: commonText("copyLoading"),
@@ -37,13 +37,13 @@ export default function CopyButton({ column, copyText }: CopyButtonProps) {
             });
           }}
         >
-          <div className="text-primary">
+          <div className="text-primary text-lg">
             <BiCopy />
           </div>
         </Button>
       </TooltipTrigger>
       <TooltipContent side="top" className="py-1 px-2" sideOffset={-2}>
-        <p className="text-primary-foreground text-[12px]">{`${commonText(
+        <p className="text-card-foreground text-[12px]">{`${commonText(
           "copyTitle"
         )} ${column?.label}`}</p>
       </TooltipContent>

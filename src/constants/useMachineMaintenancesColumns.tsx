@@ -1,42 +1,30 @@
 import DataTableColumnHeader from "@/components/table/DataTableColumnHeader";
-import TableCopy from "@/components/table/table-copy";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
+import CreationModal from "@/components/creation/creation-modal";
 import EditModal from "@/components/creation/edit-modal";
-import { useCreateMachine } from "./creation/useCreateMachine";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
-import toast from "react-hot-toast";
-import { useRouter } from "@/navigation";
-import { ReceiptText } from "lucide-react";
+import { faker } from "@faker-js/faker";
+import { useCreateMaintenance } from "./creation/useCreateMaintenance";
+import { Card } from "@/components/ui/card";
 
-type UseMachinesColumnsProps = {
+type useMachineMaintenancesColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useMachinesColumns = ({
+export const useMachineMaintenancesColumns = ({
   onEditClick,
   onRemoveClick,
-}: UseMachinesColumnsProps = {}): ColumnDef<any>[] => {
+}: useMachineMaintenancesColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
 
-  const { fields, validationSchema } = useCreateMachine();
-
-  const router = useRouter();
+  const { fields, validationSchema } = useCreateMaintenance();
 
   return [
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.name")} />
-      ),
-      accessorKey: "name",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.name}</div>
-      ),
-    },
     {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.type")} />
@@ -48,24 +36,12 @@ export const useMachinesColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.model")} />
+        <DataTableColumnHeader column={column} title={t("Table.description")} />
       ),
-      accessorKey: "model",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.model}</div>
-      ),
-    },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.manufacture_date")}
-        />
-      ),
-      accessorKey: "manufacture_date",
+      accessorKey: "description",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {new Date(row.original.manufacture_date).toLocaleDateString()}
+          {row.original.description}
         </div>
       ),
     },
@@ -73,27 +49,58 @@ export const useMachinesColumns = ({
       header: ({ column }) => (
         <DataTableColumnHeader
           column={column}
-          title={t("Table.serial_number")}
+          title={t("Table.maintenance_date")}
         />
       ),
-      accessorKey: "serial_number",
+      accessorKey: "maintenance_date",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {row.original.serial_number}
+          {new Date(row.original.maintenance_date).toLocaleDateString()}
         </div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.status")} />
+      ),
+      accessorKey: "status",
+      cell: ({ row }) => {
+        const status =
+          row.original.status === 0
+            ? { label: "Pendente", color: "yellow" }
+            : row.original.status === 1
+            ? { label: "Concluido", color: "green" }
+            : { label: "Desconhecido", color: "red" };
+
+        return (
+          <Card
+            className={`flex gap-1 items-center justify-center bg-${status.color}-500`}
+          >
+            {status.label}
+          </Card>
+        );
+      },
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.team_id")} />
+      ),
+      accessorKey: "team",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">{row.original.team}</div>
       ),
     },
     {
       header: ({ column }) => (
         <DataTableColumnHeader
           column={column}
-          title={t("Table.environment_id")}
+          title={t("Table.responsible_id")}
         />
       ),
-      accessorKey: "environment_id",
+      accessorKey: "responsible",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {row.original.environment_id}
+          {row.original.responsible}
         </div>
       ),
     },
@@ -102,13 +109,6 @@ export const useMachinesColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
-          <TooltipButton
-            Icon={ReceiptText}
-            message={"Detalhes"}
-            onClick={() => {
-              router.push(`machines/${row.original.id}`);
-            }}
-          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {
@@ -118,18 +118,18 @@ export const useMachinesColumns = ({
               mutationFn={() =>
                 simulatedResponseAPI({
                   id: row.original.id,
-                  name: row.original.name,
                   type: row.original.type,
-                  model: row.original.model,
-                  manufacture_date: row.original.manufacture_date,
-                  serial_number: row.original.serial_number,
-                  environment: row.original.environment,
-                  environment_id: row.original.environment_id,
+                  description: row.original.description,
+                  maintenance_date: row.original.maintenance_date,
+                  status: row.original.status,
+                  machine_id: row.original.machine_id,
+                  team_id: row.original.team_id,
+                  responsible_id: row.original.responsible_id,
                 })
               }
-              mutationKey={["editMachine", row.original.id]}
-              title={t("Machines.edit")}
-              description={t("Machines.editDescription")}
+              mutationKey={["editMaintenance", row.original.id]}
+              title={t("Mainteances.edit")}
+              description={t("Mainteances.editDescription")}
               validationSchema={validationSchema}
               asChild
             >
@@ -143,7 +143,7 @@ export const useMachinesColumns = ({
           {onRemoveClick && (
             <TooltipButton
               Icon={FaEraser}
-              message="Remover"
+              message={t("Common.remove")}
               onClick={() => onRemoveClick(row.original.id)}
             />
           )}

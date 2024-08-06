@@ -8,6 +8,7 @@ import {
   Legend,
   Area,
   AreaChart,
+  LabelList,
 } from "recharts";
 import {
   ChartConfig,
@@ -22,6 +23,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { useTranslations } from "next-intl";
 
 const chartConfig = {
   count: {
@@ -46,6 +48,8 @@ const monthlyMaintenanceData = [
 ];
 
 export function MaintenanceAreaChart() {
+  const t = useTranslations();
+
   return (
     <Card className="max-w-lg" x-chunk="charts-01-chunk-7">
       <CardHeader className="">
@@ -55,11 +59,15 @@ export function MaintenanceAreaChart() {
           tempo.
         </CardDescription>
       </CardHeader>
-      <CardContent className="pb-0">
+      <CardContent className="p-0">
         <ChartContainer config={chartConfig} className="max-h-[250px] w-full">
-          <AreaChart accessibilityLayer data={monthlyMaintenanceData}>
-            <XAxis dataKey="month" />
-            <YAxis domain={["dataMin - 5", "dataMax + 2"]} />
+          <AreaChart
+            accessibilityLayer
+            data={monthlyMaintenanceData}
+            margin={{ top: 0, left: 0, bottom: 0, right: 0 }}
+          >
+            <XAxis dataKey="month" hide />
+            <YAxis domain={["dataMin - 5", "dataMax + 2"]} hide />
             <defs>
               <linearGradient id="fillCount" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -80,7 +88,18 @@ export function MaintenanceAreaChart() {
               fill="url(#fillCount)"
               fillOpacity={0.4}
               stroke="var(--color-count)"
-            />
+            >
+              <LabelList
+                dataKey="month"
+                position="top"
+                offset={5}
+                className="fill-foreground opacity-20"
+                fontSize={10}
+                formatter={(value: string) => {
+                  return t(`Calendar.${value}`);
+                }}
+              />
+            </Area>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
           </AreaChart>
         </ChartContainer>

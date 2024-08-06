@@ -22,7 +22,9 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  LabelList,
 } from "recharts";
+import { useTranslations } from "next-intl";
 
 // Dados de exemplo para o gráfico de área
 const monthlyMaintenanceData = [
@@ -43,24 +45,28 @@ const monthlyMaintenanceData = [
 const chartConfig = {
   totalTime: {
     label: "Tempo Total",
-    color: "hsl(var(--primary))",
+    color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
 export function MaintenanceTotalTimeAreaChart() {
+  const t = useTranslations();
   return (
     <Card className="max-w-lg" x-chunk="charts-01-chunk-7">
       <CardHeader>
-        <CardTitle>Tempo Total de Manutenção por Mês</CardTitle>
+        <CardTitle>Tempo Total de Manutenção ao longo do tempo</CardTitle>
         <CardDescription>
-          Visualização do tempo total gasto em manutenções ao longo do ano.
+          Visualização do tempo total gasto em manutenções ao longo do tempo.
         </CardDescription>
       </CardHeader>
-      <CardContent className="pb-0">
+      <CardContent className="p-0">
         <ChartContainer config={chartConfig} className="max-h-[250px] w-full">
-          <AreaChart data={monthlyMaintenanceData}>
-            <XAxis dataKey="month" />
-            <YAxis domain={["dataMin - 5", "dataMax + 10"]} />
+          <AreaChart
+            data={monthlyMaintenanceData}
+            margin={{ top: 0, left: 0, bottom: 0, right: 0 }}
+          >
+            <XAxis dataKey="month" hide />
+            <YAxis domain={["dataMin - 5", "dataMax + 10"]} hide />
             <defs>
               <linearGradient id="fillTotalTime" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -81,7 +87,18 @@ export function MaintenanceTotalTimeAreaChart() {
               fill="url(#fillTotalTime)"
               fillOpacity={0.4}
               stroke="var(--color-totalTime)"
-            />
+            >
+              <LabelList
+                dataKey="month"
+                position="top"
+                offset={5}
+                className="fill-foreground opacity-20"
+                fontSize={10}
+                formatter={(value: string) => {
+                  return t(`Calendar.${value}`);
+                }}
+              />
+            </Area>
             <Tooltip content={<ChartTooltipContent />} />
           </AreaChart>
         </ChartContainer>

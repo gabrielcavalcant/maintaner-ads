@@ -6,6 +6,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  LabelList,
 } from "recharts";
 import {
   ChartConfig,
@@ -55,24 +56,33 @@ export function MaintenanceBarChart() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-1">
-        <ChartContainer config={chartConfig} className="h-full w-full">
-          <BarChart data={chartData} layout="vertical">
-            <CartesianGrid />
-            <XAxis type="number" dataKey="count" hide />
-            <YAxis
+        <ChartContainer
+          config={chartConfig}
+          className="h-full min-h-[250px] w-full "
+        >
+          <BarChart data={chartData}>
+            <YAxis type="number" dataKey="count" hide />
+            <XAxis
               dataKey="type"
               type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+              content={<ChartTooltipContent indicator="line" />}
             />
 
-            <Bar dataKey="count" fill="var(--color-count)" radius={4} />
+            <Bar dataKey="count" fill="var(--color-count)" radius={4}>
+              <LabelList
+                dataKey="count"
+                position="top"
+                offset={2}
+                className="fill-foreground"
+                fontSize={12}
+              />
+            </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>

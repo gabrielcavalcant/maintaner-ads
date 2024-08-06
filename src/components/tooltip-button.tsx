@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { IconType } from "react-icons/lib";
 
 type TooltipButtonProps = {
-  Icon: IconType;
+  Icon: IconType | any;
   message: string;
   children?: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;

@@ -56,6 +56,10 @@ import DatePickerWithRange from "@/components/date-range-picker";
 import { ScatterPlotCard } from "@/components/graphs/ScatterPlotChart";
 import { MaintenanceTotalTimeAreaChart } from "@/components/graphs/MaintenanceTotalTimeAreaChart";
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { simulatedResponseAPI } from "@/helper/simulate-api";
+import { useDashboardColumns } from "@/constants/useDashboardColumns";
 
 export default function Home() {
   const t = useTranslations();
@@ -101,11 +105,13 @@ export default function Home() {
     }));
   };
 
-  // Gera 50 itens fictícios
-  const data = generateFakeData(50);
+  const { data, isPending } = useQuery({
+    queryKey: ["Buscar manutenções"],
+    queryFn: () => simulatedResponseAPI(generateFakeData(50)),
+  });
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useMaintenanceColumns({
+  const columns: ColumnDef<any>[] = useDashboardColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
@@ -146,8 +152,8 @@ export default function Home() {
             data={data}
             columns={columns}
             pageCount={0}
-            isFetching={false}
-            rowCount={data.length}
+            isFetching={isPending}
+            rowCount={data?.length}
             maxItems={30}
             height="63vh"
           />

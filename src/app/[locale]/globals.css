@@ -26,6 +26,10 @@ html {
   background-clip: content-box;
 }
 
+::-webkit-scrollbar-corner {
+  background-color: transparent ; 
+}
+
 ::-moz-selection { /* Code for Firefox */
   color: hsl(var(--primary-foreground));
   background: hsl(var(--primary));

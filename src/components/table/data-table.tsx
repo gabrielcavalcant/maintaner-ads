@@ -37,7 +37,7 @@ import { useTranslations } from "next-intl";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data?: TData[];
   onPaginationChange?: (pagination: number) => void;
   pageCount?: number;
   isFetching: boolean;
@@ -190,7 +190,7 @@ export function DataTable<TData, TValue>({
                 <TableRow className="h-8 hover:bg-card">
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center"
+                    className="h-24 text-center "
                   >
                     {noResultsText ?? t("Table.noResult")}
                   </TableCell>

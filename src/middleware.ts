@@ -40,10 +40,7 @@ export default async function middleware(req: NextRequest) {
     try {
       const decryptedSession = decryptData(encryptedSession);
       const parsedSession: AuthToken = JSON.parse(decryptedSession);
-      const decodedSession = {
-        ...jwtDecode(parsedSession.access_token),
-      } as User;
-      const userPermissions = decodedSession.permission || [];
+      const userPermissions = parsedSession.permission || {};
 
       // Remove o prefixo da linguagem da URL antes de procurar a permissão
       let pathWithoutLanguage = req.nextUrl.pathname.replace(

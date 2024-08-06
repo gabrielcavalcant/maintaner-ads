@@ -88,7 +88,7 @@
     "id": "ID",
     "type": "Tipo",
     "model": "Modelo",
-    "manufacture_date": "Data de Fabricação",
+    "manufacture_date": "Fabricação",
     "serial_number": "Número Serial",
     "environment_id": "Ambiente",
     "responsible_id": "Responsável",
@@ -150,7 +150,8 @@
     "createTitle": "Cadastrar Máquina",
     "createDescription": "Preencha o formulário abaixo para cadastrar uma máquina.",
     "edit": "Editar Máquina",
-    "editDescription": "Preencha o formulário abaixo para editar a máquina."
+    "editDescription": "Preencha o formulário abaixo para editar a máquina.",
+    "detailsTitle": "Detalhes da maquina"
   },
   "Parts": {
     "title": "Peças",
@@ -226,5 +227,19 @@
   "Mainteances": {
     "editDescription": "Preencha o formulário abaixo para editar a manutenção.",
     "edit": "Editar Manutenção"
+  },
+  "Calendar": {
+    "Jan": "Jan",
+    "Feb": "Fev",
+    "Mar": "Mar",
+    "Apr": "Abr",
+    "May": "Mai",
+    "Jun": "Jun",
+    "Jul": "Jul",
+    "Aug": "Ago",
+    "Sep": "Set",
+    "Oct": "Out",
+    "Nov": "Nov",
+    "Dec": "Dez"
   }
 }

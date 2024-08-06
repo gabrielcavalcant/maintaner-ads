@@ -1,6 +1,4 @@
-export async function simulatedResponseAPI(
-  data: any
-): Promise<Record<string, any>> {
+export async function simulatedResponseAPI(data: any): Promise<any> {
   return await new Promise((resolve) => {
     setTimeout(() => {
       resolve(data);

@@ -49,7 +49,7 @@ export function PerformanceRadarChart() {
       <CardContent className="flex-1">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square w-full max-h-[250px]"
+          className="mx-auto aspect-square w-full h-full "
         >
           <RadarChart data={chartData}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
