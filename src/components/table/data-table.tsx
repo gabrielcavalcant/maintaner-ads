@@ -48,6 +48,7 @@ interface DataTableProps<TData, TValue> {
   noResultsText?: string;
   onRowClick?: (row: Row<TData>) => void;
   maxItems?: number; // Adicione esta linha
+  hidePagination?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -63,6 +64,7 @@ export function DataTable<TData, TValue>({
   onRowClick,
   height = "74vh",
   maxItems,
+  hidePagination = false,
 }: DataTableProps<TData, TValue>) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -200,7 +202,9 @@ export function DataTable<TData, TValue>({
           </Table>
         </div>
       </Card>
-      <DataTablePagination table={table} isFetching={isFetching} />
+      {!hidePagination && (
+        <DataTablePagination table={table} isFetching={isFetching} />
+      )}
     </div>
   );
 }

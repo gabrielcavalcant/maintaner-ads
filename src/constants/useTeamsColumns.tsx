@@ -6,19 +6,11 @@ import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AvatarIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
@@ -26,6 +18,8 @@ import { faker } from "@faker-js/faker";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import EditModal from "@/components/creation/edit-modal";
 import { useCreateTeam } from "./creation/useCreateTeam";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UseTeamColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -37,6 +31,7 @@ export const useTeamColumns = ({
   onRemoveClick,
 }: UseTeamColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+  const router = useRouter();
 
   const { fields, validationSchema } = useCreateTeam();
 
@@ -125,6 +120,13 @@ export const useTeamColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
+          <TooltipButton
+            Icon={ReceiptText}
+            message={t("Common.details")}
+            onClick={() => {
+              router.push(`teams/${row.original.id}`);
+            }}
+          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {

@@ -10,6 +10,8 @@ import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import { useCreatePart } from "./creation/useCreatePart";
 import { formatToBRL } from "@/lib/formatters";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UsePartColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -21,7 +23,7 @@ export const usePartColumns = ({
   onRemoveClick,
 }: UsePartColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
-
+  const router = useRouter();
   const { fields, validationSchema } = useCreatePart();
 
   return [
@@ -102,6 +104,13 @@ export const usePartColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
+          <TooltipButton
+            Icon={ReceiptText}
+            message={t("Common.details")}
+            onClick={() => {
+              router.push(`parts/${row.original.id}`);
+            }}
+          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {

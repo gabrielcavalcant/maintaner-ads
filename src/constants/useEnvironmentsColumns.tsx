@@ -5,10 +5,10 @@ import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
 import { useCreateEnvironment } from "./creation/useCreateEnvironment";
-import CreationModal from "@/components/creation/creation-modal";
 import EditModal from "@/components/creation/edit-modal";
-import { faker } from "@faker-js/faker";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UseEnvironmentsColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -20,6 +20,7 @@ export const useEnvironmentsColumns = ({
   onRemoveClick,
 }: UseEnvironmentsColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+  const router = useRouter();
 
   const { fields, validationSchema } = useCreateEnvironment();
 
@@ -62,6 +63,13 @@ export const useEnvironmentsColumns = ({
       cell: ({ row }) => {
         return (
           <div className="flex items-center gap-1 my-1">
+            <TooltipButton
+              Icon={ReceiptText}
+              message={t("Common.details")}
+              onClick={() => {
+                router.push(`environments/${row.original.id}`);
+              }}
+            />
             {onEditClick && (
               <EditModal
                 onSubmit={(formValues) => {
@@ -84,7 +92,7 @@ export const useEnvironmentsColumns = ({
               >
                 <TooltipButton
                   Icon={MdEdit}
-                  message="Editar"
+                  message={t("Common.edit")}
                   onClick={() => onEditClick(row.original.id)}
                 />
               </EditModal>
@@ -92,7 +100,7 @@ export const useEnvironmentsColumns = ({
             {onRemoveClick && (
               <TooltipButton
                 Icon={FaEraser}
-                message="Remover"
+                message={t("Common.remove")}
                 onClick={() => onRemoveClick(row.original.id)}
               />
             )}

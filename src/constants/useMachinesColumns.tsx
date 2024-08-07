@@ -104,7 +104,7 @@ export const useMachinesColumns = ({
         <div className="flex items-center gap-1 my-1">
           <TooltipButton
             Icon={ReceiptText}
-            message={"Detalhes"}
+            message={t("Common.details")}
             onClick={() => {
               router.push(`machines/${row.original.id}`);
             }}

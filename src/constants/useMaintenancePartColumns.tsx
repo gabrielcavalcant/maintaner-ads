@@ -4,6 +4,8 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UseMaintenancePartColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -15,38 +17,16 @@ export const useMaintenancePartColumns = ({
   onRemoveClick,
 }: UseMaintenancePartColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+  const router = useRouter();
 
   return [
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.id")} />
+        <DataTableColumnHeader column={column} title={t("Table.name")} />
       ),
-      accessorKey: "id",
+      accessorKey: "name",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.id}</div>
-      ),
-    },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.maintenance_id")}
-        />
-      ),
-      accessorKey: "maintenance_id",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {row.original.maintenance_id}
-        </div>
-      ),
-    },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.part_id")} />
-      ),
-      accessorKey: "part_id",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.part_id}</div>
+        <div className="flex gap-1 items-center">{row.original.name}</div>
       ),
     },
     {
@@ -63,6 +43,13 @@ export const useMaintenancePartColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
+          <TooltipButton
+            Icon={ReceiptText}
+            message={t("Common.details")}
+            onClick={() => {
+              router.push(`parts/${row.original.part_id}`);
+            }}
+          />
           {onEditClick && (
             <TooltipButton
               Icon={MdEdit}

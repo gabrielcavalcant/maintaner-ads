@@ -10,6 +10,8 @@ import { simulatedResponseAPI } from "@/helper/simulate-api";
 import { faker } from "@faker-js/faker";
 import { useCreateMaintenance } from "./creation/useCreateMaintenance";
 import { Card } from "@/components/ui/card";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UseMaintenanceColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -21,7 +23,7 @@ export const useMaintenanceColumns = ({
   onRemoveClick,
 }: UseMaintenanceColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
-
+  const router = useRouter();
   const { fields, validationSchema } = useCreateMaintenance();
 
   return [
@@ -118,6 +120,13 @@ export const useMaintenanceColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
+          <TooltipButton
+            Icon={ReceiptText}
+            message={t("Common.details")}
+            onClick={() => {
+              router.push(`maintenances/${row.original.id}`);
+            }}
+          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {

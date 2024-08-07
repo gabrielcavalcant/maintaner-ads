@@ -15,10 +15,10 @@ import { useMachineMaintenancesColumns } from "@/constants/useMachineMaintenance
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
 import { Label } from "@/components/ui/label";
 
-export default function MachineDetails({
+export default function EnvironmentDetails({
   params,
 }: {
-  params: { machine_id: string };
+  params: { environment_id: string };
 }) {
   const t = useTranslations();
 
@@ -52,14 +52,10 @@ export default function MachineDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.machine_id,
-    name: faker.lorem.words(2),
-    type: faker.lorem.word(),
-    model: faker.lorem.word(),
-    manufacture_date: new Date(faker.date.recent()).toLocaleDateString("pt-BR"),
-    serial_number: faker.number.int({ min: 123424, max: 23412343 }).toString(),
-    environment: faker.location.street(),
-    environment_id: faker.number.int({ min: 1, max: 50 }),
+    id: params.environment_id,
+    name: faker.lorem.word(),
+    location: faker.lorem.sentence(),
+    company_name: faker.lorem.word(),
   };
 
   const maintenances_data = generateFakeData(5);
@@ -79,35 +75,20 @@ export default function MachineDetails({
       canCopy: false,
     },
     {
-      dataName: "type",
-      label: "Tipo da máquina",
+      dataName: "location",
+      label: "Localização",
       canCopy: false,
     },
     {
-      dataName: "model",
-      label: "Modelo da máquina",
-      canCopy: false,
-    },
-    {
-      dataName: "manufacture_date",
-      label: "Data de fabricação",
-      canCopy: false,
-    },
-    {
-      dataName: "serial_number",
-      label: "Número de série",
-      canCopy: true,
-    },
-    {
-      dataName: "environment",
-      label: "Ambiente",
+      dataName: "company_name",
+      label: "Empresa",
       canCopy: false,
     },
   ];
 
   return (
     <div>
-      <Header title={t("Machines.detailsTitle")} />
+      <Header title={t("Environments.detailsTitle")} />
       <div className="flex w-full items-center justify-end"></div>
       <Details data={data} options={options} />
       <div className="flex flex-col  w-full mt-10 sm:mt-0">

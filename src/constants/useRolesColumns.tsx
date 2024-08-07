@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import EditModal from "@/components/creation/edit-modal";
 import { useCreateRole } from "./creation/useCreateRole";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UseRoleColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -19,6 +21,7 @@ export const useRoleColumns = ({
   onRemoveClick,
 }: UseRoleColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+  const router = useRouter();
 
   const { fields, validationSchema } = useCreateRole();
 
@@ -73,6 +76,13 @@ export const useRoleColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
+          <TooltipButton
+            Icon={ReceiptText}
+            message={t("Common.details")}
+            onClick={() => {
+              router.push(`roles/${row.original.id}`);
+            }}
+          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {

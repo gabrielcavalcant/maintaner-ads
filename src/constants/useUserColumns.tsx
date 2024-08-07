@@ -12,6 +12,8 @@ import { useCreateUser } from "./creation/useCreateuser";
 import { Badge } from "@/components/ui/badge";
 import ConfirmAlertDialog from "@/components/confirm-alert-dialog";
 import toast from "react-hot-toast";
+import { ReceiptText } from "lucide-react";
+import { useRouter } from "@/navigation";
 
 type UseUserColumnsProps = {
   onEditClick?: (id: number) => void;
@@ -23,6 +25,7 @@ export const useUserColumns = ({
   onRemoveClick,
 }: UseUserColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
+  const router = useRouter();
 
   const { fields, validationSchema } = useCreateUser();
 
@@ -81,6 +84,13 @@ export const useUserColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
+          <TooltipButton
+            Icon={ReceiptText}
+            message={t("Common.details")}
+            onClick={() => {
+              router.push(`users/${row.original.id}`);
+            }}
+          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {
