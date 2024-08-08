@@ -3,18 +3,12 @@ import Header from "@/components/header";
 import { DataTable } from "@/components/table/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
+
 import { useCreateMachine } from "@/constants/creation/useCreateMachine";
-import CreationModal from "@/components/creation/creation-modal";
 import Details from "@/components/details";
-import { MaintenanceBarChart } from "@/components/graphs/MaintenanceBarChart";
-import { useMachineMaintenancesColumns } from "@/constants/useMachineMaintenancesColumns";
-import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
-import { Label } from "@/components/ui/label";
-import { useMaintenancePartColumns } from "@/constants/useMaintenancePartColumns";
+import { useMaintenancePartColumns } from "@/constants/list/useMaintenancePartColumns";
 import {
   Card,
   CardContent,
@@ -174,7 +168,7 @@ export default function MaintenanceDetails({
   ];
 
   const colors = useMemo(
-    () => harmonize(primaryColor, 30, 90, maintenances_parts_data.length),
+    () => harmonize(primaryColor, 0, -90, maintenances_parts_data.length),
     [maintenances_parts_data.length, primaryColor]
   );
 
@@ -182,6 +176,7 @@ export default function MaintenanceDetails({
     part: part.name,
     count: part.quantity,
     fill: colors[index + 1],
+    ...part,
   }));
 
   const chartConfig = useMemo(() => {

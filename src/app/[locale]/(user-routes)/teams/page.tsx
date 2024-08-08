@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { useTeamColumns } from "@/constants/useTeamsColumns";
+import { useTeamColumns } from "@/constants/list/useTeamsColumns";
 import CreationModal from "@/components/creation/creation-modal";
 import { Button } from "@/components/ui/button";
 import { useCreateTeam } from "@/constants/creation/useCreateTeam";

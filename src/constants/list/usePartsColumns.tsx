@@ -4,26 +4,26 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
-import { Badge } from "@/components/ui/badge";
-import { simulatedResponseAPI } from "@/helper/simulate-api";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import EditModal from "@/components/creation/edit-modal";
-import { useCreateRole } from "./creation/useCreateRole";
+import { simulatedResponseAPI } from "@/helper/simulate-api";
+import { useCreatePart } from "../creation/useCreatePart";
+import { formatToBRL } from "@/lib/formatters";
 import { ReceiptText } from "lucide-react";
 import { useRouter } from "@/navigation";
 
-type UseRoleColumnsProps = {
+type UsePartColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useRoleColumns = ({
+export const usePartColumns = ({
   onEditClick,
   onRemoveClick,
-}: UseRoleColumnsProps = {}): ColumnDef<any>[] => {
+}: UsePartColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
-
-  const { fields, validationSchema } = useCreateRole();
+  const { fields, validationSchema } = useCreatePart();
 
   return [
     {
@@ -37,39 +37,66 @@ export const useRoleColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.total_permissions")}
-        />
+        <DataTableColumnHeader column={column} title={t("Table.code")} />
       ),
-      accessorKey: "total_permissions",
+      accessorKey: "code",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">{row.original.code}</div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.supplier")} />
+      ),
+      accessorKey: "supplier",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">{row.original.supplier}</div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.image")} />
+      ),
+      accessorKey: "base64",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {row.original.total_permissions}
+          <Avatar>
+            <AvatarImage
+              src={`data:image/png;base64,${row.original.base64}`}
+              alt={row.original.name}
+              width={50}
+              height={50}
+              className="object-cover"
+            />
+            <AvatarFallback>?</AvatarFallback>
+          </Avatar>
         </div>
       ),
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.permissions")} />
+        <DataTableColumnHeader
+          column={column}
+          title={t("Table.stock_quantity")}
+        />
       ),
-      accessorKey: "permissions",
-
-      cell: ({ row }) => {
-        return (
-          <div className="flex flex-wrap gap-2 py-2">
-            {row?.original?.permissions?.map(
-              (permission: { name: string; id: number }) => {
-                return (
-                  <Badge key={permission.id} className="text-sm">
-                    {permission.name}
-                  </Badge>
-                );
-              }
-            )}
-          </div>
-        );
-      },
+      accessorKey: "stock_quantity",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">
+          {row.original.stock_quantity}
+        </div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.unit_price")} />
+      ),
+      accessorKey: "unit_price",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">
+          {formatToBRL(row.original.unit_price)}
+        </div>
+      ),
     },
     {
       id: "actions",
@@ -80,7 +107,7 @@ export const useRoleColumns = ({
             Icon={ReceiptText}
             message={t("Common.details")}
             onClick={() => {
-              router.push(`roles/${row.original.id}`);
+              router.push(`parts/${row.original.id}`);
             }}
           />
           {onEditClick && (
@@ -93,13 +120,16 @@ export const useRoleColumns = ({
                 simulatedResponseAPI({
                   id: row.original.id,
                   name: row.original.name,
-                  total_permissions: row.original.total_permissions,
-                  permissions: row.original.permissions,
+                  code: row.original.code,
+                  supplier: row.original.supplier,
+                  base64: row.original.base64,
+                  stock_quantity: row.original.stock_quantity,
+                  unit_price: row.original.unit_price,
                 })
               }
-              mutationKey={["editRole", row.original.id]}
-              title={t("Roles.edit")}
-              description={t("Roles.editDescription")}
+              mutationKey={["editPart", row.original.id]}
+              title={t("Mainteances.edit")}
+              description={t("Mainteances.editDescription")}
               validationSchema={validationSchema}
               asChild
             >

@@ -14,10 +14,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
-import { faker } from "@faker-js/faker";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import EditModal from "@/components/creation/edit-modal";
-import { useCreateTeam } from "./creation/useCreateTeam";
+import { useCreateTeam } from "../creation/useCreateTeam";
 import { ReceiptText } from "lucide-react";
 import { useRouter } from "@/navigation";
 

@@ -4,26 +4,21 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
-import CreationModal from "@/components/creation/creation-modal";
 import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
-import { faker } from "@faker-js/faker";
-import { useCreateMaintenance } from "./creation/useCreateMaintenance";
+import { useCreateMaintenance } from "../creation/useCreateMaintenance";
 import { Card } from "@/components/ui/card";
-import { ReceiptText } from "lucide-react";
-import { useRouter } from "@/navigation";
 
-type useMachineMaintenancesColumnsProps = {
+type UseMaintenanceColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useMachineMaintenancesColumns = ({
+export const useDashboardColumns = ({
   onEditClick,
   onRemoveClick,
-}: useMachineMaintenancesColumnsProps = {}): ColumnDef<any>[] => {
+}: UseMaintenanceColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
-  const router = useRouter();
 
   const { fields, validationSchema } = useCreateMaintenance();
 
@@ -35,17 +30,6 @@ export const useMachineMaintenancesColumns = ({
       accessorKey: "type",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">{row.original.type}</div>
-      ),
-    },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.description")} />
-      ),
-      accessorKey: "description",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {row.original.description}
-        </div>
       ),
     },
     {
@@ -112,13 +96,6 @@ export const useMachineMaintenancesColumns = ({
       header: t("Table.actions"),
       cell: ({ row }) => (
         <div className="flex items-center gap-1 my-1">
-          <TooltipButton
-            Icon={ReceiptText}
-            message={t("Common.details")}
-            onClick={() => {
-              router.push(`/maintenances/${row.original.id}`);
-            }}
-          />
           {onEditClick && (
             <EditModal
               onSubmit={(formValues) => {

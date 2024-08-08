@@ -5,13 +5,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
 import { useCreateMachine } from "@/constants/creation/useCreateMachine";
-import CreationModal from "@/components/creation/creation-modal";
 import Details from "@/components/details";
 import { MaintenanceBarChart } from "@/components/graphs/MaintenanceBarChart";
-import { useMachineMaintenancesColumns } from "@/constants/useMachineMaintenancesColumns";
+import { useMachineMaintenancesColumns } from "@/constants/list/useMachineMaintenancesColumns";
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
 import { Label } from "@/components/ui/label";
 

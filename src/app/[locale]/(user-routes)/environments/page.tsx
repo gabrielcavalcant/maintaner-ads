@@ -1,7 +1,7 @@
 "use client";
 import Header from "@/components/header";
 import { DataTable } from "@/components/table/data-table";
-import { useEnvironmentsColumns } from "@/constants/useEnvironmentsColumns";
+import { useEnvironmentsColumns } from "@/constants/list/useEnvironmentsColumns";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";

@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
-import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
+import { useMaintenanceColumns } from "@/constants/list/useMaintenanceColumns ";
 import CreationModal from "@/components/creation/creation-modal";
 import { Button } from "@/components/ui/button";
 

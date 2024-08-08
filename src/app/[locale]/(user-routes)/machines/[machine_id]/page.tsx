@@ -6,12 +6,12 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/useMachinesColumns";
+import { useMachinesColumns } from "@/constants/list/useMachinesColumns";
 import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 import CreationModal from "@/components/creation/creation-modal";
 import Details from "@/components/details";
 import { MaintenanceBarChart } from "@/components/graphs/MaintenanceBarChart";
-import { useMachineMaintenancesColumns } from "@/constants/useMachineMaintenancesColumns";
+import { useMachineMaintenancesColumns } from "@/constants/list/useMachineMaintenancesColumns";
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
 import { Label } from "@/components/ui/label";
 
@@ -107,7 +107,7 @@ export default function MachineDetails({
 
   return (
     <div>
-      <Header title={t("Machines.detailsTitle")} />
+      <Header title={t("Machines.detailsTitle")} goBack />
       <div className="flex w-full items-center justify-end"></div>
       <Details data={data} options={options} />
       <div className="flex flex-col  w-full mt-10 sm:mt-0">

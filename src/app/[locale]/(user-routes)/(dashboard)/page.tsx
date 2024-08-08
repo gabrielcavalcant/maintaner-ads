@@ -43,7 +43,7 @@ import {
   WrenchIcon,
 } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
-import { useMaintenanceColumns } from "@/constants/useMaintenanceColumns ";
+import { useMaintenanceColumns } from "@/constants/list/useMaintenanceColumns ";
 import { faker } from "@faker-js/faker";
 import { DataTable } from "@/components/table/data-table";
 import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
@@ -59,9 +59,9 @@ import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
-import { useDashboardColumns } from "@/constants/useDashboardColumns";
+import { useDashboardColumns } from "@/constants/list/useDashboardColumns";
 
-export default function Home() {
+export default function Dashboard() {
   const t = useTranslations();
 
   const dashboardCards = [

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
-import { useCreateEnvironment } from "./creation/useCreateEnvironment";
+import { useCreateEnvironment } from "../creation/useCreateEnvironment";
 import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import { ReceiptText } from "lucide-react";

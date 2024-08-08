@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { useRoleColumns } from "@/constants/useRolesColumns";
+import { useRoleColumns } from "@/constants/list/useRolesColumns";
 import CreationModal from "@/components/creation/creation-modal";
 import { Button } from "@/components/ui/button";
 import { useCreateRole } from "@/constants/creation/useCreateRole";
