@@ -77,7 +77,7 @@ A motivação para desenvolver esta aplicação de Gerenciamento de Manutenção
   - Problemas em reportar o status das tarefas de forma simples e rápida.
 
 
-### Persona: Carlos Ferreira
+### Persona 5: Carlos Ferreira
 
 -   **Ocupação:** Gerente de Produção
 -   **Idade:** 50 anos
@@ -169,7 +169,7 @@ O sistema deve permitir a criação de contas de usuário com diferentes níveis
 >
 > **Usuário:** Roberto Almeida (Supervisor de Manutenção)
 >
-> **Descrição:** Roberto acessa a aplicação, navega até a seção de cadastro de máquinas e preenche o formulário com as informações necessárias. Após o envio, a máquina é cadastrada no sistema e pode ser visualizada na lista de máquinas. Ao perceber um erro de digitação Roberto busca a máquina criada de forma rapida com filtros de busca e realiza a
+> **Descrição:** Roberto acessa a aplicação, navega até a seção de cadastro de máquinas e preenche o formulário com as informações necessárias. Após o envio, a máquina é cadastrada no sistema e pode ser visualizada na lista de máquinas. Ao perceber um erro de digitação Roberto busca a máquina criada de forma rapida com filtros de busca e realiza a edição necessária.
 
 > **Caso de uso 2: Atribuição de Solicitações de Manutenção**
 >
@@ -316,4 +316,4 @@ Os requisitos não funcionais são essenciais para garantir que a aplicação n�
 | Tempo de inatividade    | N/A          | < 8,76 horas por ano |            |
 | Tempo de recuperação    | N/A          | < 1 hora             |            |
 | Perda de dados          | N/A          | < 15 minutos         |            |
-| Conformidade WCAG 2.1   | N/A          | Nível AA             |            |
+| Conformidade WCAG 2.1   | N/A          | Nível AA             |            | 
