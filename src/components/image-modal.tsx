@@ -13,7 +13,7 @@ export default function ImageModal({
   onClose,
   height,
   width,
-}: ImageModalProps) {
+}: Readonly<ImageModalProps>) {
   const handleBackdropClick = (e: SyntheticEvent) => {
     if (e.target === e.currentTarget) {
       // Verifica se o clique foi no backdrop e não no conteúdo
@@ -29,7 +29,7 @@ export default function ImageModal({
       <div className="relative">
         <Magnifier
           src={imageUrl}
-          className={`max-h-[${height ? height + "px" : "80vh"}] max-w-[${
+          className={`max-h-[${height ? height + "px" : "60vh"}] max-w-[${
             width ? width + "px" : "90vw"
           }] cursor-default select-none object-contain`}
           width={width ?? 500}

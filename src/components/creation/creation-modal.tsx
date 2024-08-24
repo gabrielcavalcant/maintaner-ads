@@ -1,21 +1,28 @@
+/**
+ * @file CreationModal.tsx
+ *
+ * @description Este componente React fornece uma interface de usuário para um modal de criação, permitindo que os usuários carreguem imagens, preencham formulários e capturem imagens via webcam. Utiliza várias bibliotecas e componentes para validação de formulários, manipulação de imagens e interface de usuário.
+ *
+ * @author [Jonathan OLiveira Bergamo]
+ *
+ *
+ * @license MIT
+ *
+ * @dependencies
+ * - react, react-webcam
+ * - next-intl
+ * - react-hook-form
+ * - zod
+ * - @hookform/resolvers
+ * - Vários componentes personalizados da pasta "/ui"
+ */
+
 "use client";
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import ImageUpload from "../image-upload";
+import React, { ReactNode, useEffect } from "react";
 import { Field, ImageType } from "@/types";
-import Gallery from "../gallery";
-import Webcam from "react-webcam";
-import { PiWebcamFill, PiWebcamSlashBold } from "react-icons/pi";
-import { BsRecordCircle } from "react-icons/bs";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
-import { CiImageOff } from "react-icons/ci";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 import {
@@ -39,22 +46,17 @@ import {
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Checkbox } from "../ui/checkbox";
-import DotsLoader from "../loaders/DotsLoader";
+
 import { Skeleton } from "../ui/skeleton";
+
 type FormOutput = {
   images?: ImageType[];
 } & Record<string, string>;
+
 interface Props {
   fields: Field[];
-  onSubmit: (
-    formValues: FormOutput,
-    images: { url: string; file: File }[] | ImageType[]
-  ) => void;
+  onSubmit: (formValues: FormOutput) => void;
   onOpenChange?: (open: boolean) => void;
-  maxImages?: number;
-  imageOptional?: boolean;
-  imageRequired?: boolean;
   children: ReactNode;
   validationSchema: z.ZodObject<any>;
   title?: string;
@@ -67,9 +69,6 @@ interface Props {
 export default function CreationModal({
   fields,
   onSubmit,
-  maxImages = 1,
-  imageRequired = false,
-  imageOptional = false,
   onOpenChange,
   validationSchema,
   children,
@@ -80,7 +79,6 @@ export default function CreationModal({
   isPending = false,
 }: Readonly<Props>) {
   const t = useTranslations();
-  const [imageError, setImageError] = useState<string | undefined>("");
 
   const getFieldDefault = (type?: string) => {
     switch (type) {
@@ -125,65 +123,9 @@ export default function CreationModal({
     }
   }, [preValues, fields, form]);
 
-  const [images, setImages] = useState<{ url: string; file: File }[]>([]);
-  const [showWebcam, setShowWebcam] = useState(false);
-
-  const webcamRef = useRef<Webcam>(null);
-
-  const capture = useCallback(() => {
-    if (webcamRef.current) {
-      const imageSrc = webcamRef.current.getScreenshot();
-      if (imageSrc) {
-        fetch(imageSrc)
-          .then((res) => res.blob())
-          .then((blob) => {
-            const file = new File([blob], "webcam.jpg", { type: "image/jpeg" });
-            setImages((prevImages) => [
-              ...prevImages,
-              { url: URL.createObjectURL(file), file },
-            ]);
-          })
-          .catch((error) => console.error("Erro na captura da imagem:", error));
-      }
-    }
-  }, [webcamRef, setImages]);
-
-  const handleImageSend = (newImages: FileList) => {
-    setImageError("");
-    const imageObjects = Array.from(newImages).map((file) => ({
-      url: URL.createObjectURL(file),
-      file,
-    }));
-    if (images.length + imageObjects.length <= maxImages) {
-      setImages((prevImages) => [...prevImages, ...imageObjects]);
-    } else {
-      console.log(`Não pode enviar mais do que ${maxImages} imagens.`);
-      // Você pode mostrar um aviso ao usuário aqui, se quiser
-    }
-  };
-
-  const handleRemoveImage = (imageObjectToRemove: {
-    url: string;
-    file: File;
-  }) => {
-    setImages((prevImages) => {
-      // Revoga o URL do objeto para liberar memória
-      URL.revokeObjectURL(imageObjectToRemove.url);
-      return prevImages.filter(
-        (imageObject) => imageObject.file !== imageObjectToRemove.file
-      );
-    });
-  };
-
   const handleSubmit = async (values: z.infer<any>) => {
     console.log(values);
-
-    if (!imageOptional && images.length === 0) {
-      setImageError("Imagem é obrigatória.");
-      return;
-    }
-    console.log(values, images);
-    onSubmit(values, images);
+    onSubmit(values);
   };
 
   return (
@@ -323,74 +265,7 @@ export default function CreationModal({
                         </div>
                       )}
                     </div>
-                    {imageRequired && (
-                      <div className="flex flex-col items-center justify-center gap-1 mt-1">
-                        <Button
-                          variant="ghost"
-                          type="button"
-                          className="flex items-center justify-center gap-2"
-                          onClick={() => {
-                            setShowWebcam(!showWebcam);
-                          }}
-                          disabled={maxImages === images.length}
-                        >
-                          {!showWebcam ? (
-                            <>
-                              <PiWebcamFill />
-                              <p>{t("Common.openWebcam")}</p>
-                            </>
-                          ) : (
-                            <>
-                              <PiWebcamSlashBold />
-                              <p>{t("Common.closeWebcam")}</p>
-                            </>
-                          )}
-
-                          {showWebcam && (
-                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-                              <div className="relative w-4/5 flex flex-col items-center justify-center">
-                                <Webcam
-                                  ref={webcamRef}
-                                  audio={false}
-                                  screenshotFormat="image/jpeg"
-                                  className="w-full h-full object-cover aspect-square"
-                                />
-                                <Button
-                                  onClick={() => capture()}
-                                  className="absolute bottom-10 bg-primary"
-                                >
-                                  <div className="text-4xl text-white hover:brightness-90">
-                                    <BsRecordCircle />
-                                  </div>
-                                </Button>
-                              </div>
-                            </div>
-                          )}
-                        </Button>
-                        <ImageUpload
-                          imageSend={handleImageSend}
-                          className="w-full"
-                          isMax={maxImages === images.length}
-                          errorMessage={imageError}
-                        />
-                      </div>
-                    )}
                   </div>
-                  {imageRequired && (
-                    <div className="flex h-32 min-h-[300px] w-full flex-grow flex-col p-5">
-                      {images.length > 0 ? (
-                        <Gallery images={images} onRemove={handleRemoveImage} />
-                      ) : (
-                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center text-muted-foreground">
-                          <CiImageOff className="text-5xl text-primary" />
-                          <Label>{t("Common.noImageText")}</Label>
-                          <Label>
-                            {t("Common.maxImageText")} {maxImages}
-                          </Label>
-                        </div>
-                      )}
-                    </div>
-                  )}
                 </div>
                 <DialogFooter className="mt-auto flex justify-between pt-5 gap-y-2">
                   <Button type="submit">{t("Common.createButton")}</Button>

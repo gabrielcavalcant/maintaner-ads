@@ -10,13 +10,13 @@ type GalleryProps = {
   onRemove: (imageObjectToRemove: { url: string; file: File }) => void;
 };
 
-export default function Gallery({ images, onRemove }: GalleryProps) {
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+export default function Gallery({ images, onRemove }: Readonly<GalleryProps>) {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentImage, setCurrentImage] = useState<string | null>(null);
 
   const handleImageClick = (imageUrl: string) => {
     setCurrentImage(imageUrl);
-    setModalOpen(true);
+    setIsModalOpen(true);
   };
 
   return (
@@ -24,7 +24,7 @@ export default function Gallery({ images, onRemove }: GalleryProps) {
       <div className="align-content-start flex h-72 flex-grow flex-wrap gap-2 overflow-y-auto pr-2 pt-2">
         {images.map((imageObject, index) => {
           return (
-            <div key={index} className="p-2">
+            <div key={imageObject.url.slice(2) + index} className="p-2">
               <div className="group relative">
                 <Image
                   src={imageObject.url}
@@ -51,7 +51,7 @@ export default function Gallery({ images, onRemove }: GalleryProps) {
       {isModalOpen && currentImage && (
         <ImageModal
           imageUrl={currentImage}
-          onClose={() => setModalOpen(false)}
+          onClose={() => setIsModalOpen(false)}
         />
       )}
     </div>

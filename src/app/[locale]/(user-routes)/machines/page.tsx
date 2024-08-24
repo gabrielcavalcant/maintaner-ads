@@ -61,7 +61,7 @@ export default function Equipments() {
             console.log(formValues);
           }}
           fields={fields}
-          title={t("Machines.createTitle")}
+          title={t("Machines.createTest")}
           description={t("Machines.createDescription")}
           validationSchema={validationSchema}
         >
