@@ -119,7 +119,7 @@ export default function Magnifier({
     // Evita o scroll padrão da página
     e.preventDefault();
     // Ajusta o zoomFactor, aumentando se o scroll é para cima, diminuindo se para baixo
-    setZoomFactor(prevZoomFactor => {
+    setZoomFactor((prevZoomFactor) => {
       let newZoomFactor = prevZoomFactor + e.deltaY * -0.005; // Ajuste conforme necessário
       // Limita o zoomFactor para evitar valores negativos ou muito altos
       return Math.min(Math.max(newZoomFactor, 2), 5); // Ajuste os limites conforme necessário
@@ -142,7 +142,7 @@ export default function Magnifier({
           draggable={false}
           className={
             className +
-            `z-10 select-none border object-cover ${
+            `z-10 select-none object-cover ${
               isLocked ? "cursor-pointer" : "cursor-none"
             } `
           }

@@ -12,7 +12,7 @@ export type Field = {
 };
 
 type RenderType = {
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
   value: any;
   form: UseFormReturn<any, any, undefined>;
 };

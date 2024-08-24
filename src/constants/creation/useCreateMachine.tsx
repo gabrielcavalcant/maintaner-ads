@@ -11,6 +11,9 @@ import {
 import { faker } from "@faker-js/faker";
 import { Label } from "@/components/ui/label";
 import Combobox from "@/components/ui/combobox";
+import CreationModal from "@/components/creation/creation-modal";
+import { useCreateEnvironment } from "./useCreateEnvironment";
+import { Button } from "@/components/ui/button";
 
 const generateFakeEnvironmentData = (num: number) => {
   return Array.from({ length: num }, (_, index) => ({
@@ -26,6 +29,8 @@ const env_data = generateFakeEnvironmentData(50);
 
 export const useCreateMachine = (): CreationFields => {
   const t = useTranslations();
+
+  const { fields, validationSchema } = useCreateEnvironment();
 
   const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
 
@@ -113,6 +118,20 @@ export const useCreateMachine = (): CreationFields => {
               onValueChange={(value) => {
                 onChange(value);
               }}
+              renderCustomAction={() => (
+                <CreationModal
+                  onSubmit={(formValues) => {
+                    console.log(formValues);
+                  }}
+                  fields={fields}
+                  title={t("Environment.createTitle")}
+                  description={t("Environment.createDescription")}
+                  validationSchema={validationSchema}
+                  asChild
+                >
+                  <Button>{t("Environments.new")}</Button>
+                </CreationModal>
+              )}
               searchPlaceholder={t("Common.searchEnvironment")}
               placeholder={t("Table.selectEnvironment")}
               value={value}

@@ -139,7 +139,8 @@
     "roles": "Cargos",
     "selectPermissions": "Selecione permissões aqui.",
     "selectUsers": "Selecione membros aqui.",
-    "members": "Membros"
+    "members": "Membros",
+    "partImage": "Imagem da peça"
   },
   "Environments": {
     "title": "Ambientes",
