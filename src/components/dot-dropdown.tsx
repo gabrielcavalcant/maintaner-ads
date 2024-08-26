@@ -115,3 +115,32 @@ export default function DotDropdown({ onSignOut }: DotDropdownProps) {
     </div>
   );
 }
+
+    function Theme({t, actual, capitalizeTheme, theme, parts, capitalizedParts, part, capitalizeFirstLetter, setTheme}) {
+      return (<DropdownMenuSub>
+            <DropdownMenuSubTrigger className="">
+              {t("Navbar.themes")}
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent className="" asChild>
+                <ScrollArea className="h-[50vh]">
+                  {themes.map(actual => {
+          function capitalizeTheme(theme: string): string {
+            // Separar o nome e sobrenome e capitalizar
+            const parts = theme.split("-");
+            const capitalizedParts = parts.map(part => capitalizeFirstLetter(part));
+            return capitalizedParts.join(" ");
+          }
+
+          return <DropdownMenuItem onClick={() => {
+            setTheme(actual);
+          }} key={actual} className={actual === theme ? "border-r-[4px] border-primary mr-1" : "mr-1"}>
+                        {capitalizeTheme(actual)}
+                      </DropdownMenuItem>;
+        })}
+                </ScrollArea>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>);
+    }
+  

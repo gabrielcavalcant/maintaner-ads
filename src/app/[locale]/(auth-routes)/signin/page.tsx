@@ -10,6 +10,17 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import { GiGearHammer } from "react-icons/gi";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Form,
+} from "@/components/ui/form";
 
 export default function Login() {
   const { signIn, isLoading } = useAuth();
@@ -17,20 +28,44 @@ export default function Login() {
   const router = useRouter();
   const t = useTranslations();
 
-  async function handleSubmit(event: SyntheticEvent) {
-    event.preventDefault();
+  const formSchema = z.object({
+    email: z
+      .string()
+      .min(1, { message: t("Login.emailRequired") })
+      .email({ message: t("Login.emailInvalid") }),
+    password: z.string().min(3, { message: t("Login.passMinimal") }),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function handleSignin(values: z.infer<typeof formSchema>) {
     toast.remove();
-    await toast.promise(signIn(event), {
-      loading: t("Login.loading"),
-      success: () => {
-        router.replace("/");
-        return t("Login.success");
+    const response = await toast.promise(
+      signIn(values),
+      {
+        loading: t("Login.loading"),
+        error: (error) => {
+          form.setError("root", error.message);
+          return `${error.message}`;
+        },
+        success: t("Login.success"),
       },
-      error: (error) => {
-        setError(error.message);
-        return `${error.message}`; // Exemplo, você pode personalizar a mensagem de erro conforme necessário
-      },
-    });
+      { duration: 1000 }
+    );
+    if (response.success) {
+      router.replace("/");
+    } else if (response.message) {
+      toast.error(response.message);
+      console.error(response.error);
+    } else {
+      toast.error(t("Login.unknownError"));
+    }
   }
 
   return !isLoading ? (
@@ -44,48 +79,51 @@ export default function Login() {
                 Maintainer
               </span>
             </div>
-            <h1 className="text-3xl font-bold">{t("Login.loginTitle")}</h1>
-            <p className="text-gray-500 dark:text-gray-400">
+            <Label className="text-3xl text-accent-foreground font-bold">
+              {t("Login.loginTitle")}
+            </Label>
+            <Label className="text-muted-foreground dark:text-gray-400">
               {t("Login.loginSubtitle")}
-            </p>
+            </Label>
           </div>
-          <form
-            className="space-y-4"
-            onSubmit={handleSubmit}
-            onChange={() => setError("")}
-          >
-            <div className="space-y-2">
-              <Label htmlFor="email" className={error ? "text-red-500" : ""}>
-                {t("Login.email")}
-              </Label>
-              <Input
-                id="email"
-                placeholder="m@example.com"
-                required
-                type="email"
-                className={error ? "border-spacing-5 border-red-500" : ""}
+          <Form {...form}>
+            {form.formState.errors.root && (
+              <p>{form.formState.errors.root.message}</p>
+            )}
+
+            <form
+              onSubmit={form.handleSubmit(handleSignin)}
+              className="space-y-4"
+            >
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("Login.email")}</FormLabel>
+                    <FormControl>
+                      <Input placeholder="seuemail@exemplo.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label
-                  htmlFor="password"
-                  className={error ? "text-red-500" : ""}
-                >
-                  {t("Login.password")}
-                </Label>
-              </div>
-              <Input
-                id="password"
-                required
-                type="password"
-                className={error ? "border-spacing-5 border-red-500" : ""}
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("Login.password")}</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="******" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <Button className="w-full" type="submit">
-              {t("Login.enter")}
-            </Button>
-          </form>
+              <Button type="submit">{t("Login.enter")}</Button>
+            </form>
+          </Form>
         </div>
       </Card>
     </div>

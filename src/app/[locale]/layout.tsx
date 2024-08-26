@@ -4,8 +4,8 @@ import "./globals.css";
 import Providers from "./Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import CustomToaster from "@/components/CustomToaster";
-import LanguageSwitcher from "@/components/LocaleSwitch";
+import CustomToaster from "@/components/custom-toaster";
+import LanguageSwitcher from "@/components/locale-switch";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,15 +37,8 @@ export default async function RootLayout({
             "red-dark",
             "green",
             "green-dark",
-            "netflix",
-            "netflix-dark",
-            "nord",
-            "nord-dark",
-            "natura",
-            "natura-dark",
             "dracula",
             "dracula-dark",
-            "laracon-dark",
             "gold",
             "gold-dark",
             "azarath",
@@ -54,6 +47,17 @@ export default async function RootLayout({
             "poimandres-dark",
             "discord",
             "discord-dark",
+            "adj",
+            "adj-dark",
+            "soft-purple",
+            "soft-purple-dark",
+            "umbra-protocol",
+            "min-light",
+            "min-dark",
+            "aura-dark",
+            "pro-hacker",
+            "tokyo-city-lighter",
+            "ayu-light-bordered"
           ]}
         >
           <CustomToaster />

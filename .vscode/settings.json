@@ -2,5 +2,9 @@
   "i18n-ally.localesPaths": [
     "messages"
   ],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "sonarlint.connectedMode.project": {
+    "connectionId": "http://localhost:9000",
+    "projectKey": "my-nextjs-project"
+  }
 }

@@ -12,12 +12,9 @@ export const decryptData = (ciphertext: string): string => {
   try {
     const bytes = CryptoJS.AES.decrypt(ciphertext, SECRET_KEY);
     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-    if (!decryptedData) {
-      throw new Error("Failed to decrypt data");
-    }
+
     return decryptedData;
   } catch (error) {
-    console.error("Decryption error:", error);
-    throw new Error("Malformed UTF-8 data");
+    return "{}";
   }
 };

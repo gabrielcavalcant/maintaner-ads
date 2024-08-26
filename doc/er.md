@@ -4,7 +4,7 @@ erDiagram
         int id PK
         string name
         string location
-        string company_name
+        int responsible_id FK
     }
     MACHINE {
         int id PK
@@ -15,6 +15,13 @@ erDiagram
         string serial_number
         int environment_id FK
     }
+    REQUEST {
+        int id PK
+        string description
+        date request_date
+        int requester_id FK
+        int machine_id FK
+    }
     MAINTENANCE {
         int id PK
         string type
@@ -24,6 +31,8 @@ erDiagram
         int machine_id FK
         int team_id FK
         int responsible_id FK
+        int request_id FK
+        int accepted_by FK
     }
     MAINTENANCE_PART {
         int id PK
@@ -80,11 +89,11 @@ erDiagram
     PART ||--o{ MAINTENANCE_PART : used_in
     MAINTENANCE ||--o| TEAM : performed_by
     TEAM ||--o{ TEAM_MEMBER : includes
-    USER ||--o{ MAINTENANCE : requests
+    USER ||--o{ REQUEST : opens
+    USER ||--o{ MAINTENANCE : accepts
     USER ||--o{ TEAM_MEMBER : is
     USER ||--o| ROLE : has
     ROLE ||--o{ ROLE_PERMISSION : includes
     PERMISSION ||--o{ ROLE_PERMISSION : grants
-
 
 ```
