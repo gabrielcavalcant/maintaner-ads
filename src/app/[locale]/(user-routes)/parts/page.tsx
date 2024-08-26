@@ -59,7 +59,6 @@ export default function Parts() {
           title={t("Parts.createTitle")}
           description={t("Parts.createDescription")}
           validationSchema={validationSchema}
-          imageRequired
         >
           <Button>{t("Parts.new")}</Button>
         </CreationModal>

@@ -59,7 +59,6 @@ export default function Users() {
           title={t("Users.createTitle")}
           description={t("Users.createDescription")}
           validationSchema={validationSchema}
-          imageRequired
         >
           <Button>{t("Users.new")}</Button>
         </CreationModal>

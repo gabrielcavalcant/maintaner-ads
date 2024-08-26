@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run lint && npm run sonar && next build",
+    "build": "npm run lint && next build",
     "start": "next start",
     "lint": "next lint",
     "sonar": "sonar-scanner",

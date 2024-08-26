@@ -12,10 +12,7 @@ type FormOutput = {
 
 interface Props {
   fields: Field[];
-  onSubmit: (
-    formValues: FormOutput,
-    images: { url: string; file: File }[] | ImageType[]
-  ) => void;
+  onSubmit: (formValues: FormOutput) => void;
   maxImages?: number;
   imageOptional?: boolean;
   imageRequired?: boolean;
