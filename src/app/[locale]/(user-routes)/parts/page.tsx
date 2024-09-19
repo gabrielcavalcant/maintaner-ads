@@ -1,4 +1,14 @@
+"use client";
+import Header from "@/components/header";
+import { DataTable } from "@/components/table/data-table";
+import { ColumnDef } from "@tanstack/react-table";
+import { useTranslations } from "next-intl";
 import React from "react";
+import { faker } from "@faker-js/faker";
+import { usePartColumns } from "@/constants/list/usePartsColumns";
+import { useCreatePart } from "@/constants/creation/useCreatePart";
+import { Button } from "@/components/ui/button";
+import CreationModal from "@/components/creation/creation-modal";
 
 export default function Parts() {
   const t = useTranslations();
@@ -40,8 +50,7 @@ export default function Parts() {
       <Header title={t("Parts.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
-          onSubmit={(formValues) => {
-          }}
+          onSubmit={(formValues) => {}}
           fields={fields}
           title={t("Parts.createTitle")}
           description={t("Parts.createDescription")}

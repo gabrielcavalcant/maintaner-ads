@@ -1,5 +1,5 @@
 "use client";
-import NavigationBar from "@/components/navigation-bar";
+import NavigationBar from "@/components/navbar/navigation-bar";
 import { ReactNode } from "react";
 import withAuth from "../withAuth";
 

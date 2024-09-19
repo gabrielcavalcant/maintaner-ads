@@ -10,7 +10,6 @@ import { useSearchParams } from "next/navigation";
 import { usePathname, Link } from "@/navigation";
 import { useCallback } from "react";
 import { Label } from "../ui/label";
-import { useTranslations } from "next-intl";
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
@@ -23,7 +22,6 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const tablesText = useTranslations("Table");
   const updateUrl = useCallback(
     (updatedPage: number) => {
       const newSearchParams = new URLSearchParams(searchParams);
@@ -71,23 +69,12 @@ export function DataTablePagination<TData>({
 
   const currentPage = table.getState().pagination.pageIndex + 1;
 
-  const pageSize = table.getState().pagination.pageSize;
   const pageCount = table.getPageCount();
-  const rowCount = table.getRowCount();
-  const itensCount = pageCount * pageSize;
-
-  const startItem = (currentPage - 1) * pageSize + 1;
-  const endItem = (currentPage - 1) * pageSize + rowCount;
-
+ 
   return (
     <div className="flex w-full items-center justify-end px-2">
       <div className="flex items-center space-x-6 lg:space-x-8">
-        {/* {pageCount > 0 && (
-          <div className="flex w-full items-center justify-center text-sm font-medium">
-            {startItem}-{endItem} {tablesText("paginationMiddleLabel")}{" "}
-            {itensCount}
-          </div>
-        )} */}
+
         <div className="flex items-center space-x-2">
           <Link
             href={updateUrl(0)}

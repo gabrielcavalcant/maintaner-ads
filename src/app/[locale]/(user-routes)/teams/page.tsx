@@ -58,8 +58,7 @@ export default function Teams() {
       <Header title={t("Teams.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
-          onSubmit={(formValues) => {
-          }}
+          onSubmit={(formValues) => {}}
           fields={fields}
           title={t("Team.createTitle")}
           description={t("Team.createDescription")}

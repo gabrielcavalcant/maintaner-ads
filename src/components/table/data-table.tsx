@@ -37,7 +37,7 @@ import { useTranslations } from "next-intl";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data?: TData[];
   onPaginationChange?: (pagination: number) => void;
   pageCount?: number;
   isFetching: boolean;
@@ -48,6 +48,7 @@ interface DataTableProps<TData, TValue> {
   noResultsText?: string;
   onRowClick?: (row: Row<TData>) => void;
   maxItems?: number; // Adicione esta linha
+  hidePagination?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -63,6 +64,7 @@ export function DataTable<TData, TValue>({
   onRowClick,
   height = "74vh",
   maxItems,
+  hidePagination = false,
 }: DataTableProps<TData, TValue>) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -190,7 +192,7 @@ export function DataTable<TData, TValue>({
                 <TableRow className="h-8 hover:bg-card">
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center"
+                    className="h-24 text-center "
                   >
                     {noResultsText ?? t("Table.noResult")}
                   </TableCell>
@@ -200,7 +202,9 @@ export function DataTable<TData, TValue>({
           </Table>
         </div>
       </Card>
-      <DataTablePagination table={table} isFetching={isFetching} />
+      {!hidePagination && (
+        <DataTablePagination table={table} isFetching={isFetching} />
+      )}
     </div>
   );
 }

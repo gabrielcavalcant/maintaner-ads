@@ -1,4 +1,14 @@
-import React from 'react'
+"use client";
+import Header from "@/components/header";
+import { DataTable } from "@/components/table/data-table";
+import { ColumnDef } from "@tanstack/react-table";
+import { useTranslations } from "next-intl";
+import React from "react";
+import { faker } from "@faker-js/faker";
+import { useCreateMaintenance } from "@/constants/creation/useCreateMaintenance";
+import { useMaintenanceColumns } from "@/constants/list/useMaintenanceColumns ";
+import CreationModal from "@/components/creation/creation-modal";
+import { Button } from "@/components/ui/button";
 
 export default function Parts() {
   const t = useTranslations();

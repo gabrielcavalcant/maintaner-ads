@@ -6,7 +6,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-
 export default function Environments() {
   const t = useTranslations();
 

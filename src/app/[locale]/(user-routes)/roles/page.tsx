@@ -52,8 +52,7 @@ export default function Roles() {
       <Header title={t("Roles.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
-          onSubmit={(formValues) => {
-          }}
+          onSubmit={(formValues) => {}}
           fields={fields}
           title={t("Roles.new")}
           description={t("Roles.createDescription")}
