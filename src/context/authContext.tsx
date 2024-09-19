@@ -28,19 +28,10 @@ interface AuthContextProps {
   signOut: () => void;
 }
 
-const SECRET_KEY =
-  process.env.TOKEN_SECRET_KEY ??
-  "j3aK1s/tYqABLltaHH3Bt9qYzWqh/qy6sxj4gWqthRk="; // Troque por uma chave segura
-
 export function AuthProvider({ children }: Readonly<AuthProviderProps>) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [authTokens, setAuthTokens] = useState<string | null>(null);
   const router = useRouter();
-
-  const encryptData = (data: string) => {
-    return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
-  };
 
   const decryptData = (ciphertext: string) => {
     const bytes = CryptoJS.AES.decrypt(ciphertext, SECRET_KEY);
@@ -61,8 +52,6 @@ export function AuthProvider({ children }: Readonly<AuthProviderProps>) {
           password,
         });
 
-        console.log(response);
-
         if (response?.statusCode === 403) {
           reject({ success: false, message: "Email ou senha incorretos." });
         }
@@ -70,7 +59,6 @@ export function AuthProvider({ children }: Readonly<AuthProviderProps>) {
         const token: string = response?.access_token;
 
         if (token) {
-          setAuthTokens(token);
           const userData = {
             ...jwtDecode(token),
           } as User;
@@ -90,24 +78,28 @@ export function AuthProvider({ children }: Readonly<AuthProviderProps>) {
     });
   };
 
-  const signOut = () => {
-    setAuthTokens(null);
+  const signOut = useCallback(() => {
     setUser(null);
     Cookies.remove("session");
     router.replace("/");
-  };
+  });
 
   useEffect(() => {
     const encryptedSession = Cookies.get("session");
     if (encryptedSession) {
       const decryptedSession = decryptData(encryptedSession);
       const parsedSession: AuthToken = JSON.parse(decryptedSession);
-      setAuthTokens(parsedSession.access_token);
-      const userData = {
-        ...jwtDecode(parsedSession.access_token),
-        // permission: parsedSession.permission,
-      } as User;
-      setUser(userData);
+      try {
+        const userData = {
+          ...jwtDecode(parsedSession.access_token),
+          permission: parsedSession.permission,
+        } as User;
+        setUser(userData);
+      } catch (error) {
+        signOut();
+      }
+    } else {
+      signOut();
     }
     setIsLoading(false);
   }, []);

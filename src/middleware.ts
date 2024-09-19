@@ -68,14 +68,12 @@ export default async function middleware(req: NextRequest) {
           requiredPermission = permissionDictionary[dynamicRoute];
         }
       }
-      console.log("Permissão requerida:", requiredPermission);
 
       // Verifica se a rota requer permissão e se o usuário tem essa permissão
       if (
         requiredPermission &&
         !hasPermission(userPermissions, requiredPermission)
       ) {
-        console.log("Acesso negado. Permissão requerida não encontrada.");
 
         return NextResponse.redirect(
           new URL("/portal/pt/unauthorized", req.nextUrl)

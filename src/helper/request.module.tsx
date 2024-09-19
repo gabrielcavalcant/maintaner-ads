@@ -7,7 +7,6 @@ export class ApiRequest {
   });
   async ApiRequest(endpoint: string, payload: Object) {
     // { email: 'jonathanbergamo16@gmail.com', password: 'senha' }
-    console.log(payload);
 
     try {
       const response = await this.Api.post(endpoint, payload, {
@@ -16,10 +15,8 @@ export class ApiRequest {
         },
       });
       const data = { statusCode: response.status, ...response.data };
-      console.log(data);
       return data;
     } catch (error: any) {
-      console.log(error.request);
       return error.response;
     }
   }

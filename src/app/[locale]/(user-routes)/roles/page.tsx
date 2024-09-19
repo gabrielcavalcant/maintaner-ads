@@ -1,13 +1,16 @@
-import CreationModal from "@/components/creation/creation-modal";
+"use client";
 import Header from "@/components/header";
 import { DataTable } from "@/components/table/data-table";
-import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
+import { faker } from "@faker-js/faker";
+import { useRoleColumns } from "@/constants/list/useRolesColumns";
+import CreationModal from "@/components/creation/creation-modal";
+import { Button } from "@/components/ui/button";
+import { useCreateRole } from "@/constants/creation/useCreateRole";
 
-
-export default function Environments() {
+export default function Roles() {
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {
@@ -23,8 +26,13 @@ export default function Environments() {
     return Array.from({ length: num }, (_, index) => ({
       id: index + 1,
       name: faker.lorem.word(),
-      location: faker.lorem.sentence(),
-      company_name: faker.lorem.word(),
+      total_permissions: faker.number.int({ min: 1, max: 10 }),
+      permissions: Array.from({ length: Math.random() * 8 }, (_, index) => {
+        return {
+          name: faker.lorem.word(),
+          id: faker.number.int({ min: 1, max: 10 }),
+        };
+      }),
     }));
   };
 
@@ -32,26 +40,26 @@ export default function Environments() {
   const data = generateFakeData(50);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useEnvironmentsColumns({
+  const columns: ColumnDef<any>[] = useRoleColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreateEnvironment();
+  const { fields, validationSchema } = useCreateRole();
 
   return (
     <div>
-      <Header title={t("Environments.title")} />
+      <Header title={t("Roles.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
-          onSubmit={(formValues) => {}}
+          onSubmit={(formValues) => {
+          }}
           fields={fields}
-          title={t("Environment.createTitle")}
-          description={t("Environment.createDescription")}
+          title={t("Roles.new")}
+          description={t("Roles.createDescription")}
           validationSchema={validationSchema}
-          asChild
         >
-          <Button>{t("Environments.new")}</Button>
+          <Button>{t("Roles.new")}</Button>
         </CreationModal>
       </div>
       <DataTable
