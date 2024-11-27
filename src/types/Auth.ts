@@ -1,6 +1,6 @@
 export type AuthToken = {
-  access_token: string;
-  refresh_token: string;
+  accessToken: string;
+  refreshToken: string;
   statusCode?: number;
   permission?: string[];
 };
