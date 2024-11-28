@@ -35,29 +35,6 @@ export const useEnvironmentsColumns = ({
       ),
     },
     {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.location")} />
-      ),
-      accessorKey: "location",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.location}</div>
-      ),
-    },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.company_name")}
-        />
-      ),
-      accessorKey: "company_name",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {row.original.company_name}
-        </div>
-      ),
-    },
-    {
       id: "actions",
       header: t("Table.actions"),
       cell: ({ row }) => {

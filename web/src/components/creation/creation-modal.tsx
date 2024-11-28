@@ -18,7 +18,7 @@
  */
 
 "use client";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { Field, ImageType } from "@/types";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -55,7 +55,7 @@ type FormOutput = {
 
 interface Props {
   fields: Field[];
-  onSubmit: (formValues: FormOutput) => void;
+  onSubmit: (formValues: FormOutput) => { success: boolean };
   onOpenChange?: (open: boolean) => void;
   children: ReactNode;
   validationSchema: z.ZodObject<any>;
@@ -79,7 +79,7 @@ export default function CreationModal({
   isPending = false,
 }: Readonly<Props>) {
   const t = useTranslations();
-
+  const [open, setOpen] = useState(false);
   const getFieldDefault = (type?: string) => {
     switch (type) {
       case "number":
@@ -124,18 +124,23 @@ export default function CreationModal({
   }, [preValues, fields, form]);
 
   const handleSubmit = async (values: z.infer<any>) => {
-    console.log(values);
-    onSubmit(values);
+    const result = await onSubmit(values);
+    if (result.success) {
+      setOpen(false);
+      form.reset();
+    }
   };
 
   return (
     <Dialog
       onOpenChange={(open) => {
         onOpenChange?.(open);
+        setOpen(open);
         if (open === false && !isPending) {
           form.reset();
         }
       }}
+      open={open}
     >
       <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
       {

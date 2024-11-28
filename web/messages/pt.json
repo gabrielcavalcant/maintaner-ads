@@ -76,6 +76,7 @@
     "closedOs": "O.S Fechados"
   },
   "Table": {
+    "telephone": "Telefone",
     "environment": "Ambiente",
     "equipment": "Equipamento",
     "request": "Solicitação",

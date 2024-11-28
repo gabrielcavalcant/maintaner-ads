@@ -37,7 +37,7 @@ export const useAxios = (): AxiosInstance => {
     if (encryptedSession) {
       const decryptedSession = decryptData(encryptedSession);
       const parsedSession: AuthToken = JSON.parse(decryptedSession);
-      const decodedToken = jwtDecode(parsedSession.access_token);
+      const decodedToken = jwtDecode(parsedSession.accessToken);
 
       if (new Date() > new Date(Number(decodedToken.exp) * 1000)) {
         try {
@@ -46,7 +46,7 @@ export const useAxios = (): AxiosInstance => {
             {},
             {
               headers: {
-                Authorization: `Bearer ${parsedSession.refresh_token}`,
+                Authorization: `Bearer ${parsedSession.refreshToken}`,
                 "Content-Type": "application/json",
               },
             }
@@ -56,8 +56,8 @@ export const useAxios = (): AxiosInstance => {
 
           // Atualizar a sessão criptografada no cookie
           const updatedSession: AuthToken = {
-            access_token: newAccessToken,
-            refresh_token: parsedSession.refresh_token,
+            accessToken: newAccessToken,
+            refreshToken: parsedSession.refreshToken,
           };
           const encryptedUpdatedSession = encryptData(
             JSON.stringify(updatedSession)
@@ -68,7 +68,7 @@ export const useAxios = (): AxiosInstance => {
           signOut();
         }
       } else {
-        config.headers.Authorization = `Bearer ${parsedSession.access_token}`;
+        config.headers.Authorization = `Bearer ${parsedSession.refreshToken}`;
       }
     }
     return config;

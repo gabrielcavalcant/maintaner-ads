@@ -5,11 +5,13 @@ import { z } from "zod";
 export const useCreateEnvironment = (): CreationFields => {
   const t = useTranslations();
 
-  // Defina o esquema de validação com zod
   const environmentSchema = z.object({
-    name: z.string().min(1, t("Zod.environmentName")),
-    location: z.string().min(1, t("Zod.environmentLocation")),
-    company_name: z.string().min(1, t("Zod.environmentCompanyName")),
+    name: z.string().min(1, t("Zod.name")),
+    telephone: z
+      .string()
+      .min(11, t("Zod.telephoneLength"))
+      .max(11, t("Zod.telephoneLength")),
+    cpf: z.string().length(11, t("Zod.cpfLength")),
   });
 
   return {
@@ -22,15 +24,15 @@ export const useCreateEnvironment = (): CreationFields => {
         flexWidth: "50%",
       },
       {
-        label: t("Table.companyName"),
-        dbName: "company_name",
+        label: t("Table.telephone"),
+        dbName: "telephone",
         required: true,
         type: "text",
         flexWidth: "50%",
       },
       {
-        label: t("Table.location"),
-        dbName: "location",
+        label: "CPF",
+        dbName: "cpf",
         required: true,
         type: "text",
         flexWidth: "100%",

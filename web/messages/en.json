@@ -134,6 +134,7 @@
     "new": "Create Position"
   },
   "Table": {
+    "telephone":"Telephone",
     "actions": "Actions",
     "base64": "Image",
     "code": "Serial Code",

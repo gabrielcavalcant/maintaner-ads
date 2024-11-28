@@ -49,9 +49,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const { email, password } = values;
 
       try {
-        const response: AuthToken = await API.ApiRequest("auth/local/signin", {
+        const response: AuthToken = await API.ApiRequest("auth/signin", {
           email,
-          password,
+          hash: password,
         });
 
         console.log(response);
@@ -60,7 +60,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           reject({ success: false, message: "Email ou senha incorretos." });
         }
 
-        const token: string = response?.access_token;
+        const token: string = response?.accessToken;
         const permissions = response?.permission;
 
         if (response?.statusCode === 401) {
@@ -104,10 +104,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (encryptedSession) {
       const decryptedSession = decryptData(encryptedSession);
       const parsedSession: AuthToken = JSON.parse(decryptedSession);
-      setAuthTokens(parsedSession.access_token);
+      setAuthTokens(parsedSession.accessToken);
       try {
         const userData = {
-          ...jwtDecode(parsedSession.access_token),
+          ...jwtDecode(parsedSession.accessToken),
           permission: parsedSession.permission,
         } as User;
         setUser(userData);

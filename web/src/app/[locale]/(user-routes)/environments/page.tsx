@@ -9,40 +9,44 @@ import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useCreateEnvironment } from "@/constants/creation/useCreateEnvironment";
 import CreationModal from "@/components/creation/creation-modal";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useAxios } from "@/helper/hooks/useAxios";
 
 export default function Environments() {
-  const t = useTranslations();
-
-  const handleEditClick = (id: number) => {
-    console.log("Edit clicked for id:", id);
-    // Adicione a lógica de edição aqui
-  };
-
-  const handleRemoveClick = (id: number) => {
-    console.log("Remove clicked for id:", id);
-    // Adicione a lógica de remoção aqui
-  };
-
-  // Função para gerar dados fictícios
-  const generateFakeData = (num: number) => {
-    return Array.from({ length: num }, (_, index) => ({
-      id: index + 1,
-      name: faker.lorem.word(),
-      location: faker.lorem.sentence(),
-      company_name: faker.lorem.word(),
-    }));
-  };
-
-  // Gera 50 itens fictícios
-  const data = generateFakeData(50);
-
-  // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useEnvironmentsColumns({
-    onEditClick: handleEditClick,
-    onRemoveClick: handleRemoveClick,
+  const api = useAxios();
+  const { data, refetch } = useQuery({
+    queryKey: ["getCustomers"],
+    queryFn: async () => {
+      const { data: response } = await api.get("/Customer");
+      return response;
+    },
   });
 
+  const {
+    mutate,
+    error,
+    data: mutateResponse,
+  } = useMutation({
+    mutationKey: ["createCustumer"],
+    mutationFn: async (body: {
+      name: string;
+      telephone: string;
+      cpf: string;
+    }) => {
+      const response = await api.post("/Customer", body);
+
+      if (response.status === 200) {
+        refetch();
+      }
+
+      return response;
+    },
+  });
+  const t = useTranslations();
+
   const { fields, validationSchema } = useCreateEnvironment();
+
+  const columns = useEnvironmentsColumns();
 
   return (
     <div>
@@ -50,7 +54,8 @@ export default function Environments() {
       <div className="flex w-full items-center justify-end">
         <CreationModal
           onSubmit={(formValues) => {
-            console.log(formValues);
+            mutate(formValues as any);
+            return { success: mutateResponse?.status === 201 };
           }}
           fields={fields}
           title={t("Environment.createTitle")}
@@ -62,11 +67,11 @@ export default function Environments() {
         </CreationModal>
       </div>
       <DataTable
-        data={data}
+        data={data?.customers || []}
         columns={columns}
         pageCount={0}
         isFetching={false}
-        rowCount={data.length}
+        rowCount={data?.length}
         maxItems={30}
         height="63vh"
       />

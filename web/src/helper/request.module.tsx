@@ -1,6 +1,5 @@
 import axios, { AxiosError } from "axios";
 import { error } from "console";
-
 export class ApiRequest {
   private Api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
