@@ -19,7 +19,7 @@ const generateFakeTeamData = (num: number) => {
   }));
 };
 
-const generateFakeMachineData = (num: number) => {
+const generateFakeMotorcycleData = (num: number) => {
   return Array.from({ length: num }, (_, index) => ({
     id: index + 1,
     name: faker.lorem.words(2),
@@ -47,7 +47,7 @@ const generateFakeUsersData = (num: number) => {
 // Gera 50 itens fictícios
 const users_data = generateFakeUsersData(50);
 
-const machine_data = generateFakeMachineData(50);
+const motorcycle_data = generateFakeMotorcycleData(50);
 
 const team_data = generateFakeTeamData(50);
 
@@ -59,9 +59,9 @@ export const useCreateMaintenance = (): CreationFields => {
     type: z.string().min(1, t("Zod.maintenanceType")),
     description: z.string().optional(),
     maintenance_date: z.string().refine((date) => dateRegex.test(date), {
-      message: t("Zod.machineManufactureDate"),
+      message: t("Zod.motorcycleManufactureDate"),
     }),
-    machine_id: z.number().positive(t("Zod.machine")),
+    motorcycle_id: z.number().positive(t("Zod.motorcycle")),
     team_id: z.number().positive(t("Zod.team")),
     responsible_id: z.number().positive(t("Zod.responsibleEmail")),
   });
@@ -98,20 +98,20 @@ export const useCreateMaintenance = (): CreationFields => {
         maskFn: formatDate,
       },
       {
-        label: t("Table.machine"),
-        dbName: "machine_id",
+        label: t("Table.motorcycle"),
+        dbName: "motorcycle_id",
         required: true,
         type: "number",
         flexWidth: "100%",
         render({ onChange, value }) {
           return (
             <Combobox
-              options={machine_data}
+              options={motorcycle_data}
               onValueChange={(value) => {
                 onChange(value.toString());
               }}
-              searchPlaceholder={t("Common.searchMachine")}
-              placeholder={t("Table.selectMachine")}
+              searchPlaceholder={t("Common.searchMotorcycle")}
+              placeholder={t("Table.selectMotorcycle")}
               value={value}
               render={(item) => {
                 return (

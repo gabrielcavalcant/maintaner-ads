@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import React, { useMemo } from "react";
 import { faker } from "@faker-js/faker";
 
-import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 import Details from "@/components/details";
 import { useMaintenancePartColumns } from "@/constants/list/useMaintenancePartColumns";
 import {
@@ -32,6 +31,7 @@ import {
 } from "recharts";
 import { useTheme } from "next-themes";
 import useColor from "@/helper/hooks/useColor";
+import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 
 function parseHSL(color: string): [number, string, string] {
   const [hueStr, saturationStr, lightnessStr] = color.split(" ");
@@ -111,10 +111,10 @@ export default function MaintenanceDetails({
     description: faker.lorem.sentence(),
     maintenance_date: new Date(faker.date.recent()).toLocaleDateString("pt-BR"),
     status: faker.number.int({ min: 0, max: 1 }),
-    machine_id: faker.number.int({ min: 0, max: 50 }),
+    motorcycle_id: faker.number.int({ min: 0, max: 50 }),
     team_id: faker.number.int({ min: 0, max: 50 }),
     responsible_id: faker.number.int({ min: 0, max: 50 }),
-    machine: faker.lorem.words(2),
+    motorcycle: faker.lorem.words(2),
     team: faker.lorem.word(),
     responsible: faker.person.firstName(),
   };
@@ -127,7 +127,7 @@ export default function MaintenanceDetails({
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreateMachine();
+  const { fields, validationSchema } = useCreateMotorcycle();
 
   const options = [
     {
@@ -151,8 +151,8 @@ export default function MaintenanceDetails({
       canCopy: false,
     },
     {
-      dataName: "machine",
-      label: "Nome da máquina",
+      dataName: "motorcycle",
+      label: "Nome da motocicleta",
       canCopy: false,
     },
     {

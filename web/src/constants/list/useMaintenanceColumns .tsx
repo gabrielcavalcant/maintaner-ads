@@ -83,11 +83,11 @@ export const useMaintenanceColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.machine_id")} />
+        <DataTableColumnHeader column={column} title={t("Table.motorcycle_id")} />
       ),
-      accessorKey: "machine",
+      accessorKey: "motorcycle",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.machine}</div>
+        <div className="flex gap-1 items-center">{row.original.motorcycle}</div>
       ),
     },
     {
@@ -138,7 +138,7 @@ export const useMaintenanceColumns = ({
                   description: row.original.description,
                   maintenance_date: row.original.maintenance_date,
                   status: row.original.status,
-                  machine_id: row.original.machine_id,
+                  motorcycle_id: row.original.motorcycle_id,
                   team_id: row.original.team_id,
                   responsible_id: row.original.responsible_id,
                 })

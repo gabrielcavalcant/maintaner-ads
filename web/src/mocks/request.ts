@@ -6,5 +6,5 @@ export const mockRequest: Request = {
   description: faker.lorem.sentence(),
   request_date: faker.date.past(),
   requester_id: faker.number.int(),
-  machine_id: faker.number.int(),
+  motorcycle_id: faker.number.int(),
 };

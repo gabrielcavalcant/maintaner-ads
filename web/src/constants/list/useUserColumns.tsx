@@ -107,8 +107,8 @@ export const useUserColumns = ({
                 })
               }
               mutationKey={["editUser", row.original.id]}
-              title={t("Machines.edit")}
-              description={t("Machines.editDescription")}
+              title={t("Motorcycles.edit")}
+              description={t("Motorcycles.editDescription")}
               validationSchema={validationSchema}
               asChild
             >

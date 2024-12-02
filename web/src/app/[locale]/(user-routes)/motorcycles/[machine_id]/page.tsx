@@ -5,17 +5,20 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
+import { Button } from "@/components/ui/button";
+import { useMotorcyclesColumns } from "@/constants/list/useMotorcyclesColumns";
+import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
+import CreationModal from "@/components/creation/creation-modal";
 import Details from "@/components/details";
 import { MaintenanceBarChart } from "@/components/graphs/MaintenanceBarChart";
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
 import { Label } from "@/components/ui/label";
 import { useMotorcycleMaintenancesColumns } from "@/constants/list/useMotorcycleMaintenancesColumns";
-import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 
-export default function EnvironmentDetails({
+export default function MotorcycleDetails({
   params,
 }: {
-  params: { environment_id: string };
+  params: { motorcycle_id: string };
 }) {
   const t = useTranslations();
 
@@ -49,10 +52,14 @@ export default function EnvironmentDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.environment_id,
-    name: faker.lorem.word(),
-    location: faker.lorem.sentence(),
-    company_name: faker.lorem.word(),
+    id: params.motorcycle_id,
+    name: faker.lorem.words(2),
+    type: faker.lorem.word(),
+    model: faker.lorem.word(),
+    manufacture_date: new Date(faker.date.recent()).toLocaleDateString("pt-BR"),
+    serial_number: faker.number.int({ min: 123424, max: 23412343 }).toString(),
+    environment: faker.location.street(),
+    environment_id: faker.number.int({ min: 1, max: 50 }),
   };
 
   const maintenances_data = generateFakeData(5);
@@ -68,24 +75,39 @@ export default function EnvironmentDetails({
   const options = [
     {
       dataName: "name",
-      label: "Nome da motocicleta",
+      label: "Nome da máquina",
       canCopy: false,
     },
     {
-      dataName: "location",
-      label: "Localização",
+      dataName: "type",
+      label: "Tipo da máquina",
       canCopy: false,
     },
     {
-      dataName: "company_name",
-      label: "Empresa",
+      dataName: "model",
+      label: "Modelo da máquina",
+      canCopy: false,
+    },
+    {
+      dataName: "manufacture_date",
+      label: "Data de fabricação",
+      canCopy: false,
+    },
+    {
+      dataName: "serial_number",
+      label: "Número de série",
+      canCopy: true,
+    },
+    {
+      dataName: "environment",
+      label: "Ambiente",
       canCopy: false,
     },
   ];
 
   return (
     <div>
-      <Header title={t("Environments.detailsTitle")} />
+      <Header title={t("Motorcycles.detailsTitle")} goBack />
       <div className="flex w-full items-center justify-end"></div>
       <Details data={data} options={options} />
       <div className="flex flex-col  w-full mt-10 sm:mt-0">

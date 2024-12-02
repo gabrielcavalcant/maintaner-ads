@@ -15,7 +15,7 @@ import CreationModal from "@/components/creation/creation-modal";
 import { useCreateEnvironment } from "./useCreateEnvironment";
 import { Button } from "@/components/ui/button";
 
-export const useCreateMachine = (): CreationFields => {
+export const useCreateMotorcycle = (): CreationFields => {
   const t = useTranslations();
 
   const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;

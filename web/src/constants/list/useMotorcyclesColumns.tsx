@@ -5,23 +5,23 @@ import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
 import EditModal from "@/components/creation/edit-modal";
-import { useCreateMachine } from "../creation/useCreateMachine";
+import { useCreateMotorcycle } from "../creation/useCreateMotorcycle";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import { useRouter } from "@/navigation";
 import { ReceiptText } from "lucide-react";
 
-type UseMachinesColumnsProps = {
+type UseMotorcyclesColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useMachinesColumns = ({
+export const useMotorcyclesColumns = ({
   onEditClick,
   onRemoveClick,
-}: UseMachinesColumnsProps = {}): ColumnDef<any>[] => {
+}: UseMotorcyclesColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
-  const { fields, validationSchema } = useCreateMachine();
+  const { fields, validationSchema } = useCreateMotorcycle();
 
   return [
     {
@@ -100,7 +100,7 @@ export const useMachinesColumns = ({
             Icon={ReceiptText}
             message={t("Common.details")}
             onClick={() => {
-              router.push(`machine/${row.original.motorcycleId}`);
+              router.push(`motorcycle/${row.original.motorcycleId}`);
             }}
           />
           {onEditClick && (
@@ -120,9 +120,9 @@ export const useMachinesColumns = ({
                   environment_id: row.original.environment_id,
                 })
               }
-              mutationKey={["editMachine", row.original.id]}
-              title={t("Machines.edit")}
-              description={t("Machines.editDescription")}
+              mutationKey={["editMotorcycle", row.original.id]}
+              title={t("Motorcycles.edit")}
+              description={t("Motorcycles.editDescription")}
               validationSchema={validationSchema}
               asChild
             >

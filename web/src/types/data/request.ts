@@ -3,5 +3,5 @@ export type Request = {
   description: string;
   request_date: Date;
   requester_id: number; // FK para USER
-  machine_id: number; // FK para MACHINE
+  motorcycle_id: number; // FK para Motorcycle
 };

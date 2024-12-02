@@ -6,19 +6,18 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/list/useMachinesColumns";
-import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 import CreationModal from "@/components/creation/creation-modal";
 import Details from "@/components/details";
 import { MaintenanceBarChart } from "@/components/graphs/MaintenanceBarChart";
-import { useMachineMaintenancesColumns } from "@/constants/list/useMachineMaintenancesColumns";
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
 import { Label } from "@/components/ui/label";
+import { useMotorcycleMaintenancesColumns } from "@/constants/list/useMotorcycleMaintenancesColumns";
+import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 
-export default function MachineDetails({
+export default function MotorcycleDetails({
   params,
 }: {
-  params: { machine_id: string };
+  params: { motorcycle_id: string };
 }) {
   const t = useTranslations();
 
@@ -41,10 +40,10 @@ export default function MachineDetails({
         "pt-BR"
       ),
       status: faker.number.int({ min: 0, max: 1 }),
-      machine_id: faker.number.int({ min: 0, max: 50 }),
+      motorcycle_id: faker.number.int({ min: 0, max: 50 }),
       team_id: faker.number.int({ min: 0, max: 50 }),
       responsible_id: faker.number.int({ min: 0, max: 50 }),
-      machine: faker.lorem.words(2),
+      motorcycle: faker.lorem.words(2),
       team: faker.lorem.word(),
       responsible: faker.person.firstName(),
     }));
@@ -52,7 +51,7 @@ export default function MachineDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.machine_id,
+    id: params.motorcycle_id,
     name: faker.lorem.words(2),
     type: faker.lorem.word(),
     model: faker.lorem.word(),
@@ -65,27 +64,27 @@ export default function MachineDetails({
   const maintenances_data = generateFakeData(5);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useMachineMaintenancesColumns({
+  const columns: ColumnDef<any>[] = useMotorcycleMaintenancesColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreateMachine();
+  const { fields, validationSchema } = useCreateMotorcycle();
 
   const options = [
     {
       dataName: "name",
-      label: "Nome da máquina",
+      label: "Nome da motocicleta",
       canCopy: false,
     },
     {
       dataName: "type",
-      label: "Tipo da máquina",
+      label: "Tipo da motocicleta",
       canCopy: false,
     },
     {
       dataName: "model",
-      label: "Modelo da máquina",
+      label: "Modelo da motocicleta",
       canCopy: false,
     },
     {
@@ -107,7 +106,7 @@ export default function MachineDetails({
 
   return (
     <div>
-      <Header title={t("Machines.detailsTitle")} goBack />
+      <Header title={t("Motorcycles.detailsTitle")} goBack />
       <div className="flex w-full items-center justify-end"></div>
       <Details data={data} options={options} />
       <div className="flex flex-col  w-full mt-10 sm:mt-0">

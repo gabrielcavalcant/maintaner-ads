@@ -4,8 +4,8 @@ export type Maintenance = {
   description: string;
   maintenance_date: Date;
   status: number;
-  machine_id: number; // FK para MACHINE
-  machine: string;
+  motorcycle_id: number; // FK para Motorcycle
+  motorcycle: string;
   team: string;
   team_id: number; // FK para TEAM
   responsible_id: number; // FK para USER

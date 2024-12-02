@@ -96,10 +96,10 @@ export default function Dashboard() {
         "pt-BR"
       ),
       status: faker.number.int({ min: 0, max: 1 }),
-      machine_id: faker.number.int({ min: 0, max: 50 }),
+      motorcycle_id: faker.number.int({ min: 0, max: 50 }),
       team_id: faker.number.int({ min: 0, max: 50 }),
       responsible_id: faker.number.int({ min: 0, max: 50 }),
-      machine: faker.lorem.words(2),
+      motorcycle: faker.lorem.words(2),
       team: faker.lorem.word(),
       responsible: faker.person.firstName(),
     }));

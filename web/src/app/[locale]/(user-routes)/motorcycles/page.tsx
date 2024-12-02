@@ -6,12 +6,12 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 import CreationModal from "@/components/creation/creation-modal";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAxios } from "@/helper/hooks/useAxios";
-import { useMachinesColumns } from "@/constants/list/useMachinesColumns";
 import toast from "react-hot-toast";
+import { useMotorcyclesColumns } from "@/constants/list/useMotorcyclesColumns";
+import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 
 
 export default function Equipments() {
@@ -62,16 +62,16 @@ export default function Equipments() {
 
   const t = useTranslations();
 
-  const { fields, validationSchema } = useCreateMachine();
+  const { fields, validationSchema } = useCreateMotorcycle();
 
-  const columns = useMachinesColumns({
+  const columns = useMotorcyclesColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
   return (
     <div>
-      <Header title={t("Machines.title")} />
+      <Header title={t("Motorcycles.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
           onSubmit={(formValues) => {
@@ -79,12 +79,12 @@ export default function Equipments() {
             return { success: mutateResponse?.status === 200 };
           }}
           fields={fields}
-          title={t("Machines.createTitle")}
-          description={t("Machines.createDescription")}
+          title={t("Motorcycles.createTitle")}
+          description={t("Motorcycles.createDescription")}
           validationSchema={validationSchema}
           asChild
         >
-          <Button>{t("Machines.new")}</Button>
+          <Button>{t("Motorcycles.new")}</Button>
         </CreationModal>
       </div>
       <DataTable

@@ -54,9 +54,9 @@ export default function NavbarContent() {
         href: "/environments",
       },
       {
-        title: t("Navbar.machines"),
+        title: t("Navbar.motorcycles"),
         Icon: PiWashingMachineFill,
-        href: "/machines",
+        href: "/motorcycles",
       },
       {
         title: t("Navbar.parts"),

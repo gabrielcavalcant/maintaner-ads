@@ -11,15 +11,15 @@ import { Card } from "@/components/ui/card";
 import { ReceiptText } from "lucide-react";
 import { useRouter } from "@/navigation";
 
-type useMachineMaintenancesColumnsProps = {
+type useMotorcycleMaintenancesColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useMachineMaintenancesColumns = ({
+export const useMotorcycleMaintenancesColumns = ({
   onEditClick,
   onRemoveClick,
-}: useMachineMaintenancesColumnsProps = {}): ColumnDef<any>[] => {
+}: useMotorcycleMaintenancesColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
 
@@ -130,7 +130,7 @@ export const useMachineMaintenancesColumns = ({
                   description: row.original.description,
                   maintenance_date: row.original.maintenance_date,
                   status: row.original.status,
-                  machine_id: row.original.machine_id,
+                  motorcycle_id: row.original.motorcycle_id,
                   team_id: row.original.team_id,
                   responsible_id: row.original.responsible_id,
                 })

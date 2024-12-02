@@ -1,26 +1,24 @@
 ```mermaid
 erDiagram
     ENVIRONMENT {
-        int id PK
+        int CustomerId PK
         string name
-        string location
-        int responsible_id FK
+        string Cpf
     }
-    MACHINE {
+    MOTORCYCLE {
         int id PK
-        string name
-        string type
-        string model
-        date manufacture_date
-        string serial_number
-        int environment_id FK
+        string Name
+        number Type
+        string Plate
+        date YearManufacture
+        int CustomerId FK
     }
     REQUEST {
         int id PK
         string description
         date request_date
         int requester_id FK
-        int machine_id FK
+        int motorcycle_id FK
     }
     MAINTENANCE {
         int id PK
@@ -28,7 +26,7 @@ erDiagram
         string description
         date maintenance_date
         string status
-        int machine_id FK
+        int motorcycle_id FK
         int team_id FK
         int responsible_id FK
         int request_id FK
@@ -83,8 +81,8 @@ erDiagram
         int permission_id FK
     }
 
-    ENVIRONMENT ||--o{ MACHINE : houses
-    MACHINE ||--o{ MAINTENANCE : maintains
+    ENVIRONMENT ||--o{ MOTORCYCLE : houses
+    MOTORCYCLE ||--o{ MAINTENANCE : maintains
     MAINTENANCE ||--o{ MAINTENANCE_PART : includes
     PART ||--o{ MAINTENANCE_PART : used_in
     MAINTENANCE ||--o| TEAM : performed_by

@@ -61,7 +61,7 @@ export function ScatterPlotCard() {
       <CardHeader className="">
         <CardTitle>Correlação entre Data de Fabricação e Manutenções</CardTitle>
         <CardDescription>
-          Visualização da relação entre a data de fabricação das máquinas e a
+          Visualização da relação entre a data de fabricação das motocicletas e a
           frequência de manutenções.
         </CardDescription>
       </CardHeader>

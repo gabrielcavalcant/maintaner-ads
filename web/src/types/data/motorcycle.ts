@@ -1,4 +1,4 @@
-export type Machine = {
+export type Motorcycle = {
   id: number;
   name: string;
   type: string;

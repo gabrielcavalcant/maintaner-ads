@@ -109,7 +109,7 @@ export const useDashboardColumns = ({
                   description: row.original.description,
                   maintenance_date: row.original.maintenance_date,
                   status: row.original.status,
-                  machine_id: row.original.machine_id,
+                  motorcycle_id: row.original.motorcycle_id,
                   team_id: row.original.team_id,
                   responsible_id: row.original.responsible_id,
                 })
