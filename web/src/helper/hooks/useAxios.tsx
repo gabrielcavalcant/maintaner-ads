@@ -38,12 +38,15 @@ export const useAxios = (): AxiosInstance => {
       const decryptedSession = decryptData(encryptedSession);
       const parsedSession: AuthToken = JSON.parse(decryptedSession);
       const decodedToken = jwtDecode(parsedSession.accessToken);
+      console.log('token decodificado: ',decodedToken);
 
       if (new Date() > new Date(Number(decodedToken.exp) * 1000)) {
         try {
           const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}auth/refresh`,
-            {},
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/refresh`,
+            {
+              refreshToken: parsedSession.refreshToken,
+            },
             {
               headers: {
                 Authorization: `Bearer ${parsedSession.refreshToken}`,

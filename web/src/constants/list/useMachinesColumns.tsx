@@ -20,10 +20,8 @@ export const useMachinesColumns = ({
   onRemoveClick,
 }: UseMachinesColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
-
-  const { fields, validationSchema } = useCreateMachine();
-
   const router = useRouter();
+  const { fields, validationSchema } = useCreateMachine();
 
   return [
     {
@@ -46,55 +44,53 @@ export const useMachinesColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.model")} />
+        <DataTableColumnHeader column={column} title={t("Table.plate")} />
       ),
-      accessorKey: "model",
+      accessorKey: "plate",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.model}</div>
+        <div className="flex gap-1 items-center">{row.original.plate}</div>
       ),
     },
     {
       header: ({ column }) => (
         <DataTableColumnHeader
           column={column}
-          title={t("Table.manufacture_date")}
+          title={t("Table.yearManufacture")}
         />
       ),
-      accessorKey: "manufacture_date",
+      accessorKey: "yearManufacture",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {new Date(row.original.manufacture_date).toLocaleDateString()}
-        </div>
+        <div className="flex gap-1 items-center">{row.original.yearManufacture}</div>
       ),
     },
     {
       header: ({ column }) => (
         <DataTableColumnHeader
           column={column}
-          title={t("Table.serial_number")}
+          title={t("Table.customerCpf")}
         />
       ),
-      accessorKey: "serial_number",
+      accessorKey: "customerCpf",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {row.original.serial_number}
+          {row.original.customerCpf}
         </div>
       ),
     },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.environment_id")}
-        />
-      ),
-      accessorKey: "environment_id",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {row.original.environment_id}
-        </div>
-      ),
-    },
+    // {
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader
+    //       column={column}
+    //       title={t("Table.environment_id")}
+    //     />
+    //   ),
+    //   accessorKey: "environment_id",
+    //   cell: ({ row }) => (
+    //     <div className="flex gap-1 items-center">
+    //       {row.original.environment_id}
+    //     </div>
+    //   ),
+    // },
     {
       id: "actions",
       header: t("Table.actions"),
@@ -104,7 +100,7 @@ export const useMachinesColumns = ({
             Icon={ReceiptText}
             message={t("Common.details")}
             onClick={() => {
-              router.push(`machines/${row.original.id}`);
+              router.push(`machine/${row.original.motorcycleId}`);
             }}
           />
           {onEditClick && (
@@ -118,8 +114,7 @@ export const useMachinesColumns = ({
                   id: row.original.id,
                   name: row.original.name,
                   type: row.original.type,
-                  model: row.original.model,
-                  manufacture_date: row.original.manufacture_date,
+                  yearManufacture: row.original.yearManufacture,
                   serial_number: row.original.serial_number,
                   environment: row.original.environment,
                   environment_id: row.original.environment_id,

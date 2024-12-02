@@ -2,8 +2,7 @@ export type Machine = {
   id: number;
   name: string;
   type: string;
-  model: string;
-  manufacture_date: Date;
-  serial_number: string;
+  plate: string;
+  yearManufacture: Date;
   environment_id: number; // FK para ENVIRONMENT
 };

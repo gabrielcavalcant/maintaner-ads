@@ -6,12 +6,49 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import { useMachinesColumns } from "@/constants/list/useMachinesColumns";
 import { useCreateMachine } from "@/constants/creation/useCreateMachine";
 import CreationModal from "@/components/creation/creation-modal";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useAxios } from "@/helper/hooks/useAxios";
+import { useMachinesColumns } from "@/constants/list/useMachinesColumns";
+import toast from "react-hot-toast";
+
 
 export default function Equipments() {
-  const t = useTranslations();
+  const api = useAxios();
+  const { data, refetch } = useQuery({
+    queryKey: ["getMotorcycles"],
+    queryFn: async () => {
+      const { data: response } = await api.get("/Motorcycle");
+      return response;
+    },
+  });
+
+  const {
+    mutate,
+    error,
+    data: mutateResponse,
+  } = useMutation({
+    mutationKey: ["createMotorcycle"],
+    mutationFn: async (body: {
+      name: string;
+      type: number;
+      plate: string;
+      yearManufacture: number;
+      customerCpf: string;
+    }) => {
+      const response = await api.post("/Motorcycle", body);
+
+      if (response.status === 201) {
+        refetch();
+        toast.success(`Motocicleta criada com sucesso!`);
+      }
+      else {
+        toast.error(`Não foi possível registrar a Motocicleta!`);
+      }
+      return response;
+    },
+  });
 
   const handleEditClick = (id: number) => {
     console.log("Edit clicked for id:", id);
@@ -23,34 +60,14 @@ export default function Equipments() {
     // Adicione a lógica de remoção aqui
   };
 
-  // Função para gerar dados fictícios
-  const generateFakeData = (num: number) => {
-    return Array.from({ length: num }, (_, index) => ({
-      id: index + 1,
-      name: faker.lorem.words(2),
-      type: faker.lorem.word(),
-      model: faker.lorem.word(),
-      manufacture_date: new Date(faker.date.recent()).toLocaleDateString(
-        "pt-BR"
-      ),
-      serial_number: faker.number
-        .int({ min: 123424, max: 23412343 })
-        .toString(),
-      environment: faker.location.street(),
-      environment_id: faker.number.int({ min: 1, max: 50 }),
-    }));
-  };
+  const t = useTranslations();
 
-  // Gera 50 itens fictícios
-  const data = generateFakeData(50);
+  const { fields, validationSchema } = useCreateMachine();
 
-  // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useMachinesColumns({
+  const columns = useMachinesColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
-
-  const { fields, validationSchema } = useCreateMachine();
 
   return (
     <div>
@@ -58,22 +75,24 @@ export default function Equipments() {
       <div className="flex w-full items-center justify-end">
         <CreationModal
           onSubmit={(formValues) => {
-            console.log(formValues);
+            mutate(formValues as any);
+            return { success: mutateResponse?.status === 200 };
           }}
           fields={fields}
-          title={t("Machines.createTest")}
+          title={t("Machines.createTitle")}
           description={t("Machines.createDescription")}
           validationSchema={validationSchema}
+          asChild
         >
           <Button>{t("Machines.new")}</Button>
         </CreationModal>
       </div>
       <DataTable
-        data={data}
+        data={data?.motorcycles || []}
         columns={columns}
         pageCount={0}
         isFetching={false}
-        rowCount={data.length}
+        rowCount={data?.length}
         maxItems={30}
         height="63vh"
       />

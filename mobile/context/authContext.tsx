@@ -89,7 +89,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   useEffect(() => {
-    autoLogin({ email: 'jonathanbergamo16@gmail.com', password: '123' })
+    autoLogin({ email: 'admin@gmail.com', password: '123' })
   }, [])
 
   const signIn = async (values: {
