@@ -23,7 +23,7 @@ export const useCreateTeam = (): CreationFields => {
   const t = useTranslations();
 
   // Defina o esquema de validação com zod
-  const customerSchema = z.object({
+  const teamSchema = z.object({
     name: z.string().min(1, t("Zod.teamName")),
     members: z
       .array(
@@ -102,6 +102,6 @@ export const useCreateTeam = (): CreationFields => {
       imageOptional: true,
       maxImages: 1,
     },
-    validationSchema: customerSchema,
+    validationSchema: teamSchema,
   };
 };

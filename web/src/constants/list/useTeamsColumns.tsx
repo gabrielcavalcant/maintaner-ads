@@ -31,7 +31,6 @@ export const useTeamColumns = ({
 }: UseTeamColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
-
   const { fields, validationSchema } = useCreateTeam();
 
   return [
