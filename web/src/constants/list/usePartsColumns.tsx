@@ -37,11 +37,11 @@ export const usePartColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.code")} />
+        <DataTableColumnHeader column={column} title={t("Table.serialCode")} />
       ),
-      accessorKey: "code",
+      accessorKey: "serialCode",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.code}</div>
+        <div className="flex gap-1 items-center">{row.original.serialCode}</div>
       ),
     },
     {
@@ -55,49 +55,58 @@ export const usePartColumns = ({
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.image")} />
+        <DataTableColumnHeader column={column} title={t("Table.description")} />
       ),
-      accessorKey: "base64",
+      accessorKey: "description",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          <Avatar>
-            <AvatarImage
-              src={`data:image/png;base64,${row.original.base64}`}
-              alt={row.original.name}
-              width={50}
-              height={50}
-              className="object-cover"
-            />
-            <AvatarFallback>?</AvatarFallback>
-          </Avatar>
-        </div>
+        <div className="flex gap-1 items-center">{row.original.description}</div>
       ),
     },
+    // {
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader column={column} title={t("Table.image")} />
+    //   ),
+    //   accessorKey: "base64",
+    //   cell: ({ row }) => (
+    //     <div className="flex gap-1 items-center">
+    //       <Avatar>
+    //         <AvatarImage
+    //           src={`data:image/png;base64,${row.original.base64}`}
+    //           alt={row.original.name}
+    //           width={50}
+    //           height={50}
+    //           className="object-cover"
+    //         />
+    //         <AvatarFallback>?</AvatarFallback>
+    //       </Avatar>
+    //     </div>
+    //   ),
+    // },
     {
       header: ({ column }) => (
         <DataTableColumnHeader
           column={column}
-          title={t("Table.stock_quantity")}
+          title={t("Table.stockQuantity")}
         />
       ),
-      accessorKey: "stock_quantity",
+      accessorKey: "stockQuantity",
       cell: ({ row }) => (
         <div className="flex gap-1 items-center">
-          {row.original.stock_quantity}
+          {row.original.stockQuantity}
         </div>
       ),
     },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.unit_price")} />
-      ),
-      accessorKey: "unit_price",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {formatToBRL(row.original.unit_price)}
-        </div>
-      ),
-    },
+    // {
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader column={column} title={t("Table.unit_price")} />
+    //   ),
+    //   accessorKey: "unit_price",
+    //   cell: ({ row }) => (
+    //     <div className="flex gap-1 items-center">
+    //       {formatToBRL(row.original.unit_price)}
+    //     </div>
+    //   ),
+    // },
     {
       id: "actions",
       header: t("Table.actions"),

@@ -9,9 +9,45 @@ import { usePartColumns } from "@/constants/list/usePartsColumns";
 import { useCreatePart } from "@/constants/creation/useCreatePart";
 import { Button } from "@/components/ui/button";
 import CreationModal from "@/components/creation/creation-modal";
+import { useAxios } from "@/helper/hooks/useAxios";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export default function Parts() {
-  const t = useTranslations();
+  const api = useAxios();
+  const { data, refetch } = useQuery({
+    queryKey: ["getCustomers"],
+    queryFn: async () => {
+      const { data: response } = await api.get("/Item");
+      return response;
+    },
+  });
+
+  const {
+    mutate,
+    error,
+    data: mutateResponse,
+  } = useMutation({
+    mutationKey: ["createItem"],
+    mutationFn: async (body: {
+      name: string;
+      serialCode: string;
+      supplier: string;
+      description: string;
+      stockQuantity: number;
+    }) => {
+      const response = await api.post("/Item", body);
+
+      if (response.status === 201) {
+        refetch();
+        toast.success(`Item criado com sucesso!`);
+      }
+      else {
+        toast.error(`Não foi possível registrar o Item!`);
+      }
+      return response;
+    },
+  });
 
   const handleEditClick = (id: number) => {
     console.log("Edit clicked for id:", id);
@@ -23,29 +59,30 @@ export default function Parts() {
     // Adicione a lógica de remoção aqui
   };
 
-  // Função para gerar dados fictícios
-  const generateFakeData = (num: number) => {
-    return Array.from({ length: num }, (_, index) => ({
-      id: index + 1,
-      name: faker.lorem.words(2),
-      code: faker.number.int({ min: 0, max: 4000 }),
-      supplier: faker.company.name(),
-      base64: faker.image.avatar(),
-      stock_quantity: faker.number.int({ min: 0, max: 200 }),
-      unit_price: faker.number.float({ min: 9.99, max: 5000 }),
-    }));
-  };
+  // // Função para gerar dados fictícios
+  // const generateFakeData = (num: number) => {
+  //   return Array.from({ length: num }, (_, index) => ({
+  //     id: index + 1,
+  //     name: faker.lorem.words(2),
+  //     code: faker.number.int({ min: 0, max: 4000 }),
+  //     supplier: faker.company.name(),
+  //     base64: faker.image.avatar(),
+  //     stock_quantity: faker.number.int({ min: 0, max: 200 }),
+  //     unit_price: faker.number.float({ min: 9.99, max: 5000 }),
+  //   }));
+  // };
 
-  // Gera 50 itens fictícios
-  const data = generateFakeData(50);
+  // // Gera 50 itens fictícios
+  // const data = generateFakeData(50);
+  const t = useTranslations();
 
-  // Use o hook com as funções definidas
+  const { fields, validationSchema } = useCreatePart();
+
   const columns: ColumnDef<any>[] = usePartColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
 
-  const { fields, validationSchema } = useCreatePart();
 
   return (
     <div>
@@ -53,7 +90,8 @@ export default function Parts() {
       <div className="flex w-full items-center justify-end">
         <CreationModal
           onSubmit={(formValues) => {
-            console.log(formValues);
+            mutate(formValues as any);
+            return { success: mutateResponse?.status === 200 };
           }}
           fields={fields}
           title={t("Parts.createTitle")}
@@ -64,11 +102,11 @@ export default function Parts() {
         </CreationModal>
       </div>
       <DataTable
-        data={data}
+        data={data?.items || []}
         columns={columns}
         pageCount={0}
         isFetching={false}
-        rowCount={data.length}
+        rowCount={data?.length}
         maxItems={30}
         height="63vh"
       />
