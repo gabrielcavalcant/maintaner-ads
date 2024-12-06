@@ -10,7 +10,7 @@ import { useMaintenanceColumns } from "@/constants/list/useMaintenanceColumns ";
 import CreationModal from "@/components/creation/creation-modal";
 import { Button } from "@/components/ui/button";
 
-export default function Parts() {
+export default function Items() {
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {

@@ -7,23 +7,23 @@ import TooltipButton from "@/components/tooltip-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
-import { useCreatePart } from "../creation/useCreatePart";
+import { useCreateItem } from "../creation/useCreateItem";
 import { formatToBRL } from "@/lib/formatters";
 import { ReceiptText } from "lucide-react";
 import { useRouter } from "@/navigation";
 
-type UsePartColumnsProps = {
+type UseItemColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const usePartColumns = ({
+export const useItemColumns = ({
   onEditClick,
   onRemoveClick,
-}: UsePartColumnsProps = {}): ColumnDef<any>[] => {
+}: UseItemColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
-  const { fields, validationSchema } = useCreatePart();
+  const { fields, validationSchema } = useCreateItem();
 
   return [
     {
@@ -116,7 +116,7 @@ export const usePartColumns = ({
             Icon={ReceiptText}
             message={t("Common.details")}
             onClick={() => {
-              router.push(`parts/${row.original.id}`);
+              router.push(`items/${row.original.id}`);
             }}
           />
           {onEditClick && (
@@ -129,14 +129,14 @@ export const usePartColumns = ({
                 simulatedResponseAPI({
                   id: row.original.id,
                   name: row.original.name,
-                  code: row.original.code,
+                  serialCode: row.original.code,
                   supplier: row.original.supplier,
                   base64: row.original.base64,
                   stock_quantity: row.original.stock_quantity,
                   unit_price: row.original.unit_price,
                 })
               }
-              mutationKey={["editPart", row.original.id]}
+              mutationKey={["editItem", row.original.id]}
               title={t("Mainteances.edit")}
               description={t("Mainteances.editDescription")}
               validationSchema={validationSchema}

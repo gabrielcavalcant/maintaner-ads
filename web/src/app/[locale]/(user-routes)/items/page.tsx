@@ -5,15 +5,16 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { usePartColumns } from "@/constants/list/usePartsColumns";
-import { useCreatePart } from "@/constants/creation/useCreatePart";
+import { useCreateItem } from "@/constants/creation/useCreateItem";
+import { useItemColumns } from "@/constants/list/useItemsColumns";
 import { Button } from "@/components/ui/button";
 import CreationModal from "@/components/creation/creation-modal";
 import { useAxios } from "@/helper/hooks/useAxios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export default function Parts() {
+
+export default function Items() {
   const api = useAxios();
   const { data, refetch } = useQuery({
     queryKey: ["getCustomers"],
@@ -76,9 +77,9 @@ export default function Parts() {
   // const data = generateFakeData(50);
   const t = useTranslations();
 
-  const { fields, validationSchema } = useCreatePart();
+  const { fields, validationSchema } = useCreateItem();
 
-  const columns: ColumnDef<any>[] = usePartColumns({
+  const columns: ColumnDef<any>[] = useItemColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
@@ -86,7 +87,7 @@ export default function Parts() {
 
   return (
     <div>
-      <Header title={t("Parts.title")} />
+      <Header title={t("Items.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
           onSubmit={(formValues) => {
@@ -94,11 +95,11 @@ export default function Parts() {
             return { success: mutateResponse?.status === 200 };
           }}
           fields={fields}
-          title={t("Parts.createTitle")}
-          description={t("Parts.createDescription")}
+          title={t("Items.createTitle")}
+          description={t("Items.createDescription")}
           validationSchema={validationSchema}
         >
-          <Button>{t("Parts.new")}</Button>
+          <Button>{t("Items.new")}</Button>
         </CreationModal>
       </div>
       <DataTable

@@ -59,9 +59,9 @@ export default function NavbarContent() {
         href: "/motorcycles",
       },
       {
-        title: t("Navbar.parts"),
+        title: t("Navbar.items"),
         Icon: SiLitiengine,
-        href: "/parts",
+        href: "/items",
       },
       {
         title: t("Navbar.maintenances"),

@@ -18,7 +18,7 @@ const recentMaintenances = [
   },
 ]
 
-const stockParts = [
+const stockItems = [
   { id: '1', name: 'Filtro de óleo', quantity: 10 },
   { id: '2', name: 'Pneu', quantity: 4 },
 ]
@@ -55,21 +55,21 @@ const Reports = () => {
       ))}
 
       <Text style={[styles.title, { color: colors.foreground, marginTop: 16 }]}>
-        Estoque de Peças
+        Estoque de Itens
       </Text>
-      {stockParts.map((part) => (
+      {stockitems.map((item) => (
         <View
-          key={part.id}
+          key={item.id}
           style={[
             styles.card,
             { borderColor: colors.border, backgroundColor: colors.card },
           ]}
         >
           <Text style={[styles.text, { color: colors.foreground }]}>
-            Peça: {part.name}
+            Item: {item.name}
           </Text>
           <Text style={[styles.text, { color: colors.foreground }]}>
-            Quantidade: {part.quantity}
+            Quantidade: {item.quantity}
           </Text>
         </View>
       ))}

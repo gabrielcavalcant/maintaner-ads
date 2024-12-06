@@ -15,9 +15,9 @@ export type Maintenance = {
   accepted_by: string; // FK para USER
 };
 
-export type MaintenancePart = {
+export type MaintenanceItem = {
   id: number;
   maintenance_id: number; // FK para MAINTENANCE
-  part_id: number; // FK para PART
+  item_id: number; // FK para ITEM
   quantity: number;
 };

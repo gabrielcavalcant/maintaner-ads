@@ -32,17 +32,18 @@ erDiagram
         int request_id FK
         int accepted_by FK
     }
-    MAINTENANCE_PART {
+    MAINTENANCE_ITEM {
         int id PK
         int maintenance_id FK
-        int part_id FK
+        int item_id FK
         int quantity
     }
-    PART {
+    ITEM {
         int id PK
         string name
-        string code
+        string serialCode
         string supplier
+        string description
         string base64
         int stock_quantity
         float unit_price
@@ -83,8 +84,8 @@ erDiagram
 
     ENVIRONMENT ||--o{ MOTORCYCLE : houses
     MOTORCYCLE ||--o{ MAINTENANCE : maintains
-    MAINTENANCE ||--o{ MAINTENANCE_PART : includes
-    PART ||--o{ MAINTENANCE_PART : used_in
+    MAINTENANCE ||--o{ MAINTENANCE_ITEM : includes
+    ITEM ||--o{ MAINTENANCE_ITEM : used_in
     MAINTENANCE ||--o| TEAM : performed_by
     TEAM ||--o{ TEAM_MEMBER : includes
     USER ||--o{ REQUEST : opens

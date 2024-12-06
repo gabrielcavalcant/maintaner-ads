@@ -54,8 +54,8 @@ export default function Layout() {
           />
 
           <Stack.Screen
-            name='register-parts'
-            options={{ title: 'Registrar Peças' }}
+            name='register-items'
+            options={{ title: 'Registrar Itens' }}
           />
           <Stack.Screen name='teams' options={{ title: 'Equipes' }} />
         </Stack>

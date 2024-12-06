@@ -60,11 +60,11 @@ export default function DotDropdown({ onSignOut }: DotDropdownProps) {
                   {themes.map((actual) => {
                     function capitalizeTheme(theme: string): string {
                       // Separar o nome e sobrenome e capitalizar
-                      const parts = theme.split("-");
-                      const capitalizedParts = parts.map((part) =>
-                        capitalizeFirstLetter(part)
+                      const items = theme.split("-");
+                      const capitalizedItems = items.map((item) =>
+                        capitalizeFirstLetter(item)
                       );
-                      return capitalizedParts.join(" ");
+                      return capitalizedItems.join(" ");
                     }
                     return (
                       <DropdownMenuItem

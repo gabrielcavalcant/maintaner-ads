@@ -4,16 +4,16 @@ import { CreationFields } from "@/types";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
-export const useCreatePart = (): CreationFields => {
+export const useCreateItem = (): CreationFields => {
   const t = useTranslations();
 
-  const partSchema = z.object({
-    name: z.string().min(1, t("Zod.partName")),
+  const itemSchema = z.object({
+    name: z.string().min(1, t("Zod.itemName")),
     serialCode: z.string().min(1, t("Zod.serialCode")).max(15,t("Zod.serialCode")),
     supplier: z.string().min(1, t("Zod.supplier")).max(100,t("Zod.supplier")),
     // base64: z.string().optional(),
     stockQuantity: z.number().positive(t("Zod.stockQuantity")),
-    description: z.string().min(1, t("Zod.partDescription")).max(250,t("Zod.partDescription")),
+    description: z.string().min(1, t("Zod.itemDescription")).max(250,t("Zod.itemDescription")),
     // unit_price: z.preprocess(
     //   parseCurrency,
     //   z.number().positive(t("Zod.unit_price"))
@@ -86,7 +86,7 @@ export const useCreatePart = (): CreationFields => {
       //   maskFn: formatToBRL,
       // },
       // {
-      //   label: t("Table.partImage"),
+      //   label: t("Table.itemImage"),
       //   dbName: "image",
       //   required: true,
       //   type: "array",
@@ -100,6 +100,6 @@ export const useCreatePart = (): CreationFields => {
       imageOptional: true,
       maxImages: 1,
     },
-    validationSchema: partSchema,
+    validationSchema: itemSchema,
   };
 };

@@ -113,18 +113,18 @@
     "maintenances": "Maintenances",
     "management": "Management",
     "myProfile": "My Profile",
-    "parts": "Parts",
+    "items": "Items",
     "roles": "Roles",
     "settings": "Settings",
     "team": "Teams",
     "themes": "Themes",
     "user": "Users"
   },
-  "Parts": {
+  "Items": {
     "createDescription": "Fill out the form below to register a new team.",
-    "createTitle": "Register Part",
-    "new": "Register part",
-    "title": "Parts"
+    "createTitle": "Register item",
+    "new": "Register item",
+    "title": "items"
   },
   "Roles": {
     "createDescription": "Fill out the form below to create a new role.",
@@ -137,7 +137,7 @@
     "telephone":"Telephone",
     "actions": "Actions",
     "base64": "Image",
-    "code": "Serial Code",
+    "serialCode": "Serial Code",
     "companyName": "Company Name",
     "company_name": "Company Name",
     "createdAt": "Creation Date",
@@ -164,8 +164,8 @@
     "members": "Members",
     "model": "Model",
     "name": "Name",
-    "partImage": "Image of the part",
-    "part_id": "Part",
+    "itemImage": "Image of the item",
+    "item_id": "item",
     "password": "Password",
     "permissions": "Permissions",
     "quantity": "Amount",
@@ -235,7 +235,7 @@
     "maintenanceDate": "Maintenance Date is required.",
     "maintenanceType": "Type of maintenance is required.",
     "members": "At least one member is required.",
-    "partName": "Part name is required.",
+    "itemName": "Item name is required.",
     "password": "You must provide a password.",
     "permission": "At least one permit is required.",
     "responsibleEmail": "Email of the person responsible is necessary.",

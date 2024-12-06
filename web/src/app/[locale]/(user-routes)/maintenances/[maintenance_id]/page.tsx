@@ -7,7 +7,7 @@ import React, { useMemo } from "react";
 import { faker } from "@faker-js/faker";
 
 import Details from "@/components/details";
-import { useMaintenancePartColumns } from "@/constants/list/useMaintenancePartColumns";
+import { useMaintenanceItemColumns } from "@/constants/list/useMaintenanceItemsColumns";
 import {
   Card,
   CardContent,
@@ -119,10 +119,10 @@ export default function MaintenanceDetails({
     responsible: faker.person.firstName(),
   };
 
-  const maintenances_parts_data = generateFakeData(15);
+  const maintenances_items_data = generateFakeData(15);
 
   // Use o hook com as funções definidas
-  const columns: ColumnDef<any>[] = useMaintenancePartColumns({
+  const columns: ColumnDef<any>[] = useMaintenanceItemColumns({
     onEditClick: handleEditClick,
     onRemoveClick: handleRemoveClick,
   });
@@ -168,22 +168,22 @@ export default function MaintenanceDetails({
   ];
 
   const colors = useMemo(
-    () => harmonize(primaryColor, 0, -90, maintenances_parts_data.length),
-    [maintenances_parts_data.length, primaryColor]
+    () => harmonize(primaryColor, 0, -90, maintenances_items_data.length),
+    [maintenances_items_data.length, primaryColor]
   );
 
-  const chartData = maintenances_parts_data.map((part, index) => ({
-    part: part.name,
-    count: part.quantity,
+  const chartData = maintenances_items_data.map((item, index) => ({
+    item: item.name,
+    count: item.quantity,
     fill: colors[index + 1],
-    ...part,
+    ...item,
   }));
 
   const chartConfig = useMemo(() => {
     return {
-      ...maintenances_parts_data.reduce((acc: any, part, index) => {
-        acc[part.name] = {
-          label: part.name,
+      ...maintenances_items_data.reduce((acc: any, item, index) => {
+        acc[item.name] = {
+          label: item.name,
         };
         return acc;
       }, {}),
@@ -191,7 +191,7 @@ export default function MaintenanceDetails({
         label: "Quantidade",
       },
     } as ChartConfig;
-  }, [maintenances_parts_data]);
+  }, [maintenances_items_data]);
 
   return (
     <div className="pb-5">
@@ -203,9 +203,9 @@ export default function MaintenanceDetails({
         <div className="w-full">
           <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
             <CardHeader className="pb-2">
-              <CardTitle>Quantidade de peças utilizadas</CardTitle>
+              <CardTitle>Quantidade de itens utilizados</CardTitle>
               <CardDescription>
-                Exibindo a quantidade de peças utilizadas.
+                Exibindo a quantidade de itens utilizados.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-1">
@@ -216,7 +216,7 @@ export default function MaintenanceDetails({
                 <BarChart data={chartData} layout="vertical">
                   <XAxis type="number" dataKey="count" hide />
                   <YAxis
-                    dataKey="part"
+                    dataKey="item"
                     type="category"
                     tickLine={true}
                     tickMargin={4}

@@ -4,15 +4,15 @@ import { useTheme } from '../theme' // Supondo que você já tenha o useTheme im
 import Input from '@/components/ui/input'
 import Button from '@/components/ui/button'
 
-const RegisterParts = () => {
-  const [partName, setPartName] = useState('')
+const RegisterItems = () => {
+  const [itemName, setItemName] = useState('')
   const [quantityUsed, setQuantityUsed] = useState('')
 
   const theme = useTheme()
 
-  const handleRegisterPart = () => {
+  const handleRegisterItem = () => {
     console.log({
-      partName,
+      itemName,
       quantityUsed,
     })
   }
@@ -27,12 +27,12 @@ const RegisterParts = () => {
           { color: theme.colors.foreground, fontSize: theme.textSizes['3xl'] },
         ]}
       >
-        Registrar Peças e Materiais
-      </Text>
+        Registrar Item e Materiais
+      </Text>Item
       <Input
-        placeholder='Nome da peça'
-        value={partName}
-        onChangeText={setPartName}
+        placeholder='Nome do item'
+        value={itemName}
+        onChangeText={setItemName}
         placeholderTextColor={theme.colors.mutedForeground}
       />
       <Input
@@ -42,8 +42,8 @@ const RegisterParts = () => {
         placeholderTextColor={theme.colors.mutedForeground}
         keyboardType='numeric'
       />
-      <Button onPress={handleRegisterPart} size='xl'>
-        Registrar Peça
+      <Button onPress={handleRegisterItem} size='xl'>
+        Registrar Item
       </Button>
     </ScrollView>
   )
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default RegisterParts
+export default RegisterItems

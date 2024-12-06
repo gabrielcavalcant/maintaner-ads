@@ -2,7 +2,7 @@
 
 # Introdução & objetivo
 
-A empresa Mainteiner é uma indústria de grande porte que fabrica peças automotivas e possui um parque de máquinas diversificado e complexo. A manutenção preventiva e corretiva das máquinas é essencial para garantir a produtividade contínua e a segurança dos colaboradores. No entanto, o sistema atual de gerenciamento de manutenção é manual, o que gera diversos problemas, incluindo falta de organização, comunicação ineficiente e perda de tempo e produtividade.
+A empresa Mainteiner é uma indústria de grande porte que fabrica items automotivas e possui um parque de máquinas diversificado e complexo. A manutenção preventiva e corretiva das máquinas é essencial para garantir a produtividade contínua e a segurança dos colaboradores. No entanto, o sistema atual de gerenciamento de manutenção é manual, o que gera diversos problemas, incluindo falta de organização, comunicação ineficiente e perda de tempo e produtividade.
 
 # Por que implementar isto?
 
@@ -10,7 +10,7 @@ A empresa Mainteiner é uma indústria de grande porte que fabrica peças automo
 
 A motivação para desenvolver esta aplicação de Gerenciamento de Manutenção surgiu das dificuldades enfrentadas diariamente pelos gestores e equipes de manutenção da Mainteiner. A visão é criar uma solução que transforme radicalmente a maneira como a manutenção é gerenciada, otimizando processos, melhorando a comunicação e aumentando a produtividade. A nova aplicação visa:
 
-- **Centralizar as Informações:** Proporcionar uma plataforma única onde todas as informações sobre máquinas, manutenções e peças estejam acessíveis de maneira rápida e organizada.
+- **Centralizar as Informações:** Proporcionar uma plataforma única onde todas as informações sobre máquinas, manutenções e items estejam acessíveis de maneira rápida e organizada.
 - **Melhorar a Comunicação:** Facilitar a comunicação entre as equipes de manutenção e outros departamentos, garantindo que todos estejam informados sobre o progresso e as necessidades de manutenção.
 - **Aumentar a Produtividade:** Minimizar o tempo de inatividade das máquinas e reduzir os atrasos na produção, fornecendo dados precisos e em tempo real para a tomada de decisões rápidas e eficientes.
 
@@ -21,9 +21,9 @@ A motivação para desenvolver esta aplicação de Gerenciamento de Manutenção
 | Perfil de usuário             | Descrição, necessidades e interesses                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Supervisores de Manutenção    | **Descrição:** São os principais responsáveis pelo gerenciamento de manutenção dentro da empresa. <br> **Necessidades:** Necessitam de acesso total para manipular equipes, manutenções, ambientes e membros. Precisam de ferramentas para monitorar o status das manutenções e gerar relatórios detalhados. <br> **Interesses:** Melhorar a eficiência dos processos de manutenção e garantir a segurança e produtividade das operações. |
-| Gerentes de Manutenção        | **Descrição:** Responsáveis pela coordenação das equipes de manutenção e pela atribuição das tarefas. <br> **Necessidades:** Necessitam manipular equipes, atribuir manutenções e cadastrar peças. Precisam de uma visão clara das manutenções pendentes e em andamento. <br> **Interesses:** Assegurar que todas as tarefas de manutenção sejam atribuídas corretamente e que as peças necessárias estejam disponíveis.                  |
+| Gerentes de Manutenção        | **Descrição:** Responsáveis pela coordenação das equipes de manutenção e pela atribuição das tarefas. <br> **Necessidades:** Necessitam manipular equipes, atribuir manutenções e cadastrar items. Precisam de uma visão clara das manutenções pendentes e em andamento. <br> **Interesses:** Assegurar que todas as tarefas de manutenção sejam atribuídas corretamente e que as itens necessárias estejam disponíveis.                  |
 | Líderes de Manutenção         | **Descrição:** Líderes de equipe que supervisionam a execução das tarefas de manutenção. <br> **Necessidades:** Precisam cadastrar manutenções e concluir as tarefas atribuídas a suas equipes. Necessitam de uma interface que permita a fácil comunicação com os membros do time. <br> **Interesses:** Garantir que as tarefas sejam concluídas dentro dos prazos e com a qualidade esperada.                                           |
-| Membros do Time de Manutenção | **Descrição:** Técnicos e operários que executam as manutenções. <br> **Necessidades:** Precisam cadastrar peças, concluir manutenções (quando responsáveis) e reportar o status das tarefas. Necessitam de uma interface intuitiva e de fácil acesso para registrar seu trabalho. <br> **Interesses:** Realizar as tarefas de manutenção de maneira eficiente e com os recursos adequados.                                               |
+| Membros do Time de Manutenção | **Descrição:** Técnicos e operários que executam as manutenções. <br> **Necessidades:** Precisam cadastrar itens, concluir manutenções (quando responsáveis) e reportar o status das tarefas. Necessitam de uma interface intuitiva e de fácil acesso para registrar seu trabalho. <br> **Interesses:** Realizar as tarefas de manutenção de maneira eficiente e com os recursos adequados.                                               |
 | Gerente de Produção	 | **Descrição:** Responsável por garantir que a produção não seja interrompida por falhas de manutenção. <br> **Necessidades:** Necessita de informações atualizadas sobre o status das manutenções, capacidade de solicitar manutenções emergenciais e monitorar o impacto das manutenções na produção.  <br> **Interesses:** Minimizar o tempo de inatividade das máquinas, melhorar a comunicação com a equipe de manutenção e ajustar os planos de produção conforme necessário.                                              |
 
 # Personas
@@ -45,12 +45,12 @@ A motivação para desenvolver esta aplicação de Gerenciamento de Manutenção
 - **Ocupação:** Gerente de Manutenção
 - **Objetivos:**
   - Assegurar que todas as tarefas de manutenção sejam atribuídas corretamente.
-  - Garantir que as peças necessárias estejam disponíveis.
+  - Garantir que as itens necessárias estejam disponíveis.
   - Melhorar a comunicação e a eficiência das equipes de manutenção.
 - **Frustrações:**
   - Visão pouco clara das manutenções pendentes e em andamento.
   - Dificuldade em coordenar e alocar as equipes de manutenção.
-  - Falta de uma interface eficiente para cadastrar e monitorar peças de reposição.
+  - Falta de uma interface eficiente para cadastrar e monitorar itens de reposição.
 
 ### Persona 3: Marcos Santos
 
@@ -73,7 +73,7 @@ A motivação para desenvolver esta aplicação de Gerenciamento de Manutenção
   - Minimizar o tempo de inatividade das máquinas.
 - **Frustrações:**
   - Falta de uma interface intuitiva e de fácil acesso para registrar seu trabalho.
-  - Dificuldade em cadastrar peças e concluir manutenções.
+  - Dificuldade em cadastrar itens e concluir manutenções.
   - Problemas em reportar o status das tarefas de forma simples e rápida.
 
 
@@ -118,21 +118,21 @@ O sistema deve permitir o cadastro, atualização e acompanhamento das solicita�
 - Permitir a atualização do status da manutenção (pendente, em andamento, concluída, cancelada).
 - Adicionar comentários e arquivos relacionados à manutenção.
 - Atribuir equipes de manutenção às solicitações.
-- Registrar as peças e materiais utilizados durante a manutenção.
+- Registrar as itens e materiais utilizados durante a manutenção.
 - Gerar relatórios de manutenção por máquina, período e tipo de manutenção.
 
 **Prioridade:** P1
 
-#### F3: Controle de Estoque de Peças
+#### F3: Controle de Estoque de Itens
 
 **Descrição:**
-O sistema deve permitir o gerenciamento de peças de reposição, incluindo o cadastro, visualização e controle de entrada e saída de peças no estoque.
+O sistema deve permitir o gerenciamento de itens de reposição, incluindo o cadastro, visualização e controle de entrada e saída de itens no estoque.
 
 **Critérios de Aceitação:**
 
-- Permitir o cadastro de peças de reposição com informações como nome, código, fornecedor, quantidade em estoque e valor unitário.
-- Registrar a entrada e saída de peças com data e quantidade.
-- Exibir o estoque de peças em tempo real com opções de filtragem e pesquisa.
+- Permitir o cadastro de itens de reposição com informações como nome, código, fornecedor, quantidade em estoque e valor unitário.
+- Registrar a entrada e saída de itens com data e quantidade.
+- Exibir o estoque de itens em tempo real com opções de filtragem e pesquisa.
 - Gerar relatórios de estoque.
 
 **Prioridade:** P2
@@ -177,11 +177,11 @@ O sistema deve permitir a criação de contas de usuário com diferentes níveis
 >
 > **Descrição:** O gerente de manutenção recebe uma nova solicitação de manutenção e a atribui a uma equipe específica. A equipe é notificada sobre a nova tarefa e começa a trabalhar na resolução do problema.
 
-> **Caso de uso 3: Registro de Entrada de Peças**
+> **Caso de uso 3: Registro de Entrada de Itens**
 >
 > **Usuário:** Lucas Pereira (Membro do Time de Manutenção)
 >
-> **Descrição:** Um membro do time de manutenção registra a entrada de novas peças no estoque, especificando a quantidade e a data de recebimento. As informações são atualizadas no sistema e refletidas no inventário em tempo real.
+> **Descrição:** Um membro do time de manutenção registra a entrada de novas itens no estoque, especificando a quantidade e a data de recebimento. As informações são atualizadas no sistema e refletidas no inventário em tempo real.
 
 
 > **Caso de Uso 4: Atualização do Status de Manutenção**
@@ -206,13 +206,13 @@ O sistema deve permitir a criação de contas de usuário com diferentes níveis
 >
 > **Usuário:** Lucas Pereira (Membro do Time de Manutenção)
 >
-> **Descrição:** Lucas precisa consultar o histórico de manutenção de uma máquina específica antes de realizar uma nova manutenção. Ele acessa a aplicação, navega até a lista de máquinas, seleciona a máquina em questão e visualiza todas as manutenções anteriores, incluindo detalhes sobre as peças utilizadas e os problemas corrigidos.
+> **Descrição:** Lucas precisa consultar o histórico de manutenção de uma máquina específica antes de realizar uma nova manutenção. Ele acessa a aplicação, navega até a lista de máquinas, seleciona a máquina em questão e visualiza todas as manutenções anteriores, incluindo detalhes sobre as itens utilizadas e os problemas corrigidos.
 
-> **Caso de Uso 8: Gerenciamento do Estoque de Peças**
+> **Caso de Uso 8: Gerenciamento do Estoque de Itens**
 >
 > **Usuário:** Ana Costa (Gerente de Manutenção)
 >
-> **Descrição:** Ana precisa verificar o estoque atual de peças de reposição. Ela acessa a seção de estoque, visualiza a quantidade disponível de cada peça, registra a saída de peças usadas em manutenções recentes e atualiza o sistema com novas entradas. A gestão de estoque é refletida em tempo real, garantindo que todas as peças estejam disponíveis conforme necessário.
+> **Descrição:** Ana precisa verificar o estoque atual de itens de reposição. Ela acessa a seção de estoque, visualiza a quantidade disponível de cada item, registra a saída de itens usadas em manutenções recentes e atualiza o sistema com novas entradas. A gestão de estoque é refletida em tempo real, garantindo que todas as itens estejam disponíveis conforme necessário.
 
 > **Caso de Uso 9: Gerenciamento de Equipes de Manutenção**
 >
@@ -244,7 +244,7 @@ Os requisitos não funcionais são essenciais para garantir que a aplicação n�
 
 1. **NF1: Tempo de Resposta** (P1)
 
-   - **Descrição:** O sistema deve ter um tempo de resposta inferior a 2 segundos para qualquer operação CRUD (Create, Read, Update, Delete) nas principais entidades (máquinas, manutenções, peças).
+   - **Descrição:** O sistema deve ter um tempo de resposta inferior a 2 segundos para qualquer operação CRUD (Create, Read, Update, Delete) nas principais entidades (máquinas, manutenções, itens).
    - **Métrica:** Tempo médio de resposta < 2 segundos.
 
 2. **NF2: Escalabilidade** (P1)

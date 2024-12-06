@@ -19,7 +19,7 @@
     "maintenances": "Manutenções",
     "user": "Usuários",
     "team": "Equipes",
-    "parts": "Peças",
+    "items": "Itens",
     "settings": "Configurações",
     "themes": "Temas",
     "myProfile": "Meu perfil",
@@ -102,13 +102,13 @@
     "maintenance_date": "Data",
     "description": "Descrição",
     "quantity": "Quantidade",
-    "part_id": "Peça",
+    "item_id": "Item",
     "maintenance_id": "Manutenção",
     "unit_price": "Preço unitário",
     "stock_quantity": "Estoque",
     "image": "Imagem",
     "supplier": "Fornecedor",
-    "code": "Código Serial",
+    "serialCode": "Código Serial",
     "user_id": "Usuário",
     "specialty": "Especialidade",
     "role_id": "Cargo",
@@ -143,7 +143,7 @@
     "selectPermissions": "Selecione permissões aqui.",
     "selectUsers": "Selecione membros aqui.",
     "members": "Membros",
-    "partImage": "Imagem da peça"
+    "itemImage": "Imagem da item"
   },
   "Environments": {
     "title": "Ambientes",
@@ -159,10 +159,10 @@
     "editDescription": "Preencha o formulário abaixo para editar a motocicleta.",
     "detailsTitle": "Detalhes da motocicleta"
   },
-  "Parts": {
-    "title": "Peças",
-    "new": "Cadastrar peça",
-    "createTitle": "Cadastrar Peça",
+  "Items": {
+    "title": "Items",
+    "new": "Cadastrar item",
+    "createTitle": "Cadastrar Item",
     "createDescription": "Preencha o formulário abaixo para cadastrar um novo time."
   },
   "Maintenances": {
@@ -199,7 +199,7 @@
     "motorcycleType": "Tipo da motocicleta é necessário.",
     "motorcycleModel": "Modelo da motocicleta é necessário.",
     "motorcycleManufactureDate": "Data de manufatura precisa ser uma data válida.",
-    "partName": "Nome da peça é necessário.",
+    "itemName": "Nome da item é necessário.",
     "maintenanceType": "Tipo de manutenção é necessário.",
     "maintenanceDate": "Data de Manutenção é necessária.",
     "responsibleEmail": "Email do responsável é necessário.",

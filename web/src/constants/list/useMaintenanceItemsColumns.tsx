@@ -7,15 +7,15 @@ import TooltipButton from "@/components/tooltip-button";
 import { ReceiptText } from "lucide-react";
 import { useRouter } from "@/navigation";
 
-type UseMaintenancePartColumnsProps = {
+type UseMaintenanceItemColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useMaintenancePartColumns = ({
+export const useMaintenanceItemColumns = ({
   onEditClick,
   onRemoveClick,
-}: UseMaintenancePartColumnsProps = {}): ColumnDef<any>[] => {
+}: UseMaintenanceItemColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
 
@@ -47,7 +47,7 @@ export const useMaintenancePartColumns = ({
             Icon={ReceiptText}
             message={t("Common.details")}
             onClick={() => {
-              router.push(`parts/${row.original.part_id}`);
+              router.push(`items/${row.original.item_id}`);
             }}
           />
           {onEditClick && (

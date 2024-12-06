@@ -1,4 +1,4 @@
-import { Maintenance, MaintenancePart } from "@/types/data/maintenance";
+import { Maintenance, MaintenanceItem } from "@/types/data/maintenance";
 import { faker } from "@faker-js/faker";
 
 export const mockMaintenance: Maintenance = {
@@ -18,9 +18,9 @@ export const mockMaintenance: Maintenance = {
   accepted_by: faker.person.firstName(),
 };
 
-export const mockMaintenancePart: MaintenancePart = {
+export const mockMaintenanceItem: MaintenanceItem = {
   id: faker.number.int(),
   maintenance_id: faker.number.int(),
-  part_id: faker.number.int(),
+  item_id: faker.number.int(),
   quantity: faker.number.int({ min: 1, max: 100 }),
 };

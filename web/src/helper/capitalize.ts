@@ -8,11 +8,11 @@ export function convertEmailToName(email: string): string {
   const username = email.split('@')[0]; // 'jonathan.bergamo'
 
   // Separar o nome e sobrenome e capitalizar
-  const parts = username.split('.');
-  const capitalizedParts = parts.map(part => capitalizeFirstLetter(part));
+  const items = username.split('.');
+  const capitalizedItems = items.map(item => capitalizeFirstLetter(item));
 
   // Juntar o nome e sobrenome
-  const fullName = capitalizedParts.join(' ');
+  const fullName = capitalizedItems.join(' ');
 
   return fullName;
 }
