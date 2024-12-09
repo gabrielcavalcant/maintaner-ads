@@ -1,6 +1,6 @@
 ```mermaid
 erDiagram
-    ENVIRONMENT {
+    CUSTOMER {
         int CustomerId PK
         string name
         string Cpf
@@ -82,7 +82,7 @@ erDiagram
         int permission_id FK
     }
 
-    ENVIRONMENT ||--o{ MOTORCYCLE : houses
+    CUSTOMER ||--o{ MOTORCYCLE : houses
     MOTORCYCLE ||--o{ MAINTENANCE : maintains
     MAINTENANCE ||--o{ MAINTENANCE_ITEM : includes
     ITEM ||--o{ MAINTENANCE_ITEM : used_in

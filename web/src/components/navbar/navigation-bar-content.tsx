@@ -25,6 +25,7 @@ import { Badge } from "../ui/badge";
 import { useTranslations } from "next-intl";
 import { SiLitiengine } from "react-icons/si";
 import { FaPeopleGroup } from "react-icons/fa6";
+import { FaMotorcycle } from "react-icons/fa";
 
 type NavItem = {
   title: string;
@@ -49,13 +50,13 @@ export default function NavbarContent() {
         href: "/",
       },
       {
-        title: t("Navbar.environments"),
+        title: t("Navbar.clients"),
         Icon: FiBox,
-        href: "/environments",
+        href: "/clients",
       },
       {
         title: t("Navbar.motorcycles"),
-        Icon: PiWashingMachineFill,
+        Icon: FaMotorcycle,
         href: "/motorcycles",
       },
       {

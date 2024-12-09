@@ -14,7 +14,7 @@
   },
   "Navbar": {
     "dashboard": "Dashboard",
-    "environments": "Ambientes",
+    "customers": "Clientes",
     "equipments": "Equipamentos",
     "maintenances": "Manutenções",
     "user": "Usuários",
@@ -57,7 +57,7 @@
     "searchTeam": "Busque a equipe responsável aqui.",
     "notFound": "Não encontrado.",
     "maintenanceDescriptionPlaceholder": "Escreva aqui uma descrição da manutenção.",
-    "searchEnvironment": "Busque o ambiente desejado.",
+    "searchCustomer": "Busque o cliente desejado.",
     "edit": "Editar",
     "remove": "Remover",
     "searchRole": "Busque pelo cargo desejado.",
@@ -70,14 +70,14 @@
   },
   "Dashboard": {
     "title": "Dashboard",
-    "environments": "Ambientes",
+    "customers": "Clientes",
     "equipments": "Equipamentos",
     "openOs": "O.S Abertos",
     "closedOs": "O.S Fechados"
   },
   "Table": {
     "telephone": "Telefone",
-    "environment": "Ambiente",
+    "customer": "Cliente",
     "equipment": "Equipamento",
     "request": "Solicitação",
     "service": "Atendimento",
@@ -94,7 +94,7 @@
     "plate": "Placa",
     "customerCpf":"CPF do cliente",
     "serial_number": "Número Serial",
-    "environment_id": "Ambiente",
+    "customer_id": "Cliente",
     "responsible_id": "Responsável",
     "team_id": "Time",
     "motorcycle_id": "Motocicleta",
@@ -129,7 +129,7 @@
     "password": "Senha",
     "roleId": "ID do Cargo",
     "total_permissions": "Total de Permissões",
-    "selectEnvironment": "Selecione o ambiente desejado.",
+    "selectCustomer": "Selecione o cliente desejado.",
     "selectMotorcycle": "Selecione a motocicleta desejada.",
     "motorcycle": "Motocicleta",
     "team": "Equipe",
@@ -145,10 +145,10 @@
     "members": "Membros",
     "itemImage": "Imagem da item"
   },
-  "Environments": {
-    "title": "Ambientes",
-    "new": "Adicionar Ambiente",
-    "detailsTitle": "Detalhes do Ambiente"
+  "Customers": {
+    "title": "Clientes",
+    "new": "Adicionar Cliente",
+    "detailsTitle": "Detalhes do Cliente"
   },
   "Motorcycles": {
     "new": "Cadastrar Motocicleta",
@@ -192,9 +192,9 @@
   },
   "Zod": {
     "teamName": "O nome do time é necessário",
-    "environmentName": "Nome do ambiente é necessário.",
-    "environmentLocation": "Nome da localização do ambiente é necessário.",
-    "environmentCompanyName": "Nome da empresa é necessário.",
+    "customerName": "Nome do cliente é necessário.",
+    "customerLocation": "Nome da localização do cliente é necessário.",
+    "customerCompanyName": "Nome da empresa é necessário.",
     "motorcycleName": "Nome da motocicleta é necessário.",
     "motorcycleType": "Tipo da motocicleta é necessário.",
     "motorcycleModel": "Modelo da motocicleta é necessário.",
@@ -210,18 +210,18 @@
     "motorcycle": "Motocicleta é necessária.",
     "team": "Time é necessário.",
     "role": "Cargo é necessário.",
-    "environment": "Ambiente é necessário.",
+    "customer": "Cliente é necessário.",
     "supplier": "Fornecedor é necessário.",
     "unit_price": "Preço unitário é necessário.",
     "stock_quantity": "Quantidade de estoque é necessária.",
     "permission": "Pelo menos uma permissão é requerida.",
     "members": "Pelo menos um membro é necessário."
   },
-  "Environment": {
-    "createTitle": "Adicionar novo ambiente",
-    "createDescription": "Preencha o fomulário abaixo para adicionar um novo ambiente.",
-    "editTitle": "Editar Ambiente",
-    "editDescription": "Preencha o fomulário abaixo para editar um novo ambiente."
+  "Customer": {
+    "createTitle": "Adicionar novo cliente",
+    "createDescription": "Preencha o fomulário abaixo para adicionar um novo cliente.",
+    "editTitle": "Editar Cliente",
+    "editDescription": "Preencha o fomulário abaixo para editar um novo cliente."
   },
   "Roles": {
     "title": "Cargos",

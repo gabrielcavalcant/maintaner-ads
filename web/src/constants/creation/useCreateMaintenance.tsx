@@ -27,7 +27,7 @@ const generateFakeMotorcycleData = (num: number) => {
     model: faker.lorem.word(),
     manufacture_date: faker.date.recent(),
     serial_number: faker.number.int({ min: 123424, max: 23412343 }),
-    environment_id: faker.location.street(),
+    customer_id: faker.location.street(),
   }));
 };
 

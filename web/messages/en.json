@@ -43,7 +43,7 @@
     "notFound": "Not found.",
     "openWebcam": "Open Webcam",
     "remove": "Remove",
-    "searchEnvironment": "Search for the desired environment.",
+    "searchCustomer": "Search for the desired customer.",
     "searchMotorcycle": "Search for a motorcycle here.",
     "searchPermissions": "Search permissions here.",
     "searchRole": "Search for the role you want.",
@@ -52,21 +52,21 @@
   },
   "Dashboard": {
     "closedOs": "Closed O.S.",
-    "environments": "Environments",
+    "customers": "Customers",
     "equipments": "Equipments",
     "openOs": "Open O.S.",
     "title": "Dashboard"
   },
-  "Environment": {
-    "createDescription": "Fill out the form below to add a new environment.",
-    "createTitle": "Add new environment",
-    "editDescription": "Fill out the form below to edit a new environment.",
-    "editTitle": "Edit Environment"
+  "Customer": {
+    "createDescription": "Fill out the form below to add a new customer.",
+    "createTitle": "Add new customer",
+    "editDescription": "Fill out the form below to edit a new customer.",
+    "editTitle": "Edit Customer"
   },
-  "Environments": {
-    "detailsTitle": "Environment Details",
-    "new": "Add Environment",
-    "title": "Environments"
+  "Customers": {
+    "detailsTitle": "Customer Details",
+    "new": "Add Customer",
+    "title": "Customers"
   },
   "Login": {
     "email": "Email",
@@ -106,7 +106,7 @@
     "confirmLogoutSubtitle": "If you logout, all current sessions will be terminated. Do you wish to continue?",
     "confirmLogoutTitle": "Do you really want to logout?",
     "dashboard": "Dashboard",
-    "environments": "Environments",
+    "customers": "Customers",
     "equipments": "Equipments",
     "logout": "Logout",
     "Motorcycles": "Motorcycles",
@@ -144,8 +144,8 @@
     "description": "Description",
     "edit": "Edit",
     "email": "Email",
-    "environment": "Environment",
-    "environment_id": "Environment",
+    "customer": "Customer",
+    "customer_id": "Customer",
     "equipment": "Equipment",
     "fullName": "Name",
     "id": "ID",
@@ -178,7 +178,7 @@
     "roleId": "Job ID",
     "role_id": "Office",
     "roles": "Positions",
-    "selectEnvironment": "Select the desired environment.",
+    "selectCustomer": "Select the desired customer.",
     "selectMotorcycle": "Select the desired motorcycle.",
     "selectPermissions": "Select permissions here.",
     "selectRole": "Select the desired role.",
@@ -222,10 +222,10 @@
   },
   "Zod": {
     "email": "Invalid email.",
-    "environment": "Environment is necessary.",
-    "environmentCompanyName": "Company name is required.",
-    "environmentLocation": "Environment location name is required.",
-    "environmentName": "Environment name is required.",
+    "customer": "Customer is necessary.",
+    "customerCompanyName": "Company name is required.",
+    "customerLocation": "Customer location name is required.",
+    "customerName": "Customer name is required.",
     "fullName": "Full name is required.",
     "motorcycle": "Motorcycle is required.",
     "motorcycleManufactureDate": "Date of manufacture must be a valid date.",

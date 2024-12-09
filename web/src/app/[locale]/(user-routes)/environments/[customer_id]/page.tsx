@@ -5,8 +5,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
-import { Button } from "@/components/ui/button";
-import CreationModal from "@/components/creation/creation-modal";
 import Details from "@/components/details";
 import { MaintenanceBarChart } from "@/components/graphs/MaintenanceBarChart";
 import { MaintenanceAreaChart } from "@/components/graphs/MaintenanceAreaChart";
@@ -14,10 +12,10 @@ import { Label } from "@/components/ui/label";
 import { useMotorcycleMaintenancesColumns } from "@/constants/list/useMotorcycleMaintenancesColumns";
 import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 
-export default function MotorcycleDetails({
+export default function CustomerDetails({
   params,
 }: {
-  params: { motorcycle_id: string };
+  params: { customer_id: string };
 }) {
   const t = useTranslations();
 
@@ -51,14 +49,10 @@ export default function MotorcycleDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.motorcycle_id,
-    name: faker.lorem.words(2),
-    type: faker.lorem.word(),
-    model: faker.lorem.word(),
-    manufacture_date: new Date(faker.date.recent()).toLocaleDateString("pt-BR"),
-    serial_number: faker.number.int({ min: 123424, max: 23412343 }).toString(),
-    customer: faker.location.street(),
-    customer_id: faker.number.int({ min: 1, max: 50 }),
+    id: params.customer_id,
+    name: faker.lorem.word(),
+    location: faker.lorem.sentence(),
+    company_name: faker.lorem.word(),
   };
 
   const maintenances_data = generateFakeData(5);
@@ -78,35 +72,20 @@ export default function MotorcycleDetails({
       canCopy: false,
     },
     {
-      dataName: "type",
-      label: "Tipo da motocicleta",
+      dataName: "location",
+      label: "Localização",
       canCopy: false,
     },
     {
-      dataName: "model",
-      label: "Modelo da motocicleta",
-      canCopy: false,
-    },
-    {
-      dataName: "manufacture_date",
-      label: "Data de fabricação",
-      canCopy: false,
-    },
-    {
-      dataName: "serial_number",
-      label: "Número de série",
-      canCopy: true,
-    },
-    {
-      dataName: "customer",
-      label: "Cliente",
+      dataName: "company_name",
+      label: "Empresa",
       canCopy: false,
     },
   ];
 
   return (
     <div>
-      <Header title={t("Motorcycles.detailsTitle")} goBack />
+      <Header title={t("Customers.detailsTitle")} />
       <div className="flex w-full items-center justify-end"></div>
       <Details data={data} options={options} />
       <div className="flex flex-col  w-full mt-10 sm:mt-0">

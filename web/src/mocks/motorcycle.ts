@@ -7,5 +7,5 @@ export const mockMotorcycle: Motorcycle = {
   type: faker.commerce.productMaterial(),
   plate: faker.vehicle.model(),
   yearManufacture: faker.date.past(),
-  environment_id: faker.number.int(),
+  customer_id: faker.number.int(),
 };

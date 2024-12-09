@@ -12,10 +12,10 @@ import { Label } from "@/components/ui/label";
 import { useMotorcycleMaintenancesColumns } from "@/constants/list/useMotorcycleMaintenancesColumns";
 import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 
-export default function EnvironmentDetails({
+export default function CustomerDetails({
   params,
 }: {
-  params: { environment_id: string };
+  params: { customer_id: string };
 }) {
   const t = useTranslations();
 
@@ -49,7 +49,7 @@ export default function EnvironmentDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.environment_id,
+    id: params.customer_id,
     name: faker.lorem.word(),
     location: faker.lorem.sentence(),
     company_name: faker.lorem.word(),
@@ -85,7 +85,7 @@ export default function EnvironmentDetails({
 
   return (
     <div>
-      <Header title={t("Environments.detailsTitle")} />
+      <Header title={t("Customers.detailsTitle")} />
       <div className="flex w-full items-center justify-end"></div>
       <Details data={data} options={options} />
       <div className="flex flex-col  w-full mt-10 sm:mt-0">

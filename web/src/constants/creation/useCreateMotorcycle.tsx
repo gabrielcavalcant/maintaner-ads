@@ -12,7 +12,6 @@ import { faker } from "@faker-js/faker";
 import { Label } from "@/components/ui/label";
 import Combobox from "@/components/ui/combobox";
 import CreationModal from "@/components/creation/creation-modal";
-import { useCreateEnvironment } from "./useCreateEnvironment";
 import { Button } from "@/components/ui/button";
 
 export const useCreateMotorcycle = (): CreationFields => {
@@ -87,8 +86,8 @@ export const useCreateMotorcycle = (): CreationFields => {
         flexWidth: "100%",
       },
       // {
-      //   label: t("Table.environment"),
-      //   dbName: "environment_id",
+      //   label: t("Table.customer"),
+      //   dbName: "customer_id",
       //   required: false,
       //   type: "number",
       //   flexWidth: "100%",
@@ -105,16 +104,16 @@ export const useCreateMotorcycle = (): CreationFields => {
       //               console.log(formValues);
       //             }}
       //             fields={fields}
-      //             title={t("Environment.createTitle")}
-      //             description={t("Environment.createDescription")}
+      //             title={t("Customer.createTitle")}
+      //             description={t("Customer.createDescription")}
       //             validationSchema={validationSchema}
       //             asChild
       //           >
-      //             <Button>{t("Environments.new")}</Button>
+      //             <Button>{t("Customers.new")}</Button>
       //           </CreationModal>
       //         )}
-      //         searchPlaceholder={t("Common.searchEnvironment")}
-      //         placeholder={t("Table.selectEnvironment")}
+      //         searchPlaceholder={t("Common.searchCustomer")}
+      //         placeholder={t("Table.selectCustomer")}
       //         value={value}
       //         emptyMessage={t("Common.notFound")}
       //         render={(item) => {

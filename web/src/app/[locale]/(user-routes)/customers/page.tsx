@@ -1,18 +1,18 @@
 "use client";
 import Header from "@/components/header";
 import { DataTable } from "@/components/table/data-table";
-import { useEnvironmentsColumns } from "@/constants/list/useEnvironmentsColumns";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
-import { useCreateEnvironment } from "@/constants/creation/useCreateEnvironment";
 import CreationModal from "@/components/creation/creation-modal";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAxios } from "@/helper/hooks/useAxios";
+import { useCreateCustomer } from "@/constants/creation/useCreateCustomer";
+import { useCustomersColumns } from "@/constants/list/useCustomersColumns";
 
-export default function Environments() {
+export default function Customers() {
   const api = useAxios();
   const { data, refetch } = useQuery({
     queryKey: ["getCustomers"],
@@ -44,13 +44,13 @@ export default function Environments() {
   });
   const t = useTranslations();
 
-  const { fields, validationSchema } = useCreateEnvironment();
+  const { fields, validationSchema } = useCreateCustomer();
 
-  const columns = useEnvironmentsColumns();
+  const columns = useCustomersColumns();
 
   return (
     <div>
-      <Header title={t("Environments.title")} />
+      <Header title={t("Customers.title")} />
       <div className="flex w-full items-center justify-end">
         <CreationModal
           onSubmit={(formValues) => {
@@ -58,12 +58,12 @@ export default function Environments() {
             return { success: mutateResponse?.status === 201 };
           }}
           fields={fields}
-          title={t("Environment.createTitle")}
-          description={t("Environment.createDescription")}
+          title={t("Customer.createTitle")}
+          description={t("Customer.createDescription")}
           validationSchema={validationSchema}
           asChild
         >
-          <Button>{t("Environments.new")}</Button>
+          <Button>{t("Customers.new")}</Button>
         </CreationModal>
       </div>
       <DataTable

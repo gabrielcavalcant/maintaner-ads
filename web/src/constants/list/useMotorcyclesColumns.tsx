@@ -81,13 +81,13 @@ export const useMotorcyclesColumns = ({
     //   header: ({ column }) => (
     //     <DataTableColumnHeader
     //       column={column}
-    //       title={t("Table.environment_id")}
+    //       title={t("Table.customer_id")}
     //     />
     //   ),
-    //   accessorKey: "environment_id",
+    //   accessorKey: "customer_id",
     //   cell: ({ row }) => (
     //     <div className="flex gap-1 items-center">
-    //       {row.original.environment_id}
+    //       {row.original.customer_id}
     //     </div>
     //   ),
     // },
@@ -116,8 +116,8 @@ export const useMotorcyclesColumns = ({
                   type: row.original.type,
                   yearManufacture: row.original.yearManufacture,
                   serial_number: row.original.serial_number,
-                  environment: row.original.environment,
-                  environment_id: row.original.environment_id,
+                  customer: row.original.customer,
+                  customer_id: row.original.customer_id,
                 })
               }
               mutationKey={["editMotorcycle", row.original.id]}

@@ -4,5 +4,5 @@ export type Motorcycle = {
   type: string;
   plate: string;
   yearManufacture: Date;
-  environment_id: number; // FK para ENVIRONMENT
+  customer_id: number; // FK para CUSTOMER
 };

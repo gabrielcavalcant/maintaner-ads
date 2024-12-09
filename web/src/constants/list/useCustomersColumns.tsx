@@ -4,25 +4,25 @@ import { useTranslations } from "next-intl";
 import { MdEdit } from "react-icons/md";
 import { FaEraser } from "react-icons/fa6";
 import TooltipButton from "@/components/tooltip-button";
-import { useCreateEnvironment } from "../creation/useCreateEnvironment";
 import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
 import { ReceiptText } from "lucide-react";
 import { useRouter } from "@/navigation";
+import { useCreateCustomer } from "../creation/useCreateCustomer";
 
-type UseEnvironmentsColumnsProps = {
+type UseCustomersColumnsProps = {
   onEditClick?: (id: number) => void;
   onRemoveClick?: (id: number) => void;
 };
 
-export const useEnvironmentsColumns = ({
+export const useCustomersColumns = ({
   onEditClick,
   onRemoveClick,
-}: UseEnvironmentsColumnsProps = {}): ColumnDef<any>[] => {
+}: UseCustomersColumnsProps = {}): ColumnDef<any>[] => {
   const t = useTranslations();
   const router = useRouter();
 
-  const { fields, validationSchema } = useCreateEnvironment();
+  const { fields, validationSchema } = useCreateCustomer();
 
   return [
     {
@@ -44,7 +44,7 @@ export const useEnvironmentsColumns = ({
               Icon={ReceiptText}
               message={t("Common.details")}
               onClick={() => {
-                router.push(`environments/${row.original.id}`);
+                router.push(`customers/${row.original.id}`);
               }}
             />
             {onEditClick && (
@@ -61,9 +61,9 @@ export const useEnvironmentsColumns = ({
                     company_name: row.original.company_name,
                   })
                 }
-                mutationKey={["editEnvironment", row.original.id]}
-                title={t("Environment.editTitle")}
-                description={t("Environment.editDescription")}
+                mutationKey={["editCustomer", row.original.id]}
+                title={t("Customer.editTitle")}
+                description={t("Customer.editDescription")}
                 validationSchema={validationSchema}
                 asChild
               >

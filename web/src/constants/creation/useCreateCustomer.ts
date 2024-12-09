@@ -2,10 +2,10 @@ import { CreationFields } from "@/types";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
-export const useCreateEnvironment = (): CreationFields => {
+export const useCreateCustomer = (): CreationFields => {
   const t = useTranslations();
 
-  const environmentSchema = z.object({
+  const customerSchema = z.object({
     name: z.string().min(1, t("Zod.name")),
     telephone: z
       .string()
@@ -42,6 +42,6 @@ export const useCreateEnvironment = (): CreationFields => {
       imageOptional: true,
       maxImages: 1,
     },
-    validationSchema: environmentSchema,
+    validationSchema: customerSchema,
   };
 };
