@@ -7,7 +7,7 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import { Button } from "@/components/ui/button";
 import { useUserColumns } from "@/constants/list/useUserColumns";
-import { useCreateUser } from "@/constants/creation/useCreateuser";
+import { useCreateUser } from "@/constants/creation/useCreateUser";
 import CreationModal from "@/components/creation/creation-modal";
 
 export default function Users() {

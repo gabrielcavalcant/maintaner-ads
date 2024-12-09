@@ -4,16 +4,6 @@ import { faker } from "@faker-js/faker";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
-const generateFakeRoleData = (num: number) => {
-  return Array.from({ length: num }, (_, index) => ({
-    id: index + 1,
-    name: faker.lorem.word(),
-    total_permissions: faker.number.int({ min: 1, max: 10 }),
-  }));
-};
-
-const role_data = generateFakeRoleData(8);
-
 export const useCreateUser = (): CreationFields => {
   const t = useTranslations();
 

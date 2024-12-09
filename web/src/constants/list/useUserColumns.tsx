@@ -7,7 +7,7 @@ import TooltipButton from "@/components/tooltip-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import EditModal from "@/components/creation/edit-modal";
 import { simulatedResponseAPI } from "@/helper/simulate-api";
-import { useCreateUser } from "../creation/useCreateuser";
+import { useCreateUser } from "../creation/useCreateUser";
 import { Badge } from "@/components/ui/badge";
 import ConfirmAlertDialog from "@/components/confirm-alert-dialog";
 import toast from "react-hot-toast";
