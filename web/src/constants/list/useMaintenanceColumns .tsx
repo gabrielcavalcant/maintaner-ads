@@ -25,15 +25,15 @@ export const useMaintenanceColumns = ({
   const { fields, validationSchema } = useCreateMaintenance();
 
   return [
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t("Table.type")} />
-      ),
-      accessorKey: "type",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.type}</div>
-      ),
-    },
+    // {
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader column={column} title={t("Table.type")} />
+    //   ),
+    //   accessorKey: "type",
+    //   cell: ({ row }) => (
+    //     <div className="flex gap-1 items-center">{row.original.type}</div>
+    //   ),
+    // },
     {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.description")} />
@@ -45,36 +45,38 @@ export const useMaintenanceColumns = ({
         </div>
       ),
     },
-    {
-      header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.maintenance_date")}
-        />
-      ),
-      accessorKey: "maintenance_date",
-      cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {new Date(row.original.maintenance_date).toLocaleDateString()}
-        </div>
-      ),
-    },
+    // {
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader
+    //       column={column}
+    //       title={t("Table.maintenance_date")}
+    //     />
+    //   ),
+    //   accessorKey: "maintenance_date",
+    //   cell: ({ row }) => (
+    //     <div className="flex gap-1 items-center">
+    //       {new Date(row.original.maintenance_date).toLocaleDateString()}
+    //     </div>
+    //   ),
+    // },
     {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.status")} />
       ),
-      accessorKey: "status",
+      accessorKey: "maintenanceStatus",
       cell: ({ row }) => {
         const status =
-          row.original.status === 0
-            ? { label: "Pendente", color: "yellow" }
-            : row.original.status === 1
-            ? { label: "Concluido", color: "green" }
+          row.original.maintenanceStatus === 1
+            ? { label: "Criado", color: "yellow" }
+            : row.original.maintenanceStatus === 2
+            ? { label: "Em Progresso", color: "blue" }
+            : row.original.maintenanceStatus === 3
+            ? { label: "Concluído", color: "green" }
             : { label: "Desconhecido", color: "red" };
-
+    
         return (
           <Card
-            className={`flex gap-1 items-center justify-center bg-${status.color}-500`}
+            className={`flex gap-1 items-center justify-center bg-${status.color}-500 text-white`}
           >
             {status.label}
           </Card>
@@ -85,34 +87,61 @@ export const useMaintenanceColumns = ({
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.motorcycle_id")} />
       ),
-      accessorKey: "motorcycle",
+      accessorKey: "motorcycleId",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.motorcycle}</div>
+        <div className="flex gap-1 items-center">{row.original.motorcycleId}</div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.motorcycle_name")} />
+      ),
+      accessorKey: "motorcycleName",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">{row.original.motorcycleName}</div>
+      ),
+    },
+    {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={t("Table.motorcycle_plate")} />
+      ),
+      accessorKey: "motorcyclePlate",
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">{row.original.motorcyclePlate}</div>
       ),
     },
     {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("Table.team_id")} />
       ),
-      accessorKey: "team",
+      accessorKey: "teamId",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">{row.original.team}</div>
+        <div className="flex gap-1 items-center">{row.original.teamId}</div>
       ),
     },
     {
       header: ({ column }) => (
-        <DataTableColumnHeader
-          column={column}
-          title={t("Table.responsible_id")}
-        />
+        <DataTableColumnHeader column={column} title={t("Table.team_name")} />
       ),
-      accessorKey: "responsible",
+      accessorKey: "teamName",
       cell: ({ row }) => (
-        <div className="flex gap-1 items-center">
-          {row.original.responsible}
-        </div>
+        <div className="flex gap-1 items-center">{row.original.teamName}</div>
       ),
     },
+    // {
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader
+    //       column={column}
+    //       title={t("Table.responsible_id")}
+    //     />
+    //   ),
+    //   accessorKey: "responsible",
+    //   cell: ({ row }) => (
+    //     <div className="flex gap-1 items-center">
+    //       {row.original.responsible}
+    //     </div>
+    //   ),
+    // },
     {
       id: "actions",
       header: t("Table.actions"),
@@ -122,7 +151,7 @@ export const useMaintenanceColumns = ({
             Icon={ReceiptText}
             message={t("Common.details")}
             onClick={() => {
-              router.push(`maintenances/${row.original.id}`);
+              router.push(`maintenance/${row.original.id}`);
             }}
           />
           {onEditClick && (
@@ -159,7 +188,7 @@ export const useMaintenanceColumns = ({
           {onRemoveClick && (
             <TooltipButton
               Icon={FaEraser}
-              message={t("Common.remove")}
+              message={t("Remover")}
               onClick={() => onRemoveClick(row.original.id)}
             />
           )}

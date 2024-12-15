@@ -50,9 +50,9 @@ export default function NavbarContent() {
         href: "/",
       },
       {
-        title: t("Navbar.clients"),
+        title: t("Navbar.customers"),
         Icon: FiBox,
-        href: "/clients",
+        href: "/customers",
       },
       {
         title: t("Navbar.motorcycles"),

@@ -8,7 +8,6 @@ import GoBack from '@/components/go-back'
 
 const MotorcycleDetails = () => {
 
-  // Mock dos dados da motocicleta
   const motorcycle = {
     name: 'Harley-Davidson',
     type: 'Cruiser',

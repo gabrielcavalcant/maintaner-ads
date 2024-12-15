@@ -6,30 +6,55 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native'
-import { useTheme } from '../theme' // ajuste o caminho conforme necessário
+import { useTheme } from '../theme' 
 import Input from '@/components/ui/input'
 import Button from '@/components/ui/button'
 import GoBack from '@/components/go-back'
+import { ApiRequest } from '@/lib/request.module'
 
 const MaintenanceRequests = () => {
-  const [problemDescription, setProblemDescription] = useState('')
-  const [priority, setPriority] = useState('')
-  const [responsible, setResponsible] = useState('')
-  const [comments, setComments] = useState('')
-  const [status, setStatus] = useState('pendente')
+  const [description, setDescription] = useState('')
+  const [motorcycleId, setMotorcycleId] = useState('')
+  const [teamId, setTeamId] = useState('')
 
   const { colors } = useTheme()
 
-  const handleCreateRequest = () => {
-    // Lógica para criar solicitação de manutenção
-    console.log({
-      problemDescription,
-      priority,
-      responsible,
-      comments,
-      status,
-    })
+  const handleCreateRequest = async () => {
+    // Verifica se todos os campos estão preenchidos
+    if (!description || !motorcycleId || !teamId) {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos antes de enviar.')
+      return
+    }
+
+    const API = new ApiRequest()
+
+    try {
+      const response = await API.ApiRequest('/maintenance', {
+        description,
+        motorcycleId,
+        teamId,
+      })
+
+      console.log('Response Status:', response?.status)
+      console.log('Response Headers:', response?.headers)
+      console.log('Response Data:', response?.data)
+
+      if (response.status === 200 || response.status === 201) {
+        Alert.alert('Sucesso', 'Solicitação de manutenção criada com sucesso!')
+
+        // Limpa os campos após o sucesso
+        setDescription('')
+        setMotorcycleId('')
+        setTeamId('')
+      } else {
+        Alert.alert('Erro', 'Algo deu errado. Verifique os dados e tente novamente.')
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error)
+      Alert.alert('Erro', 'Ocorreu um erro ao criar a solicitação. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -42,48 +67,20 @@ const MaintenanceRequests = () => {
           <Header title='Criar Solicitação de manutenção' />
           <View style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <Input
-              placeholder='Descrição do problema'
-              value={problemDescription}
-              onChangeText={setProblemDescription}
+              placeholder='Descrição da manutenção'
+              value={description}
+              onChangeText={setDescription}
             />
             <Input
-              placeholder='Prioridade (Baixa, Média, Alta)'
-              value={priority}
-              onChangeText={setPriority}
+              placeholder='ID da motocicleta'
+              value={motorcycleId}
+              onChangeText={setMotorcycleId}
             />
             <Input
-              placeholder='Responsável'
-              value={responsible}
-              onChangeText={setResponsible}
+              placeholder='ID da equipe responsável'
+              value={teamId}
+              onChangeText={setTeamId}
             />
-            <Input
-              placeholder='Adicionar comentários'
-              value={comments}
-              onChangeText={setComments}
-            />
-          </View>
-          <View style={styles.statusContainer}>
-            <Button
-              onPress={() => setStatus('pendente')}
-              size='lg'
-              variant={status === 'pendente' ? 'outline' : 'ghost'}
-            >
-              Pendente
-            </Button>
-            <Button
-              onPress={() => setStatus('em andamento')}
-              size='lg'
-              variant={status === 'em andamento' ? 'outline' : 'ghost'}
-            >
-              Em Andamento
-            </Button>
-            <Button
-              onPress={() => setStatus('concluída')}
-              variant={status === 'concluída' ? 'outline' : 'ghost'}
-              size='lg'
-            >
-              Concluída
-            </Button>
           </View>
           <Button onPress={handleCreateRequest} size='xl'>
             Criar Solicitação
@@ -103,29 +100,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     gap: 15,
     alignItems: 'stretch',
-  },
-  input: {
-    marginVertical: 8,
-    borderWidth: 1,
-    padding: 8,
-  },
-  statusContainer: {
-    marginTop: 16,
-    display: 'flex',
-    gap: 10,
-    marginBottom: 20,
-  },
-  statusText: {
-    fontSize: 18,
-  },
-  statusButton: {
-    marginVertical: 4,
-    borderRadius: 8,
-    padding: 10,
-  },
-  buttonText: {
-    color: 'black',
-    textAlign: 'center',
   },
 })
 

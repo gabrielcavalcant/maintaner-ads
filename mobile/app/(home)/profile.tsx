@@ -5,7 +5,7 @@ import { Appearance, Text, View, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Moon, Sun } from '@/components/icons'
 import * as Haptics from 'expo-haptics'
-import { useTheme } from '../theme' // Importe o hook useTheme
+import { useTheme } from '../theme'
 import Header from '@/components/header'
 
 function getInitials(name: string) {
@@ -23,7 +23,7 @@ export default function Profile() {
   const insets = useSafeAreaInsets()
   const { signOut } = useAuth()
   const { user } = useAuth()
-  const theme = useTheme() // Usa o tema dinâmico
+  const theme = useTheme()
 
   return (
     <View

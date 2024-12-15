@@ -57,7 +57,7 @@ const Reports = () => {
       <Text style={[styles.title, { color: colors.foreground, marginTop: 16 }]}>
         Estoque de Itens
       </Text>
-      {stockitems.map((item) => (
+      {stockItems.map((item) => (
         <View
           key={item.id}
           style={[

@@ -78,12 +78,10 @@ export default function Dashboard() {
   ];
   const handleEditClick = (id: number) => {
     console.log("Edit clicked for id:", id);
-    // Adicione a lógica de edição aqui
   };
 
   const handleRemoveClick = (id: number) => {
     console.log("Remove clicked for id:", id);
-    // Adicione a lógica de remoção aqui
   };
 
   // Função para gerar dados fictícios

@@ -6,6 +6,7 @@ export type AuthToken = {
 }
 
 export type User = {
+  accessToken: any
   sub: string
   email: string
   fullName: string

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, ScrollView, StyleSheet } from 'react-native'
-import { useTheme } from '../theme' // Supondo que você já tenha o useTheme implementado
+import { useTheme } from '../theme'
 import Input from '@/components/ui/input'
 import Button from '@/components/ui/button'
 

@@ -58,6 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       )
 
       const data = response.data
+      console.log("data",data)
 
       if (data?.statusCode === 403 || data?.statusCode === 401) {
         return { success: false, message: 'Email ou senha incorretos.' }
@@ -84,6 +85,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         return { success: false, message: 'Login falhou.' }
       }
     } catch (error) {
+      console.log(error)
       return { success: false, message: 'Erro no servidor.', error }
     }
   }
@@ -107,6 +109,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           hash: password,
         },
       )
+      console.log(response);
 
       const data = response.data
 

@@ -22,7 +22,7 @@ const motorcycles = [
 ]
 
 export default function Motorcycle() {
-  const theme = useTheme() // Usa o tema dinâmico
+  const theme = useTheme()
   const router = useRouter()
 
   const renderItem = ({ item }: any) => (

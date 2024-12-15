@@ -15,12 +15,10 @@ export default function Users() {
 
   const handleEditClick = (id: number) => {
     console.log("Edit clicked for id:", id);
-    // Adicione a lógica de edição aqui
   };
 
   const handleRemoveClick = (id: number) => {
     console.log("Remove clicked for id:", id);
-    // Adicione a lógica de remoção aqui
   };
 
   // Função para gerar dados fictícios
@@ -51,7 +49,7 @@ export default function Users() {
     <div>
       <Header title={t("Users.title")} />
       <div className="flex w-full items-center justify-end">
-        <CreationModal
+        {/* <CreationModal
           onSubmit={(formValues) => {
             console.log(formValues);
           }}
@@ -61,7 +59,7 @@ export default function Users() {
           validationSchema={validationSchema}
         >
           <Button>{t("Users.new")}</Button>
-        </CreationModal>
+        </CreationModal> */}
       </div>
       <DataTable
         data={data}
