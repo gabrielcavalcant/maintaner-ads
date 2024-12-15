@@ -1,0 +1,6 @@
+{
+  "extends": ["@rocketseat/eslint-config/next"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}
