@@ -26,6 +26,7 @@ import { useTranslations } from "next-intl";
 import { SiLitiengine } from "react-icons/si";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaMotorcycle } from "react-icons/fa";
+import Logo from "../logo";
 
 type NavItem = {
   title: string;
@@ -111,10 +112,7 @@ export default function NavbarContent() {
         className="mb-5 text-4xl flex items-center rounded-lg px-3 py-2 "
         prefetch={false}
       >
-        <GiGearHammer className="text-[50px] text-primary" />
-        <span className="ml-3 text-3xl font-semibold text-primary">
-          Maintainer
-        </span>
+        < Logo />
       </Link>
       <div className="flex flex-col w-full text-sm font-medium">
         {navigation?.map((item, index) => {

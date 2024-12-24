@@ -867,6 +867,60 @@ html {
 --chart-5: 27 87% 67%;
 }
 
+.oficina-dark {
+  --background: 229 41% 4%;
+  --foreground: 229 23% 99%;
+  --muted: 229 12% 14%;
+  --muted-foreground: 229 10% 63%;
+  --popover: 229 41% 5%;
+  --popover-foreground: 0 0% 100%;
+  --card: 229 41% 5%;
+  --card-foreground: 0 0% 100%;
+  --border: 215 27.9% 16.9% ;
+  --input: 328 100% 50%; 
+  --primary: 328 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 229 14% 8%;
+  --secondary-foreground: 229 14% 68%;
+  --accent: 328 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 3 89% 54%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 328 100% 50%;
+  --chart-1: 328 100% 50%;
+  --chart-2: 12 76% 61%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+}
+
+.oficina-light {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 13%;
+  --muted: 0 12% 90%;
+  --muted-foreground: 0 12% 30%;
+  --popover: 0 0% 97%;
+  --popover-foreground: 0 0% 3%;
+  --card: 0 0% 98%;
+  --card-foreground: 0 0% 8%;
+  --border: 0 0% 8%; /* Substituído por nova cor */
+  --input: 328 100% 30%; /* Substituído por nova cor */
+  --primary: 328 100% 50%; /* Substituído por nova cor */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 25%;
+  --secondary-foreground: 0 0% 85%;
+  --accent: 328 100% 50%; /* Substituído por nova cor */
+  --accent-foreground: 328 100% 20%; /* Substituído por nova cor */
+  --destructive: 5 82% 43%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 328 100% 50%; /* Substituído por nova cor */
+  --radius: 0.5rem; 
+  --chart-1: 328 100% 50%; /* Substituído por nova cor */
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+}
 
   * {
     @apply border-border;

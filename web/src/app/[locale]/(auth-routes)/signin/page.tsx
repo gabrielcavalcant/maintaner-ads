@@ -21,6 +21,7 @@ import {
   FormMessage,
   Form,
 } from "@/components/ui/form";
+import Logo from "@/components/logo";
 
 export default function Login() {
   const { signIn, isLoading } = useAuth();
@@ -74,10 +75,7 @@ export default function Login() {
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center space-y-2 text-center">
             <div className="flex gap-2 pb-5 items-center justify-center">
-              <GiGearHammer className="text-[50px] text-primary" />
-              <span className="ml-3 text-3xl font-semibold text-primary">
-                Maintainer
-              </span>
+            <Logo />
             </div>
             <Label className="text-3xl text-accent-foreground font-bold">
               {t("Login.loginTitle")}

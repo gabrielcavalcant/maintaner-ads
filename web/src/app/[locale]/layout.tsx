@@ -33,6 +33,8 @@ export default async function RootLayout({
           themes={[
             "light",
             "dark",
+            "oficina-light",
+            "oficina-dark",
             "red",
             "red-dark",
             "green",
