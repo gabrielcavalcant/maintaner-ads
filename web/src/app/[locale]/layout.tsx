@@ -19,8 +19,9 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale?: string };
+  params: Promise<{ locale?: string }>;
 }>) {
+  const { locale } = await params;
   const messages = await getMessages();
 
   return (
@@ -63,7 +64,7 @@ export default async function RootLayout({
           <CustomToaster />
           <NextIntlClientProvider messages={messages}>
             <main className="flex overflow-x-hidden overflow-y-auto text-foreground bg-background h-screen w-screen ">
-              <LanguageSwitcher locale={params.locale} />
+              <LanguageSwitcher locale={locale} />
               {children}
             </main>
           </NextIntlClientProvider>

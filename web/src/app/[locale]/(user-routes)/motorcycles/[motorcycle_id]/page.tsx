@@ -17,8 +17,9 @@ import { useCreateMotorcycle } from "@/constants/creation/useCreateMotorcycle";
 export default function MotorcycleDetails({
   params,
 }: {
-  params: { motorcycle_id: string };
+  params: Promise<{ motorcycle_id: string }>;
 }) {
+  const { motorcycle_id } = React.use(params);
   const t = useTranslations();
 
   const handleEditClick = (id: number) => {
@@ -49,7 +50,7 @@ export default function MotorcycleDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.motorcycle_id,
+    id: motorcycle_id,
     name: faker.lorem.words(2),
     type: faker.lorem.word(),
     model: faker.lorem.word(),

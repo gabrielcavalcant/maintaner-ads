@@ -34,7 +34,7 @@ const hasPermission = (
 };
 
 export default async function middleware(req: NextRequest) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const encryptedSession = cookieStore.get("session")?.value;
   if (encryptedSession) {
     try {
