@@ -68,8 +68,9 @@ function harmonize(
 export default function MaintenanceDetails({
   params,
 }: {
-  params: { maintenance_id: string };
+  params: Promise<{ maintenance_id: string }>;
 }) {
+  const { maintenance_id } = React.use(params);
   const { theme } = useTheme();
   const t = useTranslations();
 
@@ -104,7 +105,7 @@ export default function MaintenanceDetails({
 
   // Gera 50 itens fictícios
   const data = {
-    id: params.maintenance_id,
+    id: maintenance_id,
     type: faker.lorem.words(2),
     description: faker.lorem.sentence(),
     maintenance_date: new Date(faker.date.recent()).toLocaleDateString("pt-BR"),

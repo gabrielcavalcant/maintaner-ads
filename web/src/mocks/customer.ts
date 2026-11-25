@@ -5,6 +5,6 @@ import { faker } from "@faker-js/faker";
 export const mockCustomer: Customer = {
   id: faker.number.int(),
   name: faker.company.name(),
-  location: faker.address.city(),
+  location: faker.location.city(),
   responsible_id: faker.number.int(),
 };
